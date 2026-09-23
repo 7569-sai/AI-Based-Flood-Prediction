@@ -36,12 +36,22 @@ def get_risk_category(risk_score):
 
 
 class SpatialRiskEngine:
-    def __init__(self):
-        model_path = os.path.join(MODELS_DIR, "model_random_forest.joblib")
+    def __init__(self, use_pan_india=True):
+        pan_india_model = os.path.join(MODELS_DIR, "model_pan_india_random_forest.joblib")
+        kerala_model = os.path.join(MODELS_DIR, "model_random_forest.joblib")
+        pan_india_meta = os.path.join(BASE_DIR, "data", "processed", "india", "pan_india_metadata.json")
+
+        if use_pan_india and os.path.exists(pan_india_model) and os.path.exists(pan_india_meta):
+            model_path = pan_india_model
+            meta_path = pan_india_meta
+        else:
+            model_path = kerala_model
+            meta_path = os.path.join(PROCESSED_DIR, "feature_metadata.json")
+
         assert os.path.exists(model_path), f"Champion model not found at {model_path}!"
         self.model = joblib.load(model_path)
         
-        with open(os.path.join(PROCESSED_DIR, "feature_metadata.json"), "r") as f:
+        with open(meta_path, "r") as f:
             self.metadata = json.load(f)
         self.feature_cols = self.metadata["feature_cols"]
 

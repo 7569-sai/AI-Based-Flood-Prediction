@@ -1,0 +1,7 @@
+{
+  "mean_epistemic_variance": 0.000166,
+  "max_epistemic_variance": 0.021254,
+  "mean_predictive_entropy": 0.0235,
+  "high_uncertainty_instances_count": 0,
+  "uncertainty_brier_score": 0.0234
+}

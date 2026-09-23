@@ -1,78 +1,58 @@
-# Dataset Documentation: Kerala River Basins Hydrometeorological & Geospatial Dataset
+# Dataset Architecture & Geographic Representation
 
-## 1. Overview & Provenance
-
-* **Dataset Name**: Kerala River Basins Hydrometeorological and Remote-Sensing Dataset (2018–2023)
-* **Coverage**: 16 monitoring stations across 8 major river basins in Kerala, Southwestern India
-* **Temporal Resolution**: Daily observations from January 1, 2018 to December 31, 2023 (6 full years, 2,191 days per station)
-* **Total Records**: 35,056 records
-* **Raw File**: `data/raw/kerala_flood_raw.csv` (SHA-256: `a7e9fc5d40372261051c98e9f2a0d17c3ebbbdfa9d1889a8786a5ee37766f60f`)
-* **Manifest**: `data/DATA_MANIFEST.json`
+**Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
+**Application:** FloodAI Engine — "AI for a Safer, Resilient India"
 
 ---
 
-## 2. Data Sources & Licensing
+## 1. Dataset Overview
 
-| Domain | Source Provider | Specific Product / API | Spatial/Temporal Resolution | License |
+The FloodAI Engine utilizes a multimodal, spatiotemporally aligned dataset spanning 6 full years (January 1, 2018 to December 31, 2023) across 36 strategic national flood-monitoring stations in 12 major Indian river basins, comprising **78,876 daily continuous observations**.
+
+### Key Dataset Statistics
+- **Primary Data Format**: Apache Parquet (`data/processed/india/pan_india_features.parquet`) with snappy compression (2.19 MB).
+- **Partitioning**: Partitioned by river basin in `data/processed/basins/` for scalable lazy loading.
+- **SHA-256 Hash**: `137af604b4c035c19a927373cb1311f22df976b7f80ce9213410df202fb14692`
+- **Total Flood Events**: 1,353 days (1.72% natural flood incidence, reflecting genuine severe flood sparsity in India).
+
+---
+
+## 2. Multi-Source Provenance & Data Stack
+
+| Source | Domain / Variables | Spatial Resolution | Access Method / License | Role in System |
 | :--- | :--- | :--- | :--- | :--- |
-| **Meteorology & Hydrology** | ECMWF / Open-Meteo | ERA5-Land Reanalysis Archive | ~9 km gridded, Daily | CC BY 4.0 |
-| **Digital Elevation Model** | USGS / NASA | SRTM GL1 30m (`USGS/SRTMGL1_003`) via GEE | 30 meter spatial resolution | NASA Open Data Policy |
-| **Population Density** | CIESIN / Columbia Univ. | GPWv4.11 (`CIESIN/GPWv411/GPW_UNWPP-Adjusted`) | 1 km gridded | CC BY 4.0 |
-| **SAR Remote Sensing** | ESA Copernicus | Sentinel-1 C-band SAR GRD (`COPERNICUS/S1_GRD`) | 10 meter spatial resolution | Copernicus Open Access |
-| **Ground Truth Flood Events** | CWC / KSDMA | Central Water Commission & Kerala State Disaster Management Authority | Event-specific emergency bulletins | Public Domain / Open Gov Data |
+| **ECMWF ERA5-Land** | Precipitation, Temperature, Humidity, Soil Moisture (0–7cm, 7–28cm) | 0.1° (~9 km) | Open-Meteo Historical Weather API / CC BY 4.0 | Provides continuous 2018–2023 atmospheric and root-zone moisture conditions. |
+| **USGS SRTM 30m DEM** | Elevation (m), Topographic Slope (°), Aspect, TWI proxy | 30 meters | Google Earth Engine (`USGS/SRTMGL1_003`) / Public Domain | Provides physical geomorphic constraints on runoff accumulation and gravity drainage. |
+| **Copernicus Sentinel-1** | Dual-polarization C-band SAR (VV and VH backscatter in dB) | 10–20 meters | Google Earth Engine (`COPERNICUS/S1_GRD`) / Copernicus Open Access | Captures surface water extent via specular radar backscatter attenuation. |
+| **CIESIN GPWv4** | Population count and density (persons / km²) | 1 km (30 arc-sec) | GEE (`CIESIN/GPWv411/GPW_POPULATION_DENSITY`) / NASA Open Data | Quantifies human demographic exposure for dynamic disaster risk scoring. |
+| **Central Water Commission (CWC)** | Historical danger levels, barrage discharges, and flood reports | Station Gauges | CWC Flood Forecasting / Open Data | Validates historical flood occurrences and seasonal surge timing. |
 
 ---
 
-## 3. Station Roster & Geographic Distribution
+## 3. Geographic Coverage: 12 Major Indian River Basins
 
-The 16 monitoring stations represent distinct hydrological sub-catchments and physiographic zones:
-
-| Station ID | Station Name | Basin | District | Latitude (°N) | Longitude (°E) | Elevation (m) | Slope (°) | Pop. Density (ppl/km²) |
-| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| `KL_01` | Aluva | Periyar | Ernakulam | 10.1076 | 76.3516 | 10.0 | 4.72 | 1,359 |
-| `KL_02` | Kalady | Periyar | Ernakulam | 10.1667 | 76.4333 | 12.0 | 3.88 | 654 |
-| `KL_03` | Malayattoor | Periyar | Ernakulam | 10.1982 | 76.4975 | 21.0 | 4.63 | 1,340 |
-| `KL_04` | Chalakkudy | Chalakkudy | Thrissur | 10.3070 | 76.3330 | 21.0 | 4.68 | 636 |
-| `KL_05` | Thrissur Town | Karuvannur | Thrissur | 10.5276 | 76.2144 | 20.0 | 2.10 | 1,267 |
-| `KL_06` | Chengannur | Pamba | Alappuzha | 9.3176 | 76.6111 | 13.0 | 0.94 | 1,225 |
-| `KL_07` | Ranni | Pamba | Pathanamthitta | 9.3800 | 76.7800 | 5.0 | 2.08 | 950 |
-| `KL_08` | Kuttanad_Mankombu | Pamba-Meenachil | Alappuzha | 9.4500 | 76.4833 | -1.0 | 3.35 | 687 |
-| `KL_09` | Alappuzha Coastal | Coastal Plain | Alappuzha | 9.4981 | 76.3388 | 7.0 | 0.00 | 3,874 |
-| `KL_10` | Kottayam_Meenachil | Meenachil | Kottayam | 9.5916 | 76.5222 | 28.0 | 5.63 | 1,425 |
-| `KL_11` | Idukki_Painavu | Upper Periyar | Idukki | 9.8500 | 76.9700 | 672.0 | 28.21 | 422 |
-| `KL_12` | Munnar | Muthirapuzha | Idukki | 10.0889 | 77.0595 | 1,454.0 | 3.87 | 107 |
-| `KL_13` | Palakkad | Bharathapuzha | Palakkad | 10.7867 | 76.6548 | 77.0 | 0.93 | 773 |
-| `KL_14` | Kozhikode_Feroke | Chaliyar | Kozhikode | 11.1833 | 75.8333 | 12.0 | 2.98 | 1,628 |
-| `KL_15` | Mananthavady | Kabini | Wayanad | 11.8025 | 76.0034 | 756.0 | 5.86 | 319 |
-| `KL_16` | Thiruvananthapuram | Karamana | Thiruvananthapuram | 8.5241 | 76.9366 | 19.0 | 8.38 | 4,314 |
+The 36 national stations span all primary geographic regions of India:
+1. **Brahmaputra & Barak Basins (Assam)**: Guwahati, Dibrugarh, Silchar, Kaziranga (extreme rainfall, braided low-gradient channels).
+2. **Yamuna Basin (Delhi & UP)**: Delhi Old Railway Bridge / ITO, Mathura.
+3. **Ganga Basin (Uttarakhand, UP, Bihar, West Bengal)**: Haridwar, Kanpur, Prayagraj, Varanasi, Patna, Bhagalpur, Kolkata Hooghly.
+4. **Kosi Basin (Bihar)**: Saharsa / Supaul (frequent avulsion, rapid Himalayan runoff).
+5. **Mahanadi Basin (Odisha)**: Sambalpur Hirakud, Cuttack Delta, Puri Lowlands (cyclonic storm surge, delta backwater locking).
+6. **Godavari Basin (Maharashtra, Telangana, AP)**: Nashik, Nanded, Bhadrachalam, Rajahmundry.
+7. **Krishna Basin (Maharashtra, Karnataka, AP)**: Sangli / Kolhapur Panchaganga, Vijayawada Prakasham Barrage.
+8. **Narmada Basin (MP, Gujarat)**: Jabalpur, Hoshangabad, Bharuch.
+9. **Tapi Basin (MP, Gujarat)**: Burhanpur, Surat.
+10. **Kaveri Basin (Karnataka, Tamil Nadu)**: KRS Dam Mysore, Tiruchirappalli, Thanjavur Delta.
+11. **Periyar, Chalakkudy & Pamba Basins (Kerala)**: Aluva, Chalakkudy, Kuttanad / Mankombu (-1m below sea level).
+12. **Northern Basins (J&K, Punjab, Himachal)**: Srinagar Jhelum, Firozpur Sutlej, Kullu / Mandi Beas.
 
 ---
 
-## 4. Feature Dictionary
+## 4. Chronological & Spatial Partitions
 
-A comprehensive feature dictionary mapping raw and engineered variables:
-
-### A. Raw Variables
-* `date`: Observation date (`YYYY-MM-DD`).
-* `precipitation_sum`: Total daily precipitation ($mm$).
-* `rain_sum`: Total daily liquid rain ($mm$).
-* `temperature_2m_max`, `temperature_2m_min`, `temperature_2m_mean`: Daily 2-meter air temperature (°C).
-* `relative_humidity_2m_mean`: Daily mean relative humidity (%).
-* `surface_pressure_mean`: Atmospheric surface pressure ($hPa$).
-* `soil_moisture_0_to_7cm_mean`: Topsoil volumetric water content ($m^3/m^3$).
-* `soil_moisture_7_to_28cm_mean`: Subsurface root-zone soil moisture ($m^3/m^3$).
-* `soil_moisture_28_to_100cm_mean`: Intermediate deep soil moisture ($m^3/m^3$).
-* `soil_moisture_100_to_255cm_mean`: Deep groundwater reservoir moisture ($m^3/m^3$).
-* `elevation_m`: Elevation above sea level ($m$) from SRTM 30m.
-* `slope_deg`: Terrain slope in degrees ($^\circ$) from SRTM.
-* `population_density`: Population density ($persons/km^2$) from CIESIN GPWv4.
-* `dist_river_km`: Approximate distance to primary river centerline ($km$).
-* `sar_vv_ref`, `sar_vh_ref`: Baseline C-band SAR backscatter values ($dB$).
-
----
-
-## 5. Limitations & Ethical Considerations
-
-1. **Reanalysis Resolution**: ECMWF ERA5-Land reanalysis is resolved at 0.1° (~9km), smoothing extreme hyper-local micro-scale cloudburst peaks.
-2. **Terrain Invariance**: Elevation and slope are static features per station centroid.
-3. **No Direct Dam Operation Feature**: Dam gate openings (e.g. Idukki and Mullaperiyar dams in August 2018) contribute significantly to downstream river stage, which is captured indirectly via antecedent rainfall and runoff volume.
+1. **Chronological Splits (Temporal Evaluation)**:
+   - **Train (2018–2021)**: 52,596 observations (929 flood events)
+   - **Validation (2022)**: 13,140 observations (237 flood events)
+   - **Test (2023)**: 13,140 observations (187 flood events)
+2. **Spatial Holdout Splits (Cross-Basin Generalization)**:
+   - **Training Basins (10 Basins)**: 67,921 observations
+   - **Held-Out Basins (Brahmaputra & Mahanadi)**: 10,955 observations (415 flood events)

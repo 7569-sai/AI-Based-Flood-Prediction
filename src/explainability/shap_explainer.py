@@ -26,23 +26,38 @@ os.makedirs(METRICS_DIR, exist_ok=True)
 
 
 class FloodShapExplainer:
-    def __init__(self):
-        model_path = os.path.join(MODELS_DIR, "model_random_forest.joblib")
+    def __init__(self, use_pan_india=True):
+        pan_india_model = os.path.join(MODELS_DIR, "model_pan_india_random_forest.joblib")
+        kerala_model = os.path.join(MODELS_DIR, "model_random_forest.joblib")
+        pan_india_meta = os.path.join(BASE_DIR, "data", "processed", "india", "pan_india_metadata.json")
+
+        if use_pan_india and os.path.exists(pan_india_model) and os.path.exists(pan_india_meta):
+            model_path = pan_india_model
+            meta_path = pan_india_meta
+            self.is_pan_india = True
+        else:
+            model_path = kerala_model
+            meta_path = os.path.join(PROCESSED_DIR, "feature_metadata.json")
+            self.is_pan_india = False
+
         assert os.path.exists(model_path), f"Champion model not found at {model_path}!"
         self.model = joblib.load(model_path)
 
-        with open(os.path.join(PROCESSED_DIR, "feature_metadata.json"), "r") as f:
+        with open(meta_path, "r") as f:
             self.metadata = json.load(f)
         self.feature_cols = self.metadata["feature_cols"]
 
         # Initialize TreeExplainer
-        # For RandomForestClassifier, explainer outputs [n_samples, n_features, n_classes]
         self.explainer = shap.TreeExplainer(self.model)
 
     def generate_global_explanations(self, sample_size=300):
         """Compute global SHAP importance and generate summary beeswarm and bar charts."""
         print(f"Generating global TreeSHAP explanations on {sample_size} test samples...")
-        df_test = pd.read_csv(os.path.join(PROCESSED_DIR, "test.csv"))
+        if self.is_pan_india:
+            test_pq = os.path.join(BASE_DIR, "data", "processed", "india", "test.parquet")
+            df_test = pd.read_parquet(test_pq)
+        else:
+            df_test = pd.read_csv(os.path.join(PROCESSED_DIR, "test.csv"))
         
         # Stratified or balanced sample across flood and non-flood to capture both regimes
         pos = df_test[df_test["flood_occurred"] == 1]

@@ -1,117 +1,86 @@
 {
   "Logistic_Regression": {
-    "accuracy": 0.9202,
-    "precision": 0.1637,
-    "recall": 0.9891,
-    "f1": 0.2809,
-    "roc_auc": 0.9934,
-    "pr_auc": 0.6218,
-    "brier_score": 0.0566,
-    "confusion_matrix": [
-      [
-        5283,
-        465
-      ],
-      [
-        1,
-        91
-      ]
-    ],
-    "support_positive": 92,
-    "support_total": 5840,
-    "train_time_sec": 0.186,
-    "inference_latency_ms": 0.0005
+    "model_name": "Logistic Regression",
+    "accuracy": 0.9696,
+    "precision": 0.3186,
+    "recall": 1.0,
+    "f1": 0.4832,
+    "pr_auc": 0.6652,
+    "roc_auc": 0.9939,
+    "brier_score": 0.0239,
+    "train_time_sec": 0.179,
+    "inference_latency_ms": 0.0002
   },
   "Random_Forest": {
-    "accuracy": 0.9949,
-    "precision": 0.7627,
-    "recall": 0.9783,
-    "f1": 0.8571,
-    "roc_auc": 0.9997,
-    "pr_auc": 0.9888,
-    "brier_score": 0.009,
-    "confusion_matrix": [
-      [
-        5720,
-        28
-      ],
-      [
-        2,
-        90
-      ]
-    ],
-    "support_positive": 92,
-    "support_total": 5840,
-    "train_time_sec": 0.662,
-    "inference_latency_ms": 0.0082
+    "model_name": "Random Forest",
+    "accuracy": 0.9868,
+    "precision": 0.5206,
+    "recall": 0.9465,
+    "f1": 0.6717,
+    "pr_auc": 0.7866,
+    "roc_auc": 0.996,
+    "brier_score": 0.0092,
+    "train_time_sec": 0.489,
+    "inference_latency_ms": 0.0024
   },
   "Gradient_Boosting": {
-    "accuracy": 0.9577,
-    "precision": 0.27,
-    "recall": 0.9891,
-    "f1": 0.4242,
-    "roc_auc": 0.9992,
-    "pr_auc": 0.9849,
-    "brier_score": 0.0271,
-    "confusion_matrix": [
-      [
-        5502,
-        246
-      ],
-      [
-        1,
-        91
-      ]
-    ],
-    "support_positive": 92,
-    "support_total": 5840,
-    "train_time_sec": 0.437,
-    "inference_latency_ms": 0.0012
+    "model_name": "Gradient Boosting",
+    "accuracy": 0.9899,
+    "precision": 0.6776,
+    "recall": 0.5508,
+    "f1": 0.6077,
+    "pr_auc": 0.7908,
+    "roc_auc": 0.996,
+    "brier_score": 0.006,
+    "train_time_sec": 47.843,
+    "inference_latency_ms": 0.0021
   },
   "XGBoost": {
-    "accuracy": 0.9825,
-    "precision": 0.474,
-    "recall": 0.9891,
-    "f1": 0.6408,
-    "roc_auc": 0.9994,
-    "pr_auc": 0.9893,
-    "brier_score": 0.0133,
-    "confusion_matrix": [
-      [
-        5647,
-        101
-      ],
-      [
-        1,
-        91
-      ]
-    ],
-    "support_positive": 92,
-    "support_total": 5840,
-    "train_time_sec": 2.205,
-    "inference_latency_ms": 0.0012
+    "model_name": "XGBoost",
+    "accuracy": 0.9873,
+    "precision": 0.5291,
+    "recall": 0.9733,
+    "f1": 0.6855,
+    "pr_auc": 0.7878,
+    "roc_auc": 0.9961,
+    "brier_score": 0.011,
+    "train_time_sec": 2.081,
+    "inference_latency_ms": 0.0013
   },
-  "Bi_LSTM": {
-    "accuracy": 0.933,
-    "precision": 0.1816,
-    "recall": 0.8804,
-    "f1": 0.3011,
-    "roc_auc": 0.9672,
-    "pr_auc": 0.5097,
-    "brier_score": 0.0546,
-    "confusion_matrix": [
-      [
-        5159,
-        365
-      ],
-      [
-        11,
-        81
-      ]
-    ],
-    "support_positive": 92,
-    "support_total": 5616,
-    "train_time_sec": 31.557,
-    "inference_latency_ms": 0.0503
+  "LightGBM": {
+    "model_name": "LightGBM",
+    "accuracy": 0.9881,
+    "precision": 0.549,
+    "recall": 0.8984,
+    "f1": 0.6815,
+    "pr_auc": 0.7937,
+    "roc_auc": 0.9962,
+    "brier_score": 0.0093,
+    "train_time_sec": 0.497,
+    "inference_latency_ms": 0.0011
+  },
+  "BiLSTM": {
+    "model_name": "Bi-LSTM",
+    "accuracy": 0.9751,
+    "precision": 0.3638,
+    "recall": 1.0,
+    "f1": 0.5335,
+    "pr_auc": 0.7704,
+    "roc_auc": 0.9952,
+    "brier_score": 0.0207,
+    "train_time_sec": 39.878,
+    "inference_latency_ms": 0.0062
+  },
+  "ST_FloodNet": {
+    "model_name": "ST-FloodNet (Proposed)",
+    "accuracy": 0.9709,
+    "precision": 0.3286,
+    "recall": 1.0,
+    "f1": 0.4947,
+    "pr_auc": 0.7622,
+    "roc_auc": 0.9949,
+    "brier_score": 0.0234,
+    "train_time_sec": 65.613,
+    "inference_latency_ms": 0.3137
   }
 }

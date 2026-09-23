@@ -25,14 +25,14 @@
         "slope_deg": 4.721467442300572,
         "rainfall_3d": 86.80000000000004,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.6355,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8471,
         "vulnerability_index": 0.8323,
         "drainage_vulnerability": 0.8224,
-        "risk_score": 73.76,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 45.49,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -53,14 +53,14 @@
         "slope_deg": 3.875662023728085,
         "rainfall_3d": 110.49999999999996,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 1.0,
+        "hazard_probability": 0.07,
         "exposure_index": 0.7614,
         "vulnerability_index": 0.7694,
         "drainage_vulnerability": 0.7746,
-        "risk_score": 88.27,
-        "risk_category": "Very High",
-        "risk_color": "#d62728",
-        "prediction": 1
+        "risk_score": 41.77,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -81,14 +81,14 @@
         "slope_deg": 4.627367505919335,
         "rainfall_3d": 126.60000000000002,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 1.0,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8455,
         "vulnerability_index": 0.7433,
         "drainage_vulnerability": 0.6752,
-        "risk_score": 89.72,
-        "risk_category": "Very High",
-        "risk_color": "#d62728",
-        "prediction": 1
+        "risk_score": 43.22,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -109,14 +109,14 @@
         "slope_deg": 4.675869886796916,
         "rainfall_3d": 75.40000000000005,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.6648,
+        "hazard_probability": 0.07,
         "exposure_index": 0.758,
         "vulnerability_index": 0.7416,
         "drainage_vulnerability": 0.7306,
-        "risk_score": 70.73,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 40.99,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -137,14 +137,14 @@
         "slope_deg": 2.1014439747309925,
         "rainfall_3d": 118.6,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 1.0,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8389,
         "vulnerability_index": 0.6823,
         "drainage_vulnerability": 0.5779,
-        "risk_score": 88.03,
-        "risk_category": "Very High",
-        "risk_color": "#d62728",
-        "prediction": 1
+        "risk_score": 41.53,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -165,14 +165,14 @@
         "slope_deg": 0.9398072814803108,
         "rainfall_3d": 93.6,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.6824,
+        "hazard_probability": 0.07,
         "exposure_index": 0.835,
         "vulnerability_index": 0.8102,
         "drainage_vulnerability": 0.7937,
-        "risk_score": 75.25,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 44.63,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -193,14 +193,14 @@
         "slope_deg": 2.078671928263179,
         "rainfall_3d": 101.40000000000003,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.7389,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8051,
         "vulnerability_index": 0.8571,
         "drainage_vulnerability": 0.8918,
-        "risk_score": 78.5,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 45.06,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -221,14 +221,14 @@
         "slope_deg": 3.3545010330110334,
         "rainfall_3d": 82.30000000000004,
         "soil_saturation_ratio": 0.8995833333333333,
-        "hazard_probability": 0.6699,
+        "hazard_probability": 0.06,
         "exposure_index": 0.7671,
         "vulnerability_index": 0.8866,
         "drainage_vulnerability": 0.9662,
-        "risk_score": 74.84,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 44.34,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -249,14 +249,14 @@
         "slope_deg": 0.0,
         "rainfall_3d": 64.20000000000005,
         "soil_saturation_ratio": 0.7045833333333335,
-        "hazard_probability": 0.6693,
+        "hazard_probability": 0.07,
         "exposure_index": 0.97,
         "vulnerability_index": 0.8265,
         "drainage_vulnerability": 0.7309,
-        "risk_score": 78.38,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 48.41,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -277,14 +277,14 @@
         "slope_deg": 5.625696504135608,
         "rainfall_3d": 99.1,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.6568,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8527,
         "vulnerability_index": 0.7358,
         "drainage_vulnerability": 0.6579,
-        "risk_score": 72.55,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 43.21,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -305,11 +305,11 @@
         "slope_deg": 28.21202680713314,
         "rainfall_3d": 78.8,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.0,
+        "hazard_probability": 0.06,
         "exposure_index": 0.7099,
         "vulnerability_index": 0.4344,
         "drainage_vulnerability": 0.2507,
-        "risk_score": 28.61,
+        "risk_score": 31.61,
         "risk_category": "Low",
         "risk_color": "#98df8a",
         "prediction": 0
@@ -333,11 +333,11 @@
         "slope_deg": 3.874778712350576,
         "rainfall_3d": 104.49999999999996,
         "soil_saturation_ratio": 0.8937499999999999,
-        "hazard_probability": 0.015,
+        "hazard_probability": 0.06,
         "exposure_index": 0.55,
         "vulnerability_index": 0.4724,
         "drainage_vulnerability": 0.4207,
-        "risk_score": 26.31,
+        "risk_score": 28.56,
         "risk_category": "Low",
         "risk_color": "#98df8a",
         "prediction": 0
@@ -361,14 +361,14 @@
         "slope_deg": 0.9274099368729608,
         "rainfall_3d": 91.49999999999994,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.6213,
+        "hazard_probability": 0.06,
         "exposure_index": 0.781,
         "vulnerability_index": 0.5634,
         "drainage_vulnerability": 0.4183,
-        "risk_score": 64.67,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 36.61,
+        "risk_category": "Low",
+        "risk_color": "#98df8a",
+        "prediction": 0
       }
     },
     {
@@ -389,14 +389,14 @@
         "slope_deg": 2.981432142147049,
         "rainfall_3d": 118.29999999999998,
         "soil_saturation_ratio": 0.7450000000000001,
-        "hazard_probability": 0.7229,
+        "hazard_probability": 0.07,
         "exposure_index": 0.8683,
         "vulnerability_index": 0.8138,
         "drainage_vulnerability": 0.7774,
-        "risk_score": 78.2,
-        "risk_category": "High",
-        "risk_color": "#ff7f0e",
-        "prediction": 1
+        "risk_score": 45.55,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     },
     {
@@ -417,11 +417,11 @@
         "slope_deg": 5.858259767934793,
         "rainfall_3d": 62.90000000000001,
         "soil_saturation_ratio": 1.0,
-        "hazard_probability": 0.0,
+        "hazard_probability": 0.06,
         "exposure_index": 0.6772,
         "vulnerability_index": 0.5033,
         "drainage_vulnerability": 0.3873,
-        "risk_score": 29.51,
+        "risk_score": 32.51,
         "risk_category": "Low",
         "risk_color": "#98df8a",
         "prediction": 0
@@ -445,14 +445,14 @@
         "slope_deg": 8.38038094075095,
         "rainfall_3d": 95.59999999999997,
         "soil_saturation_ratio": 0.7229166666666667,
-        "hazard_probability": 0.7723,
+        "hazard_probability": 0.06,
         "exposure_index": 0.9827,
         "vulnerability_index": 0.7779,
         "drainage_vulnerability": 0.6413,
-        "risk_score": 82.63,
-        "risk_category": "Very High",
-        "risk_color": "#d62728",
-        "prediction": 1
+        "risk_score": 47.01,
+        "risk_category": "Moderate",
+        "risk_color": "#ffbb78",
+        "prediction": 0
       }
     }
   ]

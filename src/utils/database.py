@@ -74,50 +74,60 @@ def init_db():
     Base.metadata.create_all(bind=engine)
     session = SessionLocal()
 
-    # 1. Seed locations if empty
-    if session.query(LocationRecord).count() == 0:
-        # Load from stations in acquire_data
-        from src.data.acquire_data import STATIONS
-        static_layers = {}
-        if os.path.exists(STATIONS_RAW_PATH):
-            with open(STATIONS_RAW_PATH, "r", encoding="utf-8") as f:
-                static_layers = json.load(f)
-
-        for st in STATIONS:
-            st_stat = static_layers.get(st["id"], {})
+    # 1. Seed locations if empty or augment with Pan-India stations
+    from src.geospatial.location_service import INDIA_STATIONS
+    existing_ids = {r.station_id for r in session.query(LocationRecord.station_id).all()}
+    
+    new_count = 0
+    for st in INDIA_STATIONS:
+        if st["id"] not in existing_ids:
             loc = LocationRecord(
                 station_id=st["id"],
                 location_name=st["name"],
                 basin=st["basin"],
-                district=st["district"],
+                district=st.get("state", "India"),
                 latitude=st["lat"],
                 longitude=st["lon"],
-                elevation_m=st_stat.get("elevation_m", 25.0),
-                slope_deg=st_stat.get("slope_deg", 3.0),
-                population_density=st_stat.get("population_density", 850.0)
+                elevation_m=st["elevation_m"],
+                slope_deg=st["slope_deg"],
+                population_density=st["population_density"]
             )
             session.add(loc)
-        session.commit()
-        print(f"Seeded {len(STATIONS)} monitoring locations into 'locations' table.")
+            new_count += 1
+    session.commit()
+    if new_count > 0:
+        print(f"Seeded {new_count} national monitoring stations into 'locations' table.")
 
-    # 2. Seed model metrics if empty
-    if session.query(ModelMetricRecord).count() == 0 and os.path.exists(METRICS_PATH):
-        with open(METRICS_PATH, "r", encoding="utf-8") as f:
+    # 2. Seed model metrics
+    pan_india_metrics_path = os.path.join(BASE_DIR, "outputs", "metrics", "pan_india_model_comparison.json")
+    active_metrics_path = pan_india_metrics_path if os.path.exists(pan_india_metrics_path) else METRICS_PATH
+    if os.path.exists(active_metrics_path):
+        with open(active_metrics_path, "r", encoding="utf-8") as f:
             metrics_data = json.load(f)
         for m_name, m_vals in metrics_data.items():
-            rec = ModelMetricRecord(
-                model=m_name,
-                accuracy=m_vals.get("accuracy", 0.0),
-                precision=m_vals.get("precision", 0.0),
-                recall=m_vals.get("recall", 0.0),
-                f1=m_vals.get("f1", 0.0),
-                auc=m_vals.get("roc_auc", 0.0),
-                pr_auc=m_vals.get("pr_auc", 0.0),
-                brier_score=m_vals.get("brier_score", 0.0)
-            )
-            session.add(rec)
+            existing = session.query(ModelMetricRecord).filter_by(model=m_name).first()
+            if existing:
+                existing.accuracy = m_vals.get("accuracy", 0.0)
+                existing.precision = m_vals.get("precision", 0.0)
+                existing.recall = m_vals.get("recall", 0.0)
+                existing.f1 = m_vals.get("f1", 0.0)
+                existing.auc = m_vals.get("roc_auc", 0.0)
+                existing.pr_auc = m_vals.get("pr_auc", 0.0)
+                existing.brier_score = m_vals.get("brier_score", 0.0)
+            else:
+                rec = ModelMetricRecord(
+                    model=m_name,
+                    accuracy=m_vals.get("accuracy", 0.0),
+                    precision=m_vals.get("precision", 0.0),
+                    recall=m_vals.get("recall", 0.0),
+                    f1=m_vals.get("f1", 0.0),
+                    auc=m_vals.get("roc_auc", 0.0),
+                    pr_auc=m_vals.get("pr_auc", 0.0),
+                    brier_score=m_vals.get("brier_score", 0.0)
+                )
+                session.add(rec)
         session.commit()
-        print(f"Seeded {len(metrics_data)} models into 'model_metrics' table.")
+        print(f"Synchronized {len(metrics_data)} models into 'model_metrics' table.")
 
     session.close()
     print(f"Database initialized successfully at: {DB_PATH}")

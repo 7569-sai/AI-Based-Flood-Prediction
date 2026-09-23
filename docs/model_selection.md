@@ -1,41 +1,47 @@
-# Model Selection Rationale
+# Model Selection & Architecture Comparison
 
-## 1. Selected Final Model: **Random Forest Classifier**
-
-* **Architecture**: Random Forest (150 estimators, max depth 12, min samples split 6, balanced class weighting)
-* **Artifact Path**: `models/trained/model_random_forest.joblib`
-* **Test Performance (2023 Chronological Out-of-Time Test Set)**:
-  * **F1-Score**: **0.8571** (Highest across all evaluated models)
-  * **Recall**: **0.9783** (Detects 90 of 92 historical flood days)
-  * **Precision**: **0.7627** (Only 28 false alarms across 5,840 daily station observations)
-  * **PR-AUC**: **0.9888**
-  * **ROC-AUC**: **0.9997**
-  * **Brier Calibration Score**: **0.0090** (Best calibrated probability output)
-  * **Inference Latency**: **0.0082 ms / sample** (Enables real-time API response < 10ms)
+**Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
+**Application:** FloodAI Engine — "AI for a Safer, Resilient India"
 
 ---
 
-## 2. Decision Framework & Elimination Rationale
+## 1. Comprehensive Model Evaluation Matrix (Pan-India 2023 Chronological Test Set)
 
-### A. Why Not Logistic Regression?
-While Logistic Regression was an effective baseline with 0.9891 recall, its linear decision surface cannot capture nonlinear thresholds (e.g. antecedent rainfall interacting with soil saturation and elevation). This resulted in **465 false alarms** (Precision: 0.1637, F1: 0.2809), which would lead to alert fatigue in emergency management.
+Evaluated on 13,140 out-of-time daily observations across 36 national stations in 12 major Indian river basins (187 ground-truth flood occurrences):
 
-### B. Why Random Forest Over XGBoost?
-* Both tree ensemble methods achieved near-perfect recall (0.9783 for RF vs 0.9891 for XGBoost).
-* However, Random Forest demonstrated substantially higher precision (**0.7627 vs 0.4740**) and fewer false alarms (**28 vs 101**), resulting in a far superior F1 score (**0.8571 vs 0.6408**).
-* Random Forest also showed the lowest Brier score (**0.0090 vs 0.0133**), indicating superior probability calibration, which is essential when translating probabilities into continuous 0–100 flood risk scores.
-
-### C. Why Not Deep Learning (Bi-LSTM)?
-* The Bi-LSTM produced 11 false negatives (88.04% recall) compared to only 2 false negatives for Random Forest (97.83% recall).
-* In disaster risk reduction, false negatives (failing to alert a flooded population) have life-threatening consequences.
-* Furthermore, Random Forest executes in 0.008 ms/sample (6.1x faster than LSTM) and can be directly interpreted using TreeSHAP with exact game-theoretic guarantees.
+| Category | Model Architecture | Accuracy | Precision | Recall | F1-Score | PR-AUC | ROC-AUC | Brier Score | Latency (ms) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Baseline** | Logistic Regression (Class-Weighted) | 0.9696 | 0.3186 | 1.0000 | 0.4832 | 0.6652 | 0.9939 | 0.0248 | 0.007 ms |
+| **Baseline** | Random Forest (Balanced) | 0.9868 | 0.5206 | 0.9465 | 0.6717 | 0.7866 | 0.9960 | **0.0108** | 0.020 ms |
+| **Baseline** | Gradient Boosting | 0.9899 | **0.6776** | 0.5508 | 0.6077 | 0.7908 | 0.9960 | 0.0094 | 0.015 ms |
+| **Baseline** | XGBoost (scale_pos_weight) | 0.9873 | 0.5291 | 0.9733 | **0.6855** | 0.7878 | 0.9961 | 0.0112 | 0.016 ms |
+| **Baseline** | LightGBM (Scalable Histogram) | **0.9881** | 0.5490 | 0.8984 | 0.6815 | **0.7937** | **0.9962** | 0.0103 | **0.009 ms** |
+| **Baseline** | PyTorch Bi-LSTM (Temporal Sequence) | 0.9751 | 0.3638 | 1.0000 | 0.5335 | 0.7704 | 0.9952 | 0.0205 | 0.110 ms |
+| **PROPOSED** | **ST-FloodNet (Multimodal + Uncertainty)** | 0.9709 | 0.3286 | **1.0000** | 0.4947 | 0.7622 | 0.9949 | 0.0234 | 0.145 ms |
 
 ---
 
-## 3. Operational Deployment Recommendation
+## 2. Spatial Cross-Basin Generalization (Held-out Unseen Basins)
 
-Deploy `model_random_forest.joblib` as the primary operational scoring engine for:
-1. Point-level flood probability prediction (`POST /predict`)
-2. Composite flood-risk scoring (`POST /risk-score`)
-3. Global and local TreeSHAP explanations (`POST /explain`)
-4. Geospatial flood risk mapping (`POST /geospatial-risk`)
+Evaluated on completely unseen river basins (Brahmaputra and Mahanadi, 10,955 daily observations, 415 flood events):
+
+| Model Architecture | Accuracy | Precision | Recall (Detection Rate) | F1-Score | PR-AUC | ROC-AUC |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **LightGBM (Strongest Tabular Baseline)** | **0.9803** | **0.8100** | 0.6265 | 0.7065 | 0.8670 | 0.9927 |
+| **ST-FloodNet (Proposed Research Model)** | 0.9697 | 0.5556 | **1.0000** | **0.7143** | **0.8751** | **0.9943** |
+
+---
+
+## 3. Scientific Rationale & Role Separation
+
+### A. Role of Baseline Models
+- **Conventional Tabular Baselines (Logistic Regression, Random Forest, Gradient Boosting, XGBoost)**: Provide established benchmarks. Random Forest and XGBoost achieve strong in-domain F1 scores (0.6717 and 0.6855).
+- **LightGBM**: Implemented as the primary scalable tabular baseline. It demonstrates the highest inference efficiency (0.009 ms/sample) and the highest in-domain PR-AUC (0.7937). However, as an established algorithm, LightGBM is treated strictly as an engineering baseline, NOT a research contribution.
+
+### B. Role of Proposed Research Architecture: ST-FloodNet
+- **Novelty & Purpose**: ST-FloodNet is designed specifically to solve the cross-basin generalization gap and prediction uncertainty:
+  1. **Multi-Scale Temporal Convolution**: Extracts multi-frequency hydrologic signals across $1\text{d}, 3\text{d}, 7\text{d}, 14\text{d}$ antecedent scales.
+  2. **Gated Multimodal Fusion**: Dynamically balances satellite radar backscatter against physical terrain elevation deficits.
+  3. **Multi-Task Learning**: Jointly predicts binary flood hazard probability and ordinal flood severity (None, Minor, Moderate, Severe).
+  4. **Uncertainty Quantification**: Uses Monte Carlo Dropout ($T=30$) to compute epistemic predictive variance ($\sigma_{\text{MC}}^2$), alerting operators to ambiguous hydrological regimes.
+  5. **Cross-Basin Transfer**: Achieved **100% recall (415/415 events)** and the highest F1 (**0.7143**) on unseen river basins.

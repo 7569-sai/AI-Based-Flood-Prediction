@@ -1,0 +1,86 @@
+{
+  "Logistic_Regression": {
+    "model_name": "Logistic Regression",
+    "accuracy": 0.9696,
+    "precision": 0.3186,
+    "recall": 1.0,
+    "f1": 0.4832,
+    "pr_auc": 0.6652,
+    "roc_auc": 0.9939,
+    "brier_score": 0.0239,
+    "train_time_sec": 0.179,
+    "inference_latency_ms": 0.0002
+  },
+  "Random_Forest": {
+    "model_name": "Random Forest",
+    "accuracy": 0.9868,
+    "precision": 0.5206,
+    "recall": 0.9465,
+    "f1": 0.6717,
+    "pr_auc": 0.7866,
+    "roc_auc": 0.996,
+    "brier_score": 0.0092,
+    "train_time_sec": 0.489,
+    "inference_latency_ms": 0.0024
+  },
+  "Gradient_Boosting": {
+    "model_name": "Gradient Boosting",
+    "accuracy": 0.9899,
+    "precision": 0.6776,
+    "recall": 0.5508,
+    "f1": 0.6077,
+    "pr_auc": 0.7908,
+    "roc_auc": 0.996,
+    "brier_score": 0.006,
+    "train_time_sec": 47.843,
+    "inference_latency_ms": 0.0021
+  },
+  "XGBoost": {
+    "model_name": "XGBoost",
+    "accuracy": 0.9873,
+    "precision": 0.5291,
+    "recall": 0.9733,
+    "f1": 0.6855,
+    "pr_auc": 0.7878,
+    "roc_auc": 0.9961,
+    "brier_score": 0.011,
+    "train_time_sec": 2.081,
+    "inference_latency_ms": 0.0013
+  },
+  "LightGBM": {
+    "model_name": "LightGBM",
+    "accuracy": 0.9881,
+    "precision": 0.549,
+    "recall": 0.8984,
+    "f1": 0.6815,
+    "pr_auc": 0.7937,
+    "roc_auc": 0.9962,
+    "brier_score": 0.0093,
+    "train_time_sec": 0.497,
+    "inference_latency_ms": 0.0011
+  },
+  "BiLSTM": {
+    "model_name": "Bi-LSTM",
+    "accuracy": 0.9751,
+    "precision": 0.3638,
+    "recall": 1.0,
+    "f1": 0.5335,
+    "pr_auc": 0.7704,
+    "roc_auc": 0.9952,
+    "brier_score": 0.0207,
+    "train_time_sec": 39.878,
+    "inference_latency_ms": 0.0062
+  },
+  "ST_FloodNet": {
+    "model_name": "ST-FloodNet (Proposed)",
+    "accuracy": 0.9709,
+    "precision": 0.3286,
+    "recall": 1.0,
+    "f1": 0.4947,
+    "pr_auc": 0.7622,
+    "roc_auc": 0.9949,
+    "brier_score": 0.0234,
+    "train_time_sec": 65.613,
+    "inference_latency_ms": 0.3137
+  }
+}

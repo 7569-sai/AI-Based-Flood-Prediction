@@ -1,0 +1,32 @@
+{
+  "held_out_basins": [
+    "Brahmaputra",
+    "Mahanadi"
+  ],
+  "held_out_test_records": 10955,
+  "held_out_flood_events": 415,
+  "LightGBM_Cross_Basin": {
+    "model_name": "LightGBM (Cross-Basin)",
+    "accuracy": 0.9803,
+    "precision": 0.81,
+    "recall": 0.6265,
+    "f1": 0.7065,
+    "pr_auc": 0.867,
+    "roc_auc": 0.9927,
+    "brier_score": 0.0156,
+    "train_time_sec": 0.0,
+    "inference_latency_ms": 0.0
+  },
+  "ST_FloodNet_Cross_Basin": {
+    "model_name": "ST-FloodNet (Cross-Basin)",
+    "accuracy": 0.9697,
+    "precision": 0.5556,
+    "recall": 1.0,
+    "f1": 0.7143,
+    "pr_auc": 0.8751,
+    "roc_auc": 0.9943,
+    "brier_score": 0.0224,
+    "train_time_sec": 0.0,
+    "inference_latency_ms": 0.0
+  }
+}

@@ -1,80 +1,92 @@
-# System Architecture: AI-Based Flood Prediction & Resilience Planning
+# System Architecture: FloodAI Engine
 
-## 1. High-Level Architectural Overview
+**Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
+**Application:** FloodAI Engine — "AI for a Safer, Resilient India"
 
-The framework is structured into three integrated modules operating over a centralized data, model, and persistence layer:
+---
+
+## 1. High-Level Architectural Blueprint
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        DATA INGESTION & PIPELINE                       │
-│  • ECMWF ERA5-Land (Daily Rain, Temp, RH, Root/Deep Soil Moisture)     │
-│  • Google Earth Engine (USGS SRTM 30m DEM, CIESIN Population GPWv4)    │
-│  • Sentinel-1 SAR Dual-Polarization (VV, VH) & CWC Ground Truth Records│
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                 PREPROCESSING & LEAKAGE-FREE ENGINE                    │
-│  • Strictly backward-looking lags: Rain(1d, 3d, 7d, 14d), API, TWI     │
-│  • Chronological Splitting: Train (2018-2021) | Val (2022) | Test (2023│
-│  • Certified 7-Vector Data Leakage Audit Framework                     │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-         ┌──────────────────────────┴──────────────────────────┐
-         ▼                                                     ▼
-┌──────────────────────────────────┐        ┌──────────────────────────────────┐
-│   MODULE A: ML/DL PREDICTION     │        │   MODULE B: GEOSPATIAL RISK      │
-│  • Random Forest (Champion)      │        │  • Hazard H = P(Flood | X)       │
-│  • XGBoost / Gradient Boosting   │───────>│  • Exposure E = f(Population)    │
-│  • Sequential Bi-LSTM (PyTorch)  │        │  • Vulnerability V = f(Elev,Riv) │
-│  • Calibrated Hazard Probability │        │  • Composite Risk R ∈ [0, 100]   │
-└────────────────┬─────────────────┘        └────────────────┬─────────────────┘
-                 │                                           │
-                 │                 ┌─────────────────────────┘
-                 ▼                 ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                      MODULE C: RESILIENCE PLANNING                     │
-│  • Context-Aware Prescriptive Engine                                   │
-│  • Immediate Emergency (0-48h), Structural, Policy, Agricultural       │
-│  • Mandatory Academic Disclaimer Tagging                               │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-         ┌──────────────────────────┴──────────────────────────┐
-         ▼                                                     ▼
-┌──────────────────────────────────┐        ┌──────────────────────────────────┐
-│        BACKEND REST API          │        │       STREAMLIT DASHBOARD        │
-│  • FastAPI Application           │        │  • 7 Interactive Pages           │
-│  • Schemas & Type Validation     │        │  • Folium Leaflet Maps           │
-│  • Endpoints: /predict, /risk    │        │  • SHAP Waterfall & Beeswarm     │
-│  • SQLite + SQLAlchemy Logging   │        │  • Scenario Exploration Tool     │
-└──────────────────────────────────┘        └──────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                              PAN-INDIA MULTI-SOURCE DATA LAYER                         │
+│  • ECMWF ERA5-Land: Daily Precipitation, Temperature, Humidity, Soil Moisture (2 layers)│
+│  • Google Earth Engine: USGS SRTM 30m DEM, CIESIN Population GPWv4, Sentinel-1 SAR GRD │
+│  • Central Water Commission (CWC): River Stage Records, Barrage Discharge Baselines    │
+│  • Scalable Storage: Parquet (Snappy), GeoJSON, SQLite relational persistence          │
+└───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                            │
+                                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        DATA INTEGRITY & LEAKAGE AUDIT ENGINE                           │
+│  • Strictly Backward-Looking Rolling Windows: Rain (1d, 3d, 7d, 14d), API, Anomalies   │
+│  • Chronological Partitioning: Train (2018–2021) | Val (2022) | Test (2023)           │
+│  • Spatial Holdout Segregation: Brahmaputra & Mahanadi Basins held out for transfer    │
+│  • Certified 7-Vector Programmatic Audit: 100% verified clean                          │
+└───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                            │
+                 ┌──────────────────────────┴──────────────────────────┐
+                 ▼                                                     ▼
+┌─────────────────────────────────────────────────┐   ┌──────────────────────────────────┐
+│             MODULE A: PREDICTION                │   │    MODULE B: DYNAMIC RISK        │
+│  • Baselines: Logistic Reg, Random Forest, GB,  │   │  • Hazard H = P(Flood | X)       │
+│    XGBoost, LightGBM, Bi-LSTM                   │──>│  • Exposure E = f(Population)    │
+│  • Proposed Architecture: ST-FloodNet           │   │  • Vulnerability V = f(DEM, Riv) │
+│    - Multi-Scale Temporal 1D-CNN                │   │  • Dynamic Risk Score ∈ [0, 100] │
+│    - Spatial Terrain & Satellite Encoders       │   │  • Multi-layer Folium GIS Map    │
+│    - Gated Cross-Modal Fusion                   │   └────────────────┬─────────────────┘
+│    - Multi-Task Head (Hazard + Severity)        │                    │
+│    - Monte Carlo Dropout Epistemic Uncertainty  │                    │
+└────────────────────────┬────────────────────────┘                    │
+                         │                   ┌─────────────────────────┘
+                         ▼                   ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                     MODULE C: RESILIENCE PLANNING & DECISION SUPPORT                   │
+│  • Context-Aware Prescriptive Engine Grounded in Identified Geomorphic Bottlenecks     │
+│  • 4 Action Domains: Immediate (0-48h), Structural, Policy/Zoning, Agricultural        │
+│  • Mandatory Academic Disclaimer Tagging (Not Official Government Guidance)            │
+└───────────────────────────────────────────┬────────────────────────────────────────────┘
+                                            │
+                 ┌──────────────────────────┴──────────────────────────┐
+                 ▼                                                     ▼
+┌─────────────────────────────────────────────────┐   ┌──────────────────────────────────┐
+│                FASTAPI REST API                 │   │     MODERN STREAMLIT DASHBOARD   │
+│  • Endpoints: /predict, /risk-score, /explain,  │   │  • Structured Sidebar Hierarchy  │
+│    /stations, /location-lookup, /recommendations│   │  • Dynamic Location Analysis     │
+│  • Pydantic v2 Schema Validation                │   │  • Real-Time Environmental Fetch │
+│  • SQLite Inference Audit Logging               │   │  • 2018–2023 Historical Deep Dive│
+└─────────────────────────────────────────────────┘   └──────────────────────────────────┘
 ```
 
 ---
 
-## 2. Component Directory Structure
+## 2. ST-FloodNet Proposed Architecture Pipeline
 
-* **`src/data/`**: Data acquisition from GEE and Open-Meteo (`acquire_data.py`), lag feature calculations (`preprocess.py`), and 7-vector leakage verification (`audit_leakage.py`).
-* **`src/models/`**: Model training, chronological validation, ablation testing, and artifact serialization (`train.py`).
-* **`src/geospatial/`**: Geospatial risk engine, Folium map builder, and GeoJSON exporter (`risk_mapper.py`).
-* **`src/explainability/`**: TreeSHAP global beeswarm/bar and local instance attribution (`shap_explainer.py`).
-* **`src/resilience/`**: Rule-based resilience recommendation engine (`recommendation_engine.py`).
-* **`src/utils/`**: Database ORM models and inference logging (`database.py`).
-* **`api/`**: FastAPI REST endpoints and Pydantic schemas (`main.py`, `schemas.py`).
-* **`dashboard/`**: Streamlit 7-page interactive dashboard (`app.py`).
+```
+Antecedent Meteorology ────► [Multi-Scale 1D Conv] ──► [Bi-GRU Memory] ──┐
+                                                                         │
+Topographic DEM / Slope ───► [Spatial Terrain Encoder] ─────────────────┼──► [Gated Cross-Modal Fusion]
+                                                                         │                │
+Sentinel-1 SAR / Indices ──► [Satellite Radar Encoder] ─────────────────┘                ▼
+                                                                                   [MC Dropout (p=0.35)]
+                                                                                          │
+                                                                   ┌──────────────────────┴──────────────────────┐
+                                                                   ▼                                             ▼
+                                                     [Hazard Logit -> Sigmoid]                     [Severity Head -> Softmax]
+                                                                   │                                             │
+                                                       Hazard Probability P(Flood)                   Severity Level (0, 1, 2, 3)
+                                                       + Epistemic Uncertainty Variance σ²
+```
 
 ---
 
-## 3. Database Schema (SQLite + SQLAlchemy)
+## 3. Directory Layout
 
-* **`predictions`**:
-  * `id` (INTEGER, PK, Auto-increment)
-  * `latitude` (FLOAT), `longitude` (FLOAT)
-  * `timestamp` (DATETIME, UTC)
-  * `probability` (FLOAT), `risk_score` (FLOAT), `risk_category` (VARCHAR)
-  * `hazard_level` (INTEGER: 0-3), `model_version` (VARCHAR), `input_payload` (TEXT)
-* **`locations`**:
-  * `id` (INTEGER, PK), `station_id` (VARCHAR), `location_name` (VARCHAR), `basin` (VARCHAR), `district` (VARCHAR)
-  * `latitude` (FLOAT), `longitude` (FLOAT), `elevation_m` (FLOAT), `slope_deg` (FLOAT), `population_density` (FLOAT)
-* **`model_metrics`**:
-  * `id` (INTEGER, PK), `model` (VARCHAR), `accuracy` (FLOAT), `precision` (FLOAT), `recall` (FLOAT), `f1` (FLOAT), `auc` (FLOAT), `pr_auc` (FLOAT), `brier_score` (FLOAT)
+- `src/data/`: Data builders, ingestion scripts, and leakage verification (`build_pan_india_dataset.py`, `audit_pan_india_leakage.py`, `historical_analyzer.py`).
+- `src/models/`: Model training, benchmarking, ablation studies, and evaluation curves (`train_pan_india.py`).
+- `src/geospatial/`: Pan-India location profiles (`location_service.py`) and dynamic Folium risk maps (`risk_mapper.py`).
+- `src/explainability/`: TreeSHAP global beeswarm and local attribution (`shap_explainer.py`).
+- `src/resilience/`: Multi-domain resilience recommendation engine (`recommendation_engine.py`).
+- `api/`: FastAPI web server, schemas, and endpoints (`main.py`, `schemas.py`).
+- `dashboard/`: Streamlit interactive web platform (`app.py`).
+- `tests/`: Automated pytest verification suite.

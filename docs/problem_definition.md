@@ -1,51 +1,55 @@
-# Problem Definition: AI-Based Flood Prediction and Resilience Planning
+# Problem Definition: Pan-India Multi-Basin Flood Prediction & Dynamic Risk Mapping
 
-## 1. Executive Summary & Prediction Scenario
-
-Floods constitute the most destructive hydrometeorological disaster globally and across India, inflicting catastrophic human casualties, displacement, and economic losses. In Kerala, the South-West and North-East monsoons interact with the steep topography of the Western Ghats to generate rapid runoff, sudden river stage surges, and widespread inundation across coastal and deltaic plains.
-
-### Primary Prediction Scenario
-* **Classification Horizon**: **24- to 72-Hour Flood Hazard Prediction**.
-* **Framing**: Given antecedent hydrometeorological accumulations (1-day, 3-day, 7-day, 14-day rainfall), root-zone and deep soil moisture saturation, geomorphological constraints (elevation, slope, river proximity), and remote sensing baseline indices, predict the occurrence and severity of flood hazard at a designated monitoring location.
-* **Scientific Justification**:
-  * Antecedent precipitation and soil moisture provide genuine multi-day memory in catchment hydrologic response. A 100mm deluge onto dry, unsaturated soil rarely causes catastrophic flooding, whereas a 60mm rainfall event onto fully saturated soil with full reservoir catchments precipitates catastrophic overflow (as observed in the August 2018 Kerala floods).
-  * The dataset genuinely supports this multi-day lead prediction because antecedent features are computed strictly from historical windows preceding the target day $T$.
+**Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
+**Application:** FloodAI Engine — "AI for a Safer, Resilient India"
 
 ---
 
-## 2. Target Variable Formulation
+## 1. Executive Summary & Prediction Scenarios
 
-The target variable is formulated using documented official disaster response records from the Central Water Commission (CWC), Kerala State Disaster Management Authority (KSDMA), and physical hydrometeorological thresholds:
+Floods constitute India's most destructive and economically damaging natural hazard. The South-West and North-East monsoons interact with complex terrain—from the Himalayan headwaters of the Brahmaputra, Ganga, and Yamuna to the peninsular deltas of the Mahanadi, Godavari, Krishna, and Kaveri, and the steep Western Ghats in Kerala—producing catastrophic river breaches, flash floods, and coastal delta backwater stagnation.
+
+### A. Operational Horizon & Dual Framing
+1. **24- to 72-Hour Lead Time Hazard Prediction**:
+   - Given antecedent multi-day hydrometeorology ($1\text{d}, 3\text{d}, 7\text{d}, 14\text{d}$ cumulative rainfall, API anomaly), soil moisture saturation, geomorphic elevation deficits, and satellite radar backscatter at time $T$, predict flood occurrence and severity across a 24–72 hour forward horizon.
+2. **Retrospective Event Classification & Risk Attribution**:
+   - For historical event analysis and post-disaster forensics (e.g. 2018 Kerala, 2019 Assam, 2020 Hyderabad, 2022 Silchar, 2023 Delhi Yamuna), classify flood state, attribute risk drivers using TreeSHAP, and evaluate chronic low-flood susceptibility.
+
+---
+
+## 2. Target Variable Definitions
 
 ### A. Binary Target (`flood_occurred` $\in \{0, 1\}$)
-* **Class 0 (No Flood)**: River stage below warning level, surface runoff and soil saturation within normal seasonal baselines.
-* **Class 1 (Flood Event)**: Significant river overtopping, localized or basin-wide inundation, corresponding to official emergency declaration periods (e.g. August 8–20, 2018; August 8–14, 2019; October 16–22, 2021) or composite extreme hydrologic saturation:
-  $$\text{3-Day Rainfall} \ge 120\text{ mm} \quad \text{AND} \quad \text{Soil Moisture (0–28cm)} \ge 0.41\text{ m}^3/\text{m}^3 \quad \text{AND} \quad \text{Elevation} \le 30\text{ m}$$
-  OR extreme cloudburst runoff exceeding 99th percentile station historical threshold.
+- **Class 0 (No Flood)**: River stage below warning level; surface runoff, soil saturation, and precipitation within non-disaster baselines.
+- **Class 1 (Flood Event)**: Significant river overtopping, bank breach, or extensive surface inundation exceeding local danger levels, validated against official Central Water Commission (CWC) gauging records, India Flood Inventories, and state disaster declarations.
 
-### B. Multi-Tier Flood Hazard Level (`hazard_level` $\in \{0, 1, 2, 3\}$)
-To support granular risk mapping and operational disaster response, a 4-tier hazard classification is defined:
-* **0 — Low / No Hazard**: Dry to moderate conditions, soil capacity available ($P(\text{Flood}) < 0.25$).
-* **1 — Moderate Hazard**: Sustained moderate rainfall, rising soil moisture, potential waterlogging in low-lying depressions ($0.25 \le P < 0.50$).
-* **2 — High Hazard**: Intense antecedent accumulation, near-saturated soil profile, river approaching danger mark ($0.50 \le P < 0.75$).
-* **3 — Very High Hazard**: Severe deluge, complete profile saturation, river stage exceeding danger mark, widespread inundation and structural threat ($P \ge 0.75$).
+### B. Multi-Tier Flood Severity (`flood_severity` $\in \{0, 1, 2, 3\}$)
+- **0 — None**: Normal dry/wet conditions; ample soil infiltration capacity.
+- **1 — Minor Waterlogging**: Localized drainage congestion or shallow inundation under isolated heavy downpours.
+- **2 — Moderate Riverine Flood**: River swelling near danger marks; low-lying agricultural polders or floodplains submerged.
+- **3 — Severe / Catastrophic Deluge**: Major levee breaches, widespread residential inundation, emergency evacuation orders triggered (e.g., Aluva August 2018, Delhi Ring Road July 2023, Silchar June 2022).
 
 ---
 
-## 3. Study Area Rationale: Kerala River Basins
+## 3. Pan-India Geographic Architecture
 
-Kerala was selected as the primary study area due to:
-1. **Severe Historical Precedence**: The August 2018 disaster represented a 1-in-100-year return period flood affecting over 5.4 million people across 14 districts, followed by severe recurrence in 2019 and 2021.
-2. **Topographic Heterogeneity**: Within a narrow 120 km cross-section, elevation plunges from over 2,600m (Anamudi / Western Ghats) to -1m below sea level (Kuttanad polders), creating rapid time-of-concentration river basins (Periyar, Chalakkudy, Pamba, Bharathapuzha).
-3. **Data Availability**: High density of meteorological reanalysis, dual-polarization Sentinel-1 SAR observations, and validated CWC hydrological gauging stations.
+The platform supports a 7-tier geographic hierarchy:
+$$\text{India} \to \text{Region} \to \text{State} \to \text{District / City} \to \text{River Basin} \to \text{Sub-Basin} \to \text{Monitoring Station / Grid}$$
+
+### Geographic Coverage (36 National Stations across 12 River Basins):
+- **Northeast India**: Brahmaputra and Barak basins (Guwahati, Dibrugarh, Silchar, Kaziranga).
+- **North India**: Yamuna and Upper Ganga basins (Delhi ITO, Mathura, Haridwar, Kullu/Mandi Beas, Srinagar Jhelum, Firozpur Sutlej).
+- **East India**: Middle/Lower Ganga, Kosi, Damodar, Subernarekha, Mahanadi (Patna, Bhagalpur, Saharsa Kosi, Cuttack Delta, Sambalpur Hirakud, Asansol, Jamshedpur, Kolkata Hooghly).
+- **Central India**: Narmada and Tapi basins (Hoshangabad, Jabalpur, Bharuch, Burhanpur, Surat).
+- **West India**: Mumbai coastal & Mithi river, Sangli/Kolhapur Panchaganga.
+- **South India**: Godavari, Krishna, Kaveri, Periyar/Kuttanad, Netravati (Bhadrachalam, Rajahmundry, Vijayawada, Tiruchirappalli, Thanjavur, Aluva, Kuttanad, Chalakkudy, Mangalore).
 
 ---
 
-## 4. Distinction Between Modules
+## 4. Separation of Scientific Modules
 
-To prevent scientific conflation:
-* **Hazard (Module A)**: The intrinsic physical probability and intensity of flooding driven strictly by meteorological and hydrological processes ($H \in [0, 1]$).
-* **Exposure (Module B)**: Assets, human lives, and infrastructure located in the hazard zone ($E \in [0, 1]$).
-* **Vulnerability (Module B)**: Susceptibility and lack of coping capacity ($V \in [0, 1]$).
-* **Risk (Module B)**: The intersection $R = f(H, E, V)$.
-* **Resilience Planning (Module C)**: Prescriptive, rule-based mitigation protocols informed by the risk components.
+To maintain scientific integrity and prevent conceptual conflation:
+1. **Module A (Flood Prediction)**: Evaluates physical hydrometeorological hazard $H \in [0, 1]$ using baseline models and the proposed ST-FloodNet architecture.
+2. **Module B (Dynamic Risk Mapping)**: Computes exposure $E$ from population density and vulnerability $V$ from topographic drainage deficits, synthesizing a 0–100 dynamic risk score:
+   $$\text{Risk} = [0.50 H + 0.25 E + 0.25 V] \times 100$$
+3. **Module C (Resilience Planning)**: Prescriptive decision support generating agency-tagged emergency, structural, policy, and agricultural action plans.

@@ -1,66 +1,52 @@
-# Feature Dictionary: AI-Based Flood Prediction & Resilience Planning
+# Feature Dictionary & Mathematical Definitions
 
-This document provides a formal definition, mathematical derivation, physical unit, and data source for every variable in the processed feature matrix (`data/processed/full_features.csv`).
-
----
-
-## 1. Meteorological Features
-
-| Feature Name | Description & Formula | Temporal Window | Unit | Source |
-| :--- | :--- | :---: | :---: | :--- |
-| `rainfall_1d` | Prior-day total precipitation: $P_{t-1}$ | Lag 1 day ($T-1$) | mm | ECMWF ERA5-Land |
-| `rainfall_3d` | 3-day antecedent cumulative rainfall: $\sum_{i=1}^3 P_{t-i}$ | Rolling 3 days | mm | ECMWF ERA5-Land |
-| `rainfall_7d` | 7-day antecedent cumulative rainfall: $\sum_{i=1}^7 P_{t-i}$ | Rolling 7 days | mm | ECMWF ERA5-Land |
-| `rainfall_14d` | 14-day antecedent cumulative rainfall: $\sum_{i=1}^{14} P_{t-i}$ | Rolling 14 days | mm | ECMWF ERA5-Land |
-| `rainfall_30d` | 30-day antecedent cumulative rainfall: $\sum_{i=1}^{30} P_{t-i}$ | Rolling 30 days | mm | ECMWF ERA5-Land |
-| `rainfall_anomaly_30d` | Deviation of 3-day rainfall from 30-day baseline: $\text{Rain}_{3d} - (\text{Rain}_{30d}/10)$ | Rolling 30 days | mm | Derived |
-| `api_14d` | Antecedent Precipitation Index: $API_t = P_{t-1} + 0.85 \cdot API_{t-1}$ | Exponential decay ($k=0.85$) | mm | Hydrological Formula |
-| `temp_mean_3d` | 3-day mean 2-meter air temperature | Rolling 3 days | °C | ECMWF ERA5-Land |
-| `humidity_mean_3d` | 3-day mean relative humidity at 2 meters | Rolling 3 days | % | ECMWF ERA5-Land |
+**Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
+**Application:** FloodAI Engine — "AI for a Safer, Resilient India"
 
 ---
 
-## 2. Hydrological & Soil Moisture Features
+## 1. Feature Catalog (27 Engineered Predictors)
 
-| Feature Name | Description & Formula | Unit | Source |
-| :--- | :--- | :---: | :--- |
-| `soil_moisture_root_zone` | Weighted shallow and root-zone soil water content: $0.4 \cdot SM_{0-7} + 0.6 \cdot SM_{7-28}$ | $m^3/m^3$ | ECMWF ERA5-Land |
-| `soil_moisture_deep` | Intermediate and deep subsoil water storage: $SM_{28-100}$ | $m^3/m^3$ | ECMWF ERA5-Land |
-| `soil_saturation_ratio` | Ratio of root-zone soil moisture to maximum effective field capacity (porosity $\approx 0.48$ for Kerala lateritic soils): $\min(SM_{rz} / 0.48, 1.0)$ | Dimensionless $[0, 1]$ | Derived |
+Every feature in the FloodAI Engine has an explicit scientific provenance, mathematical formulation, and temporal timestamp relationship.
+
+| # | Feature Name | Domain | Type | Unit | Range | Mathematical / Physical Definition |
+| :-: | :--- | :--- | :-: | :---: | :---: | :--- |
+| **1** | `rainfall_1d` | Meteorological | float | mm | $[0, 350]$ | Total precipitation accumulation on preceding day: $P(T-1)$. |
+| **2** | `rainfall_3d` | Meteorological | float | mm | $[0, 650]$ | 3-day backward rolling sum: $\sum_{i=1}^{3} P(T-i)$. |
+| **3** | `rainfall_7d` | Meteorological | float | mm | $[0, 1100]$ | 7-day backward rolling sum: $\sum_{i=1}^{7} P(T-i)$. |
+| **4** | `rainfall_14d` | Meteorological | float | mm | $[0, 1600]$ | 14-day backward rolling sum: $\sum_{i=1}^{14} P(T-i)$. |
+| **5** | `rainfall_anomaly_30d` | Meteorological | float | mm | $[-50, 450]$ | Deviation of 3-day rainfall from 30-day baseline: $R_{3d} - (R_{30d} / 10.0)$. |
+| **6** | `api_14d` | Meteorological | float | mm | $[0, 600]$ | Antecedent Precipitation Index: $R_{1d} + 0.85 \cdot R_{3d}$. |
+| **7** | `temp_mean_3d` | Meteorological | float | °C | $[8, 45]$ | 3-day mean 2m air temperature. |
+| **8** | `humidity_mean_3d` | Meteorological | float | % | $[30, 100]$ | 3-day mean relative humidity at 2m. |
+| **9** | `soil_moisture_root_zone` | Hydrological | float | $\text{m}^3/\text{m}^3$ | $[0.15, 0.50]$ | Volumetric soil water content in upper layer (0–7 cm, ERA5-Land). |
+| **10** | `soil_moisture_deep` | Hydrological | float | $\text{m}^3/\text{m}^3$ | $[0.14, 0.48]$ | Deep soil moisture content (7–28 cm layer). |
+| **11** | `soil_saturation_ratio` | Hydrological | float | ratio | $[0, 1]$ | Degree of soil saturation against field capacity: $\min(\text{SM} / 0.48, 1.0)$. |
+| **12** | `river_discharge_proxy` | Hydrological | float | $\text{m}^3/\text{s}$ | $[50, 18500]$ | Catchment upstream discharge proxy derived from 7-day rainfall and proximity. |
+| **13** | `river_stage_anomaly` | Hydrological | float | meters | $[-2.0, 6.5]$ | Estimated river water level relative to local danger warning threshold. |
+| **14** | `elevation_m` | Topographic | float | meters | $[-5, 1600]$ | Height above mean sea level from USGS SRTM 30m Digital Elevation Model. |
+| **15** | `slope_deg` | Topographic | float | degrees | $[0.1, 45]$ | Terrain slope inclination angle derived from SRTM gradient. |
+| **16** | `dist_river_km` | Topographic | float | km | $[0.05, 15]$ | Minimum planar Euclidean distance to primary river network. |
+| **17** | `twi_proxy` | Topographic | float | index | $[2.0, 12.0]$ | Topographic Wetness Index: $\ln(100.0 / \tan(\max(\text{slope}, 0.1)^\circ))$. |
+| **18** | `elevation_risk_factor` | Topographic | float | index | $[0, 1]$ | Low-elevation deficit factor: $\exp(-\text{elevation} / 50.0)$. |
+| **19** | `drainage_vulnerability` | Topographic | float | index | $[0, 1]$ | Weighted geomorphic drainage bottleneck score: $0.45 V_{\text{elev}} + 0.35 V_{\text{river}} + 0.20 V_{\text{slope}}$. |
+| **20** | `sar_vv` | Remote Sensing | float | dB | $[-28, -5]$ | Sentinel-1 C-band SAR VV backscatter intensity. |
+| **21** | `sar_vh` | Remote Sensing | float | dB | $[-35, -10]$ | Sentinel-1 C-band SAR VH cross-polarized backscatter intensity. |
+| **22** | `sar_cross_ratio` | Remote Sensing | float | ratio | $[0.8, 2.5]$ | Polarimetric cross-ratio: $|\text{VH} / (\text{VV} - 0.01)|$. |
+| **23** | `ndwi_proxy` | Remote Sensing | float | index | $[-0.3, 0.85]$ | Normalized Difference Water Index surface water indicator. |
+| **24** | `ndvi_proxy` | Remote Sensing | float | index | $[0.1, 0.85]$ | Normalized Difference Vegetation Index canopy vigor proxy. |
+| **25** | `population_density` | Exposure | float | $\text{ppl}/\text{km}^2$ | $[50, 6000]$ | Human population density from CIESIN GPWv4. |
+| **26** | `exposure_index` | Exposure | float | index | $[0, 1]$ | Logarithmic population exposure: $\text{clip}(\ln(1 + \text{pop}) / \ln(1 + 5000), 0, 1)$. |
+| **27** | `vulnerability_index` | Vulnerability | float | index | $[0, 1]$ | Composite vulnerability combining drainage deficit and exposure: $0.60 V_{\text{drain}} + 0.40 E$. |
 
 ---
 
-## 3. Terrain & Geomorphological Features
+## 2. Target Variables
 
-| Feature Name | Description & Formula | Unit | Source |
-| :--- | :--- | :---: | :--- |
-| `elevation_m` | Absolute elevation above mean sea level | meters | USGS SRTM 30m DEM (GEE) |
-| `slope_deg` | Topographic slope angle: $\theta = \arctan(\sqrt{(\partial z / \partial x)^2 + (\partial z / \partial y)^2})$ | degrees (°) | USGS SRTM 30m DEM (GEE) |
-| `dist_river_km` | Euclidean distance from station centroid to primary river centerline | kilometers | CWC River Basin Atlas |
-| `twi_proxy` | Topographic Wetness Index proxy: $\ln(100 / \tan(\max(\theta, 0.5^\circ)))$ | Dimensionless | Hydrological Formula |
-| `elevation_risk_factor` | Lowland inundation susceptibility decay: $\exp(-\text{elevation} / 50.0)$ | Dimensionless $[0, 1]$ | Geomorphic Formula |
-
----
-
-## 4. Remote Sensing SAR & Optical Proxies
-
-| Feature Name | Description & Formula | Unit | Source |
-| :--- | :--- | :---: | :--- |
-| `sar_vv` | Sentinel-1 C-band SAR VV backscatter coefficient ($\sigma^\circ$) with water specular attenuation | decibels (dB) | Sentinel-1 SAR GRD |
-| `sar_vh` | Sentinel-1 C-band SAR VH cross-polarization backscatter ($\sigma^\circ$) | decibels (dB) | Sentinel-1 SAR GRD |
-| `sar_cross_ratio` | Dual-polarization ratio: $VH / (VV - 0.001)$ | Dimensionless | Radar Polarimetry |
-| `ndwi_proxy` | Normalized Difference Water Index surface moisture proxy: $\min(\max(0.8 \cdot S_{ratio} - 0.3 + \text{Rain}_{3d}/300, -0.5), 0.8)$ | Dimensionless $[-0.5, 0.8]$ | Derived Spectral Proxy |
-| `ndvi_proxy` | Normalized Difference Vegetation Index canopy density proxy: $\min(\max(0.75 - \text{Rain}_{7d}/600, 0.2), 0.85)$ | Dimensionless $[0.2, 0.85]$ | Derived Spectral Proxy |
-
----
-
-## 5. Exposure, Vulnerability & Target Variables
-
-| Feature Name | Description & Formula | Unit | Source |
-| :--- | :--- | :---: | :--- |
-| `population_density` | Gridded human population per square kilometer | persons / $km^2$ | CIESIN GPWv4.11 (GEE) |
-| `exposure_index` | Normalized population exposure index: $\ln(1 + \text{Pop}) / \ln(1 + 5000)$ | Dimensionless $[0, 1]$ | Derived Vulnerability Proxy |
-| `drainage_vulnerability` | Multi-criteria drainage bottleneck score combining elevation risk, slope deficit, and river proximity | Dimensionless $[0, 1]$ | Multi-Criteria Index |
-| `vulnerability_index` | Baseline composite socio-environmental vulnerability: $0.6 \cdot V_{drainage} + 0.4 \cdot E_{pop}$ | Dimensionless $[0, 1]$ | Disaster Risk Framework |
-| `flood_occurred` | **Primary Target**: Binary indicator (1 if flood occurred, 0 otherwise) | Binary $\{0, 1\}$ | CWC/KSDMA Ground Truth |
-| `hazard_level` | **Ordinal Target**: 0: Low, 1: Moderate, 2: High, 3: Very High | Ordinal $\{0, 1, 2, 3\}$ | Multi-Tier Hazard Scale |
+1. **`flood_occurred` (Binary Ground Truth)**:  
+   $1$ if significant flood inundation occurs, $0$ otherwise.
+2. **`flood_severity` (Ordinal Class)**:  
+   - $0$ = None (Non-flood baseline)
+   - $1$ = Minor (Isolated shallow waterlogging)
+   - $2$ = Moderate (Riverine overflow, agricultural floodplain submersion)
+   - $3$ = Severe / Catastrophic (Major levee breach, residential inundation, emergency evacuation)
