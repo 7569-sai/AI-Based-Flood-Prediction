@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d5b1b1fbfb478c5d58fb02dee157eb33 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_d5b1b1fbfb478c5d58fb02dee157eb33" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d5b1b1fbfb478c5d58fb02dee157eb33 = L.map(
+                "map_d5b1b1fbfb478c5d58fb02dee157eb33",
+                {
+                    center: [10.2, 76.5],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a8be235b8adc98eb48ed83ac3a4522d0 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a8be235b8adc98eb48ed83ac3a4522d0.addTo(map_d5b1b1fbfb478c5d58fb02dee157eb33);
+        
+    
+            var feature_group_6ad9e38a7344af3fa757e4e064bd596a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_5362b299f7f7ae20210e05d4c1461eaa = L.circleMarker(
+                [10.1076, 76.3516],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.497500000000002, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_c819416cafdff65126430d9e4dbd9e11 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_349111125791ac5a194c9672f6ecb361 = $(`<div id="html_349111125791ac5a194c9672f6ecb361" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Aluva</h4>                 <b>Basin:</b> Periyar (Ernakulam)<br>                 <b>Elevation:</b> 10.0 m | <b>Slope:</b> 4.7°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 217.7 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.85<br>                 <b>Vulnerability (V):</b> 0.83<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 91.98 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_c819416cafdff65126430d9e4dbd9e11.setContent(html_349111125791ac5a194c9672f6ecb361);
+            
+        
+
+        circle_marker_5362b299f7f7ae20210e05d4c1461eaa.bindPopup(popup_c819416cafdff65126430d9e4dbd9e11)
+        ;
+
+        
+    
+    
+            circle_marker_5362b299f7f7ae20210e05d4c1461eaa.bindTooltip(
+                `<div>
+                     Aluva: Risk 91.98 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4488fb74d5988d5813fdf029a464aae5 = L.circleMarker(
+                [10.1667, 76.4333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.033749999999998, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_87719f3687a228b1e7f9f11c0ef22108 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_534a1687fd1f5b7c4cb5613708012059 = $(`<div id="html_534a1687fd1f5b7c4cb5613708012059" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Kalady</h4>                 <b>Basin:</b> Periyar (Ernakulam)<br>                 <b>Elevation:</b> 12.0 m | <b>Slope:</b> 3.9°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 215.5 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.76<br>                 <b>Vulnerability (V):</b> 0.77<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 88.27 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_87719f3687a228b1e7f9f11c0ef22108.setContent(html_534a1687fd1f5b7c4cb5613708012059);
+            
+        
+
+        circle_marker_4488fb74d5988d5813fdf029a464aae5.bindPopup(popup_87719f3687a228b1e7f9f11c0ef22108)
+        ;
+
+        
+    
+    
+            circle_marker_4488fb74d5988d5813fdf029a464aae5.bindTooltip(
+                `<div>
+                     Kalady: Risk 88.27 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7deccae8ae526caab2f4574e14370b0b = L.circleMarker(
+                [10.1982, 76.4975],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.215, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_8d36d390702d0597ad04f14d28aeabdd = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_864ee209b5c73521dc4855fbc353cfe2 = $(`<div id="html_864ee209b5c73521dc4855fbc353cfe2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Malayattoor</h4>                 <b>Basin:</b> Periyar (Ernakulam)<br>                 <b>Elevation:</b> 21.0 m | <b>Slope:</b> 4.6°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 243.6 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.85<br>                 <b>Vulnerability (V):</b> 0.74<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 89.72 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_8d36d390702d0597ad04f14d28aeabdd.setContent(html_864ee209b5c73521dc4855fbc353cfe2);
+            
+        
+
+        circle_marker_7deccae8ae526caab2f4574e14370b0b.bindPopup(popup_8d36d390702d0597ad04f14d28aeabdd)
+        ;
+
+        
+    
+    
+            circle_marker_7deccae8ae526caab2f4574e14370b0b.bindTooltip(
+                `<div>
+                     Malayattoor: Risk 89.72 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_11146dbc80c375ef310a208b4548b0dc = L.circleMarker(
+                [10.307, 76.333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.93625, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_5b0f0c2c02606cbdb12ece025ede5602 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_309fbd7712ebbbd1dbdf6388b81fd3e2 = $(`<div id="html_309fbd7712ebbbd1dbdf6388b81fd3e2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Chalakkudy</h4>                 <b>Basin:</b> Chalakkudy (Thrissur)<br>                 <b>Elevation:</b> 21.0 m | <b>Slope:</b> 4.7°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 245.2 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.76<br>                 <b>Vulnerability (V):</b> 0.74<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 87.49 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_5b0f0c2c02606cbdb12ece025ede5602.setContent(html_309fbd7712ebbbd1dbdf6388b81fd3e2);
+            
+        
+
+        circle_marker_11146dbc80c375ef310a208b4548b0dc.bindPopup(popup_5b0f0c2c02606cbdb12ece025ede5602)
+        ;
+
+        
+    
+    
+            circle_marker_11146dbc80c375ef310a208b4548b0dc.bindTooltip(
+                `<div>
+                     Chalakkudy: Risk 87.49 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_876c9d829d870305a6e6d13ee3b5b822 = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.00375, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_7efe2db6ccbba8431ee68477e20d7816 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_40b3f7fe4cf2d25063fb27d1a82b28fe = $(`<div id="html_40b3f7fe4cf2d25063fb27d1a82b28fe" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Thrissur Town</h4>                 <b>Basin:</b> Karuvannur (Thrissur)<br>                 <b>Elevation:</b> 20.0 m | <b>Slope:</b> 2.1°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 198.1 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.84<br>                 <b>Vulnerability (V):</b> 0.68<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 88.03 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_7efe2db6ccbba8431ee68477e20d7816.setContent(html_40b3f7fe4cf2d25063fb27d1a82b28fe);
+            
+        
+
+        circle_marker_876c9d829d870305a6e6d13ee3b5b822.bindPopup(popup_7efe2db6ccbba8431ee68477e20d7816)
+        ;
+
+        
+    
+    
+            circle_marker_876c9d829d870305a6e6d13ee3b5b822.bindTooltip(
+                `<div>
+                     Thrissur Town: Risk 88.03 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8cf1aeae0c020fa8d7b8e3032565b647 = L.circleMarker(
+                [9.3176, 76.6111],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.39125, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_45d259d62f54b9e6c60946d86044ccd0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_fffd69c5ab2538efeaf2b640604e98f2 = $(`<div id="html_fffd69c5ab2538efeaf2b640604e98f2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Chengannur</h4>                 <b>Basin:</b> Pamba (Alappuzha)<br>                 <b>Elevation:</b> 13.0 m | <b>Slope:</b> 0.9°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 187.9 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.83<br>                 <b>Vulnerability (V):</b> 0.81<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 91.13 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_45d259d62f54b9e6c60946d86044ccd0.setContent(html_fffd69c5ab2538efeaf2b640604e98f2);
+            
+        
+
+        circle_marker_8cf1aeae0c020fa8d7b8e3032565b647.bindPopup(popup_45d259d62f54b9e6c60946d86044ccd0)
+        ;
+
+        
+    
+    
+            circle_marker_8cf1aeae0c020fa8d7b8e3032565b647.bindTooltip(
+                `<div>
+                     Chengannur: Risk 91.13 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_84330c9e9caf65400e081825ae6937ee = L.circleMarker(
+                [9.38, 76.78],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.44375, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_3f04ff96703e934982e02f2eeec7d283 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3535531967cb21d8dd21fb2889565147 = $(`<div id="html_3535531967cb21d8dd21fb2889565147" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Ranni</h4>                 <b>Basin:</b> Pamba (Pathanamthitta)<br>                 <b>Elevation:</b> 5.0 m | <b>Slope:</b> 2.1°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 233.7 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.81<br>                 <b>Vulnerability (V):</b> 0.86<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 91.55 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_3f04ff96703e934982e02f2eeec7d283.setContent(html_3535531967cb21d8dd21fb2889565147);
+            
+        
+
+        circle_marker_84330c9e9caf65400e081825ae6937ee.bindPopup(popup_3f04ff96703e934982e02f2eeec7d283)
+        ;
+
+        
+    
+    
+            circle_marker_84330c9e9caf65400e081825ae6937ee.bindTooltip(
+                `<div>
+                     Ranni: Risk 91.55 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e8faf0bef32f2e775ebceb37d48e14c7 = L.circleMarker(
+                [9.45, 76.4833],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.4175, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_0aa445dad8acdd01023cb38d38d46d0a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_39bce5488bd253786fff8240e5da56ca = $(`<div id="html_39bce5488bd253786fff8240e5da56ca" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Kuttanad_Mankombu</h4>                 <b>Basin:</b> Pamba-Meenachil Delta (Alappuzha)<br>                 <b>Elevation:</b> -1.0 m | <b>Slope:</b> 3.4°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 220.2 mm<br>                 <b>Soil Saturation:</b> 91.1%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.77<br>                 <b>Vulnerability (V):</b> 0.89<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 91.34 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_0aa445dad8acdd01023cb38d38d46d0a.setContent(html_39bce5488bd253786fff8240e5da56ca);
+            
+        
+
+        circle_marker_e8faf0bef32f2e775ebceb37d48e14c7.bindPopup(popup_0aa445dad8acdd01023cb38d38d46d0a)
+        ;
+
+        
+    
+    
+            circle_marker_e8faf0bef32f2e775ebceb37d48e14c7.bindTooltip(
+                `<div>
+                     Kuttanad_Mankombu: Risk 91.34 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_27ffd944d463ed055ae379591e36d79d = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.291249999999998, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_97d01922d4c7800e045e02f7cbd871d7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_aa7758d4126d910b6979ecb25dc1eda9 = $(`<div id="html_aa7758d4126d910b6979ecb25dc1eda9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Alappuzha Coastal</h4>                 <b>Basin:</b> Coastal Lowland (Alappuzha)<br>                 <b>Elevation:</b> 7.0 m | <b>Slope:</b> 0.0°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 141.0 mm<br>                 <b>Soil Saturation:</b> 79.1%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.75<br>                 <b>Exposure (E):</b> 0.97<br>                 <b>Vulnerability (V):</b> 0.83<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 82.33 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_97d01922d4c7800e045e02f7cbd871d7.setContent(html_aa7758d4126d910b6979ecb25dc1eda9);
+            
+        
+
+        circle_marker_27ffd944d463ed055ae379591e36d79d.bindPopup(popup_97d01922d4c7800e045e02f7cbd871d7)
+        ;
+
+        
+    
+    
+            circle_marker_27ffd944d463ed055ae379591e36d79d.bindTooltip(
+                `<div>
+                     Alappuzha Coastal: Risk 82.33 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba40bb06cb60a4382a6dc314c4cf5b79 = L.circleMarker(
+                [9.5916, 76.5222],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21.213749999999997, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_706ef0837d10e486cbf6f62e874c5dd7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_be5f389b270f9014544c2768aebd41ae = $(`<div id="html_be5f389b270f9014544c2768aebd41ae" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Kottayam_Meenachil</h4>                 <b>Basin:</b> Meenachil (Kottayam)<br>                 <b>Elevation:</b> 28.0 m | <b>Slope:</b> 5.6°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 238.0 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 1.00<br>                 <b>Exposure (E):</b> 0.85<br>                 <b>Vulnerability (V):</b> 0.74<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 89.71 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_706ef0837d10e486cbf6f62e874c5dd7.setContent(html_be5f389b270f9014544c2768aebd41ae);
+            
+        
+
+        circle_marker_ba40bb06cb60a4382a6dc314c4cf5b79.bindPopup(popup_706ef0837d10e486cbf6f62e874c5dd7)
+        ;
+
+        
+    
+    
+            circle_marker_ba40bb06cb60a4382a6dc314c4cf5b79.bindTooltip(
+                `<div>
+                     Kottayam_Meenachil: Risk 89.71 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_68abe1ccb0f4aa8c6dd7729b5ac67e63 = L.circleMarker(
+                [9.85, 76.97],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.247500000000002, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_5a451315162994e2fa89bdbdb3f22a87 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_690a4dc529715af526a692bdb50777b6 = $(`<div id="html_690a4dc529715af526a692bdb50777b6" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Idukki_Painavu</h4>                 <b>Basin:</b> Upper Periyar Catchment (Idukki)<br>                 <b>Elevation:</b> 672.0 m | <b>Slope:</b> 28.2°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 364.4 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.91<br>                 <b>Exposure (E):</b> 0.71<br>                 <b>Vulnerability (V):</b> 0.43<br>                 <div style="margin-top: 8px; padding: 5px; background: #ff7f0e; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 73.98 (High)                 </div>             </div>             </div>`)[0];
+                popup_5a451315162994e2fa89bdbdb3f22a87.setContent(html_690a4dc529715af526a692bdb50777b6);
+            
+        
+
+        circle_marker_68abe1ccb0f4aa8c6dd7729b5ac67e63.bindPopup(popup_5a451315162994e2fa89bdbdb3f22a87)
+        ;
+
+        
+    
+    
+            circle_marker_68abe1ccb0f4aa8c6dd7729b5ac67e63.bindTooltip(
+                `<div>
+                     Idukki_Painavu: Risk 73.98 (High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_13bb683a101ddfa503d4bc2fa57d8d25 = L.circleMarker(
+                [10.0889, 77.0595],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.08625, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_5897e4b5b0490c1a4a8bf8fbf8b66c54 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5877ee7d5d4b5b3421a829f2ed478424 = $(`<div id="html_5877ee7d5d4b5b3421a829f2ed478424" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Munnar</h4>                 <b>Basin:</b> Muthirapuzha (Idukki)<br>                 <b>Elevation:</b> 1454.0 m | <b>Slope:</b> 3.9°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 525.2 mm<br>                 <b>Soil Saturation:</b> 89.6%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.94<br>                 <b>Exposure (E):</b> 0.55<br>                 <b>Vulnerability (V):</b> 0.47<br>                 <div style="margin-top: 8px; padding: 5px; background: #ff7f0e; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 72.69 (High)                 </div>             </div>             </div>`)[0];
+                popup_5897e4b5b0490c1a4a8bf8fbf8b66c54.setContent(html_5877ee7d5d4b5b3421a829f2ed478424);
+            
+        
+
+        circle_marker_13bb683a101ddfa503d4bc2fa57d8d25.bindPopup(popup_5897e4b5b0490c1a4a8bf8fbf8b66c54)
+        ;
+
+        
+    
+    
+            circle_marker_13bb683a101ddfa503d4bc2fa57d8d25.bindTooltip(
+                `<div>
+                     Munnar: Risk 72.69 (High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46d87f552a46c1ed8a64dd66aae7ef8a = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19.76125, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_22daa79e18889417f7e87230fe0a42de = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d4bfb1fefb90a07c374eff166af4c8f6 = $(`<div id="html_d4bfb1fefb90a07c374eff166af4c8f6" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Palakkad</h4>                 <b>Basin:</b> Bharathapuzha (Palakkad)<br>                 <b>Elevation:</b> 77.0 m | <b>Slope:</b> 0.9°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 192.1 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.89<br>                 <b>Exposure (E):</b> 0.78<br>                 <b>Vulnerability (V):</b> 0.56<br>                 <div style="margin-top: 8px; padding: 5px; background: #ff7f0e; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 78.09 (High)                 </div>             </div>             </div>`)[0];
+                popup_22daa79e18889417f7e87230fe0a42de.setContent(html_d4bfb1fefb90a07c374eff166af4c8f6);
+            
+        
+
+        circle_marker_46d87f552a46c1ed8a64dd66aae7ef8a.bindPopup(popup_22daa79e18889417f7e87230fe0a42de)
+        ;
+
+        
+    
+    
+            circle_marker_46d87f552a46c1ed8a64dd66aae7ef8a.bindTooltip(
+                `<div>
+                     Palakkad: Risk 78.09 (High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_442098ee0141d758e5eedd9221bc60d6 = L.circleMarker(
+                [11.1833, 75.8333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.80625, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_5f47c15a0fafda6f1ca5414374faab5c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a9fd9d916d5d153bfeb60234f97a5465 = $(`<div id="html_a9fd9d916d5d153bfeb60234f97a5465" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Kozhikode_Feroke</h4>                 <b>Basin:</b> Chaliyar (Kozhikode)<br>                 <b>Elevation:</b> 12.0 m | <b>Slope:</b> 3.0°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 145.0 mm<br>                 <b>Soil Saturation:</b> 76.9%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.89<br>                 <b>Exposure (E):</b> 0.87<br>                 <b>Vulnerability (V):</b> 0.81<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 86.45 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_5f47c15a0fafda6f1ca5414374faab5c.setContent(html_a9fd9d916d5d153bfeb60234f97a5465);
+            
+        
+
+        circle_marker_442098ee0141d758e5eedd9221bc60d6.bindPopup(popup_5f47c15a0fafda6f1ca5414374faab5c)
+        ;
+
+        
+    
+    
+            circle_marker_442098ee0141d758e5eedd9221bc60d6.bindTooltip(
+                `<div>
+                     Kozhikode_Feroke: Risk 86.45 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_890c3d9434eb6a267d86b096958156ae = L.circleMarker(
+                [11.8025, 76.0034],
+                {"bubblingMouseEvents": true, "color": "#98df8a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#98df8a", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.02125, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_ed6600ee73cec0175e02ac6d6a9b0b46 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b1fb2d1002ad85f7da233e359371bced = $(`<div id="html_b1fb2d1002ad85f7da233e359371bced" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Mananthavady</h4>                 <b>Basin:</b> Kabini (Wayanad)<br>                 <b>Elevation:</b> 756.0 m | <b>Slope:</b> 5.9°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 162.1 mm<br>                 <b>Soil Saturation:</b> 100.0%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.05<br>                 <b>Exposure (E):</b> 0.68<br>                 <b>Vulnerability (V):</b> 0.50<br>                 <div style="margin-top: 8px; padding: 5px; background: #98df8a; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 32.17 (Low)                 </div>             </div>             </div>`)[0];
+                popup_ed6600ee73cec0175e02ac6d6a9b0b46.setContent(html_b1fb2d1002ad85f7da233e359371bced);
+            
+        
+
+        circle_marker_890c3d9434eb6a267d86b096958156ae.bindPopup(popup_ed6600ee73cec0175e02ac6d6a9b0b46)
+        ;
+
+        
+    
+    
+            circle_marker_890c3d9434eb6a267d86b096958156ae.bindTooltip(
+                `<div>
+                     Mananthavady: Risk 32.17 (Low)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9f3dc65b1e3757e54f4af98b4c0dc2ed = L.circleMarker(
+                [8.5241, 76.9366],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20.88125, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6ad9e38a7344af3fa757e4e064bd596a);
+        
+    
+        var popup_0e7d67d50ab51252a12ec670f614571d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1d20e492718fb3a3adb9d4263b3ac5d9 = $(`<div id="html_1d20e492718fb3a3adb9d4263b3ac5d9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 220px;">                 <h4 style="margin: 0 0 5px 0; color: #1a365d;">Thiruvananthapuram</h4>                 <b>Basin:</b> Karamana (Thiruvananthapuram)<br>                 <b>Elevation:</b> 19.0 m | <b>Slope:</b> 8.4°<br>                 <hr style="margin: 6px 0;">                 <b>3-Day Rainfall:</b> 116.1 mm<br>                 <b>Soil Saturation:</b> 76.3%<br>                 <hr style="margin: 6px 0;">                 <b>Hazard (H):</b> 0.86<br>                 <b>Exposure (E):</b> 0.98<br>                 <b>Vulnerability (V):</b> 0.78<br>                 <div style="margin-top: 8px; padding: 5px; background: #d62728; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                     Risk Score: 87.05 (Very High)                 </div>             </div>             </div>`)[0];
+                popup_0e7d67d50ab51252a12ec670f614571d.setContent(html_1d20e492718fb3a3adb9d4263b3ac5d9);
+            
+        
+
+        circle_marker_9f3dc65b1e3757e54f4af98b4c0dc2ed.bindPopup(popup_0e7d67d50ab51252a12ec670f614571d)
+        ;
+
+        
+    
+    
+            circle_marker_9f3dc65b1e3757e54f4af98b4c0dc2ed.bindTooltip(
+                `<div>
+                     Thiruvananthapuram: Risk 87.05 (Very High)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_6ad9e38a7344af3fa757e4e064bd596a.addTo(map_d5b1b1fbfb478c5d58fb02dee157eb33);
+        
+    
+            var feature_group_bf0323a0b5d1a2b20a24dca99489c340 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_1ccd38606eacafd707eff8dbf1930d92 = L.circleMarker(
+                [10.1076, 76.3516],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_1ccd38606eacafd707eff8dbf1930d92.bindTooltip(
+                `<div>
+                     Aluva: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_20e21c4f0ee4aa585215b17b542f26aa = L.circleMarker(
+                [10.1667, 76.4333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_20e21c4f0ee4aa585215b17b542f26aa.bindTooltip(
+                `<div>
+                     Kalady: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_41644c05224c9682e39b396a23ceef50 = L.circleMarker(
+                [10.1982, 76.4975],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_41644c05224c9682e39b396a23ceef50.bindTooltip(
+                `<div>
+                     Malayattoor: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d0aeffb95dc19674a07618e1cb6750e = L.circleMarker(
+                [10.307, 76.333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_1d0aeffb95dc19674a07618e1cb6750e.bindTooltip(
+                `<div>
+                     Chalakkudy: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a496a869d1d68294ce50db580660c6bc = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_a496a869d1d68294ce50db580660c6bc.bindTooltip(
+                `<div>
+                     Thrissur Town: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb55070ae28953979dfae18525d16480 = L.circleMarker(
+                [9.3176, 76.6111],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.999000000000002, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_eb55070ae28953979dfae18525d16480.bindTooltip(
+                `<div>
+                     Chengannur: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce0825139205d613f6aadb9ef45f3fe5 = L.circleMarker(
+                [9.38, 76.78],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_ce0825139205d613f6aadb9ef45f3fe5.bindTooltip(
+                `<div>
+                     Ranni: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_95f39f7356b4ac1e3a83ee01ec005115 = L.circleMarker(
+                [9.45, 76.4833],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_95f39f7356b4ac1e3a83ee01ec005115.bindTooltip(
+                `<div>
+                     Kuttanad_Mankombu: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5c9d4f74ab3a90c0d4c9b810fe6385a8 = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.484, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_5c9d4f74ab3a90c0d4c9b810fe6385a8.bindTooltip(
+                `<div>
+                     Alappuzha Coastal: Hazard P=0.75
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d403da16201c4879b6eec56fe5b9ed36 = L.circleMarker(
+                [9.5916, 76.5222],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_d403da16201c4879b6eec56fe5b9ed36.bindTooltip(
+                `<div>
+                     Kottayam_Meenachil: Hazard P=1.00
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d464d1a84fd00ec0764ead5d52e5375b = L.circleMarker(
+                [9.85, 76.97],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.073, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_d464d1a84fd00ec0764ead5d52e5375b.bindTooltip(
+                `<div>
+                     Idukki_Painavu: Hazard P=0.91
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ab6b55170a6f0829ff125314e0f9268 = L.circleMarker(
+                [10.0889, 77.0595],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.426000000000002, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_1ab6b55170a6f0829ff125314e0f9268.bindTooltip(
+                `<div>
+                     Munnar: Hazard P=0.94
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0f82b314b28b2eb9c94a9532e12e184f = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.896, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_0f82b314b28b2eb9c94a9532e12e184f.bindTooltip(
+                `<div>
+                     Palakkad: Hazard P=0.89
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b5c3f70bb9bf2f9b9a4b48d29db4a614 = L.circleMarker(
+                [11.1833, 75.8333],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.878999999999998, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_b5c3f70bb9bf2f9b9a4b48d29db4a614.bindTooltip(
+                `<div>
+                     Kozhikode_Feroke: Hazard P=0.89
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80b3fc2d32ab2aac4cdc0a7bda6b34cb = L.circleMarker(
+                [11.8025, 76.0034],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.532, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_80b3fc2d32ab2aac4cdc0a7bda6b34cb.bindTooltip(
+                `<div>
+                     Mananthavady: Hazard P=0.05
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f791fe947006b9b760d3c605cb8fcffd = L.circleMarker(
+                [8.5241, 76.9366],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.608, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0323a0b5d1a2b20a24dca99489c340);
+        
+    
+            circle_marker_f791fe947006b9b760d3c605cb8fcffd.bindTooltip(
+                `<div>
+                     Thiruvananthapuram: Hazard P=0.86
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_7093a4d66fce57122b32403f21b6da1d = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_3d1bb4480399d0b965d35652ebc83faf = L.circleMarker(
+                [10.1076, 76.3516],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.323, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_3d1bb4480399d0b965d35652ebc83faf.bindTooltip(
+                `<div>
+                     Aluva: Vulnerability V=0.83
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_293bbc36d5b1bc60b9fa920c0788aad5 = L.circleMarker(
+                [10.1667, 76.4333],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.693999999999999, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_293bbc36d5b1bc60b9fa920c0788aad5.bindTooltip(
+                `<div>
+                     Kalady: Vulnerability V=0.77
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_254e64df8725a7dbc42a9f1b5f22d3b8 = L.circleMarker(
+                [10.1982, 76.4975],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.433, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_254e64df8725a7dbc42a9f1b5f22d3b8.bindTooltip(
+                `<div>
+                     Malayattoor: Vulnerability V=0.74
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_45863b667423841c388b9f930b432de0 = L.circleMarker(
+                [10.307, 76.333],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.416, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_45863b667423841c388b9f930b432de0.bindTooltip(
+                `<div>
+                     Chalakkudy: Vulnerability V=0.74
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_99194ed65a29d2b3fe130c17af7b76e5 = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.823, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_99194ed65a29d2b3fe130c17af7b76e5.bindTooltip(
+                `<div>
+                     Thrissur Town: Vulnerability V=0.68
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4949a5dafe09bdceb76e691bc8e08b80 = L.circleMarker(
+                [9.3176, 76.6111],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.102, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_4949a5dafe09bdceb76e691bc8e08b80.bindTooltip(
+                `<div>
+                     Chengannur: Vulnerability V=0.81
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ab8946eed174776533e3a25172acaf20 = L.circleMarker(
+                [9.38, 76.78],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.570999999999998, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_ab8946eed174776533e3a25172acaf20.bindTooltip(
+                `<div>
+                     Ranni: Vulnerability V=0.86
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f0174f99550f6e01d3952ea5a74b8982 = L.circleMarker(
+                [9.45, 76.4833],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.866, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_f0174f99550f6e01d3952ea5a74b8982.bindTooltip(
+                `<div>
+                     Kuttanad_Mankombu: Vulnerability V=0.89
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cfa3eec8b0853b638df912f5fd435378 = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.265, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_cfa3eec8b0853b638df912f5fd435378.bindTooltip(
+                `<div>
+                     Alappuzha Coastal: Vulnerability V=0.83
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15eeda6c5c33edad6a5c96887a0ab66b = L.circleMarker(
+                [9.5916, 76.5222],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.358, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_15eeda6c5c33edad6a5c96887a0ab66b.bindTooltip(
+                `<div>
+                     Kottayam_Meenachil: Vulnerability V=0.74
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a045c0d49a128db25684a115f1738bf2 = L.circleMarker(
+                [9.85, 76.97],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.344000000000001, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_a045c0d49a128db25684a115f1738bf2.bindTooltip(
+                `<div>
+                     Idukki_Painavu: Vulnerability V=0.43
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_22b535f09b9e6224bd01b20ffdc220c9 = L.circleMarker(
+                [10.0889, 77.0595],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.724, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_22b535f09b9e6224bd01b20ffdc220c9.bindTooltip(
+                `<div>
+                     Munnar: Vulnerability V=0.47
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de442a988a96c2776ed760b07a4abffa = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.634, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_de442a988a96c2776ed760b07a4abffa.bindTooltip(
+                `<div>
+                     Palakkad: Vulnerability V=0.56
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_13eba27cc238a69b3073ce8d86111232 = L.circleMarker(
+                [11.1833, 75.8333],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.137999999999998, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_13eba27cc238a69b3073ce8d86111232.bindTooltip(
+                `<div>
+                     Kozhikode_Feroke: Vulnerability V=0.81
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4fda0fe3835d9ad810bad70fb0d4fd65 = L.circleMarker(
+                [11.8025, 76.0034],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.033, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_4fda0fe3835d9ad810bad70fb0d4fd65.bindTooltip(
+                `<div>
+                     Mananthavady: Vulnerability V=0.50
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_766b65bab22cd8eeeb596ed13bad8603 = L.circleMarker(
+                [8.5241, 76.9366],
+                {"bubblingMouseEvents": true, "color": "#9467bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#9467bd", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.779, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7093a4d66fce57122b32403f21b6da1d);
+        
+    
+            circle_marker_766b65bab22cd8eeeb596ed13bad8603.bindTooltip(
+                `<div>
+                     Thiruvananthapuram: Vulnerability V=0.78
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_19d16f821e75e6973c4a2240fd9a97d2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_2e35da894d6be870cc54f37be1a1f253 = L.circleMarker(
+                [10.1076, 76.3516],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.471, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_2e35da894d6be870cc54f37be1a1f253.bindTooltip(
+                `<div>
+                     Aluva: Exposure E=0.85
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ee373645706ac06bd650eb4d03c0f0e = L.circleMarker(
+                [10.1667, 76.4333],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.614, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_5ee373645706ac06bd650eb4d03c0f0e.bindTooltip(
+                `<div>
+                     Kalady: Exposure E=0.76
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_99168ff847f9bb3eea0f6b15d83c0aa9 = L.circleMarker(
+                [10.1982, 76.4975],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.455, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_99168ff847f9bb3eea0f6b15d83c0aa9.bindTooltip(
+                `<div>
+                     Malayattoor: Exposure E=0.85
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_92f622316a527146d15270540731b422 = L.circleMarker(
+                [10.307, 76.333],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.58, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_92f622316a527146d15270540731b422.bindTooltip(
+                `<div>
+                     Chalakkudy: Exposure E=0.76
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83794485cc82c5300e62e2ac017e7ab2 = L.circleMarker(
+                [10.5276, 76.2144],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.389, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_83794485cc82c5300e62e2ac017e7ab2.bindTooltip(
+                `<div>
+                     Thrissur Town: Exposure E=0.84
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96e66118ad61303d0dbc18b7ddd45a0a = L.circleMarker(
+                [9.3176, 76.6111],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.35, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_96e66118ad61303d0dbc18b7ddd45a0a.bindTooltip(
+                `<div>
+                     Chengannur: Exposure E=0.83
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f10235efb2a7f02ef96ebe6379cc1c7 = L.circleMarker(
+                [9.38, 76.78],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.051000000000002, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_1f10235efb2a7f02ef96ebe6379cc1c7.bindTooltip(
+                `<div>
+                     Ranni: Exposure E=0.81
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e806ab2bb6690086cb0f7517189ce425 = L.circleMarker(
+                [9.45, 76.4833],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.671, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_e806ab2bb6690086cb0f7517189ce425.bindTooltip(
+                `<div>
+                     Kuttanad_Mankombu: Exposure E=0.77
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e518289c306a27a9dfdfb73cf5bef44e = L.circleMarker(
+                [9.4981, 76.3388],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.7, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_e518289c306a27a9dfdfb73cf5bef44e.bindTooltip(
+                `<div>
+                     Alappuzha Coastal: Exposure E=0.97
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30c8703c1aa50b87b023aefe6f97b411 = L.circleMarker(
+                [9.5916, 76.5222],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.527, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_30c8703c1aa50b87b023aefe6f97b411.bindTooltip(
+                `<div>
+                     Kottayam_Meenachil: Exposure E=0.85
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_18bb3a421a31d590579a832e10a80cc1 = L.circleMarker(
+                [9.85, 76.97],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.099, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_18bb3a421a31d590579a832e10a80cc1.bindTooltip(
+                `<div>
+                     Idukki_Painavu: Exposure E=0.71
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_973763f5ab0cd78e755c88683910380f = L.circleMarker(
+                [10.0889, 77.0595],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.5, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_973763f5ab0cd78e755c88683910380f.bindTooltip(
+                `<div>
+                     Munnar: Exposure E=0.55
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f7b20fd5e8821fcb596fcf198f58520 = L.circleMarker(
+                [10.7867, 76.6548],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.81, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_2f7b20fd5e8821fcb596fcf198f58520.bindTooltip(
+                `<div>
+                     Palakkad: Exposure E=0.78
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4d6f9a45b0a22881489384294dbc28b = L.circleMarker(
+                [11.1833, 75.8333],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.683, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_a4d6f9a45b0a22881489384294dbc28b.bindTooltip(
+                `<div>
+                     Kozhikode_Feroke: Exposure E=0.87
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a6e18fa9ca0930725f4c699d716fac1f = L.circleMarker(
+                [11.8025, 76.0034],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.772, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_a6e18fa9ca0930725f4c699d716fac1f.bindTooltip(
+                `<div>
+                     Mananthavady: Exposure E=0.68
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ff0ee62827539a7b9917afe1a6055a3 = L.circleMarker(
+                [8.5241, 76.9366],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.826999999999998, "stroke": true, "weight": 3}
+            ).addTo(feature_group_19d16f821e75e6973c4a2240fd9a97d2);
+        
+    
+            circle_marker_4ff0ee62827539a7b9917afe1a6055a3.bindTooltip(
+                `<div>
+                     Thiruvananthapuram: Exposure E=0.98
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_9e5a112a6150a1771db284887fdbb94c_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_a8be235b8adc98eb48ed83ac3a4522d0,
+                },
+                overlays :  {
+                    "Composite Risk Score (0-100)" : feature_group_6ad9e38a7344af3fa757e4e064bd596a,
+                    "Flood Hazard Probability" : feature_group_bf0323a0b5d1a2b20a24dca99489c340,
+                    "Vulnerability Index" : feature_group_7093a4d66fce57122b32403f21b6da1d,
+                    "Population Exposure" : feature_group_19d16f821e75e6973c4a2240fd9a97d2,
+                },
+            };
+            let layer_control_9e5a112a6150a1771db284887fdbb94c = L.control.layers(
+                layer_control_9e5a112a6150a1771db284887fdbb94c_layers.base_layers,
+                layer_control_9e5a112a6150a1771db284887fdbb94c_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_d5b1b1fbfb478c5d58fb02dee157eb33);
+
+        
+</script>
+</html>

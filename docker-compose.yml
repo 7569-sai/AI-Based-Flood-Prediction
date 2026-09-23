@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  flood-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flood_prediction_resilience_app
+    ports:
+      - "8000:8000"  # FastAPI Backend & Swagger UI
+      - "8501:8501"  # Streamlit Web Dashboard
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - DASHBOARD_PORT=8501
+      - DATABASE_URL=sqlite:///data/flood_system.db
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./models/trained:/app/models/trained
+    restart: unless-stopped

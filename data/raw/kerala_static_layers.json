@@ -1,0 +1,114 @@
+{
+  "KL_01": {
+    "elevation_m": 10.0,
+    "slope_deg": 4.721467442300572,
+    "population_density": 1358.9263916015625,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_02": {
+    "elevation_m": 12.0,
+    "slope_deg": 3.875662023728085,
+    "population_density": 654.4171142578125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_03": {
+    "elevation_m": 21.0,
+    "slope_deg": 4.627367505919335,
+    "population_density": 1340.4210205078125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_04": {
+    "elevation_m": 21.0,
+    "slope_deg": 4.6758698867969155,
+    "population_density": 635.6930541992188,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_05": {
+    "elevation_m": 20.0,
+    "slope_deg": 2.1014439747309925,
+    "population_density": 1267.173828125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_06": {
+    "elevation_m": 13.0,
+    "slope_deg": 0.9398072814803107,
+    "population_density": 1225.3018798828125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_07": {
+    "elevation_m": 5.0,
+    "slope_deg": 2.078671928263179,
+    "population_density": 949.6941528320312,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_08": {
+    "elevation_m": -1.0,
+    "slope_deg": 3.3545010330110334,
+    "population_density": 687.0016479492188,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_09": {
+    "elevation_m": 7.0,
+    "slope_deg": 0.0,
+    "population_density": 3873.8798828125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_10": {
+    "elevation_m": 28.0,
+    "slope_deg": 5.6256965041356075,
+    "population_density": 1425.2149658203125,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_11": {
+    "elevation_m": 672.0,
+    "slope_deg": 28.21202680713314,
+    "population_density": 421.8079833984375,
+    "sar_vv_ref": -10.0,
+    "sar_vh_ref": -16.5
+  },
+  "KL_12": {
+    "elevation_m": 1454.0,
+    "slope_deg": 3.8747787123505764,
+    "population_density": 107.27368927001953,
+    "sar_vv_ref": -10.0,
+    "sar_vh_ref": -16.5
+  },
+  "KL_13": {
+    "elevation_m": 77.0,
+    "slope_deg": 0.9274099368729609,
+    "population_density": 773.1687622070312,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_14": {
+    "elevation_m": 12.0,
+    "slope_deg": 2.981432142147049,
+    "population_density": 1628.3109130859375,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  },
+  "KL_15": {
+    "elevation_m": 756.0,
+    "slope_deg": 5.858259767934793,
+    "population_density": 319.01666259765625,
+    "sar_vv_ref": -10.0,
+    "sar_vh_ref": -16.5
+  },
+  "KL_16": {
+    "elevation_m": 19.0,
+    "slope_deg": 8.38038094075095,
+    "population_density": 4314.1552734375,
+    "sar_vv_ref": -11.7,
+    "sar_vh_ref": -18.2
+  }
+}

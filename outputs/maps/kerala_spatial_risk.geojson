@@ -1,0 +1,459 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "scenario": "monsoon_surge",
+    "target_date": "2021-10-18",
+    "study_area": "Kerala River Basins, India",
+    "framework": "Risk = Hazard x Exposure x Vulnerability"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.3516,
+          10.1076
+        ]
+      },
+      "properties": {
+        "station_id": "KL_01",
+        "station_name": "Aluva",
+        "basin": "Periyar",
+        "district": "Ernakulam",
+        "elevation_m": 10.0,
+        "slope_deg": 4.721467442300572,
+        "rainfall_3d": 86.80000000000004,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.6355,
+        "exposure_index": 0.8471,
+        "vulnerability_index": 0.8323,
+        "drainage_vulnerability": 0.8224,
+        "risk_score": 73.76,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.4333,
+          10.1667
+        ]
+      },
+      "properties": {
+        "station_id": "KL_02",
+        "station_name": "Kalady",
+        "basin": "Periyar",
+        "district": "Ernakulam",
+        "elevation_m": 12.0,
+        "slope_deg": 3.875662023728085,
+        "rainfall_3d": 110.49999999999996,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 1.0,
+        "exposure_index": 0.7614,
+        "vulnerability_index": 0.7694,
+        "drainage_vulnerability": 0.7746,
+        "risk_score": 88.27,
+        "risk_category": "Very High",
+        "risk_color": "#d62728",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.4975,
+          10.1982
+        ]
+      },
+      "properties": {
+        "station_id": "KL_03",
+        "station_name": "Malayattoor",
+        "basin": "Periyar",
+        "district": "Ernakulam",
+        "elevation_m": 21.0,
+        "slope_deg": 4.627367505919335,
+        "rainfall_3d": 126.60000000000002,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 1.0,
+        "exposure_index": 0.8455,
+        "vulnerability_index": 0.7433,
+        "drainage_vulnerability": 0.6752,
+        "risk_score": 89.72,
+        "risk_category": "Very High",
+        "risk_color": "#d62728",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.333,
+          10.307
+        ]
+      },
+      "properties": {
+        "station_id": "KL_04",
+        "station_name": "Chalakkudy",
+        "basin": "Chalakkudy",
+        "district": "Thrissur",
+        "elevation_m": 21.0,
+        "slope_deg": 4.675869886796916,
+        "rainfall_3d": 75.40000000000005,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.6648,
+        "exposure_index": 0.758,
+        "vulnerability_index": 0.7416,
+        "drainage_vulnerability": 0.7306,
+        "risk_score": 70.73,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.2144,
+          10.5276
+        ]
+      },
+      "properties": {
+        "station_id": "KL_05",
+        "station_name": "Thrissur Town",
+        "basin": "Karuvannur",
+        "district": "Thrissur",
+        "elevation_m": 20.0,
+        "slope_deg": 2.1014439747309925,
+        "rainfall_3d": 118.6,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 1.0,
+        "exposure_index": 0.8389,
+        "vulnerability_index": 0.6823,
+        "drainage_vulnerability": 0.5779,
+        "risk_score": 88.03,
+        "risk_category": "Very High",
+        "risk_color": "#d62728",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6111,
+          9.3176
+        ]
+      },
+      "properties": {
+        "station_id": "KL_06",
+        "station_name": "Chengannur",
+        "basin": "Pamba",
+        "district": "Alappuzha",
+        "elevation_m": 13.0,
+        "slope_deg": 0.9398072814803108,
+        "rainfall_3d": 93.6,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.6824,
+        "exposure_index": 0.835,
+        "vulnerability_index": 0.8102,
+        "drainage_vulnerability": 0.7937,
+        "risk_score": 75.25,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.78,
+          9.38
+        ]
+      },
+      "properties": {
+        "station_id": "KL_07",
+        "station_name": "Ranni",
+        "basin": "Pamba",
+        "district": "Pathanamthitta",
+        "elevation_m": 5.0,
+        "slope_deg": 2.078671928263179,
+        "rainfall_3d": 101.40000000000003,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.7389,
+        "exposure_index": 0.8051,
+        "vulnerability_index": 0.8571,
+        "drainage_vulnerability": 0.8918,
+        "risk_score": 78.5,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.4833,
+          9.45
+        ]
+      },
+      "properties": {
+        "station_id": "KL_08",
+        "station_name": "Kuttanad_Mankombu",
+        "basin": "Pamba-Meenachil Delta",
+        "district": "Alappuzha",
+        "elevation_m": -1.0,
+        "slope_deg": 3.3545010330110334,
+        "rainfall_3d": 82.30000000000004,
+        "soil_saturation_ratio": 0.8995833333333333,
+        "hazard_probability": 0.6699,
+        "exposure_index": 0.7671,
+        "vulnerability_index": 0.8866,
+        "drainage_vulnerability": 0.9662,
+        "risk_score": 74.84,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.3388,
+          9.4981
+        ]
+      },
+      "properties": {
+        "station_id": "KL_09",
+        "station_name": "Alappuzha Coastal",
+        "basin": "Coastal Lowland",
+        "district": "Alappuzha",
+        "elevation_m": 7.0,
+        "slope_deg": 0.0,
+        "rainfall_3d": 64.20000000000005,
+        "soil_saturation_ratio": 0.7045833333333335,
+        "hazard_probability": 0.6693,
+        "exposure_index": 0.97,
+        "vulnerability_index": 0.8265,
+        "drainage_vulnerability": 0.7309,
+        "risk_score": 78.38,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.5222,
+          9.5916
+        ]
+      },
+      "properties": {
+        "station_id": "KL_10",
+        "station_name": "Kottayam_Meenachil",
+        "basin": "Meenachil",
+        "district": "Kottayam",
+        "elevation_m": 28.0,
+        "slope_deg": 5.625696504135608,
+        "rainfall_3d": 99.1,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.6568,
+        "exposure_index": 0.8527,
+        "vulnerability_index": 0.7358,
+        "drainage_vulnerability": 0.6579,
+        "risk_score": 72.55,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.97,
+          9.85
+        ]
+      },
+      "properties": {
+        "station_id": "KL_11",
+        "station_name": "Idukki_Painavu",
+        "basin": "Upper Periyar Catchment",
+        "district": "Idukki",
+        "elevation_m": 672.0,
+        "slope_deg": 28.21202680713314,
+        "rainfall_3d": 78.8,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.0,
+        "exposure_index": 0.7099,
+        "vulnerability_index": 0.4344,
+        "drainage_vulnerability": 0.2507,
+        "risk_score": 28.61,
+        "risk_category": "Low",
+        "risk_color": "#98df8a",
+        "prediction": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0595,
+          10.0889
+        ]
+      },
+      "properties": {
+        "station_id": "KL_12",
+        "station_name": "Munnar",
+        "basin": "Muthirapuzha",
+        "district": "Idukki",
+        "elevation_m": 1454.0,
+        "slope_deg": 3.874778712350576,
+        "rainfall_3d": 104.49999999999996,
+        "soil_saturation_ratio": 0.8937499999999999,
+        "hazard_probability": 0.015,
+        "exposure_index": 0.55,
+        "vulnerability_index": 0.4724,
+        "drainage_vulnerability": 0.4207,
+        "risk_score": 26.31,
+        "risk_category": "Low",
+        "risk_color": "#98df8a",
+        "prediction": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6548,
+          10.7867
+        ]
+      },
+      "properties": {
+        "station_id": "KL_13",
+        "station_name": "Palakkad",
+        "basin": "Bharathapuzha",
+        "district": "Palakkad",
+        "elevation_m": 77.0,
+        "slope_deg": 0.9274099368729608,
+        "rainfall_3d": 91.49999999999994,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.6213,
+        "exposure_index": 0.781,
+        "vulnerability_index": 0.5634,
+        "drainage_vulnerability": 0.4183,
+        "risk_score": 64.67,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.8333,
+          11.1833
+        ]
+      },
+      "properties": {
+        "station_id": "KL_14",
+        "station_name": "Kozhikode_Feroke",
+        "basin": "Chaliyar",
+        "district": "Kozhikode",
+        "elevation_m": 12.0,
+        "slope_deg": 2.981432142147049,
+        "rainfall_3d": 118.29999999999998,
+        "soil_saturation_ratio": 0.7450000000000001,
+        "hazard_probability": 0.7229,
+        "exposure_index": 0.8683,
+        "vulnerability_index": 0.8138,
+        "drainage_vulnerability": 0.7774,
+        "risk_score": 78.2,
+        "risk_category": "High",
+        "risk_color": "#ff7f0e",
+        "prediction": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.0034,
+          11.8025
+        ]
+      },
+      "properties": {
+        "station_id": "KL_15",
+        "station_name": "Mananthavady",
+        "basin": "Kabini",
+        "district": "Wayanad",
+        "elevation_m": 756.0,
+        "slope_deg": 5.858259767934793,
+        "rainfall_3d": 62.90000000000001,
+        "soil_saturation_ratio": 1.0,
+        "hazard_probability": 0.0,
+        "exposure_index": 0.6772,
+        "vulnerability_index": 0.5033,
+        "drainage_vulnerability": 0.3873,
+        "risk_score": 29.51,
+        "risk_category": "Low",
+        "risk_color": "#98df8a",
+        "prediction": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.9366,
+          8.5241
+        ]
+      },
+      "properties": {
+        "station_id": "KL_16",
+        "station_name": "Thiruvananthapuram",
+        "basin": "Karamana",
+        "district": "Thiruvananthapuram",
+        "elevation_m": 19.0,
+        "slope_deg": 8.38038094075095,
+        "rainfall_3d": 95.59999999999997,
+        "soil_saturation_ratio": 0.7229166666666667,
+        "hazard_probability": 0.7723,
+        "exposure_index": 0.9827,
+        "vulnerability_index": 0.7779,
+        "drainage_vulnerability": 0.6413,
+        "risk_score": 82.63,
+        "risk_category": "Very High",
+        "risk_color": "#d62728",
+        "prediction": 1
+      }
+    }
+  ]
+}

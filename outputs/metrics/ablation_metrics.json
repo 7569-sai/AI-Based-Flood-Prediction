@@ -1,0 +1,168 @@
+{
+  "exp_a_met": {
+    "accuracy": 0.9726,
+    "precision": 0.3629,
+    "recall": 0.9783,
+    "f1": 0.5294,
+    "roc_auc": 0.9967,
+    "pr_auc": 0.8026,
+    "brier_score": 0.0217,
+    "confusion_matrix": [
+      [
+        5590,
+        158
+      ],
+      [
+        2,
+        90
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "n_features": 8,
+    "features": [
+      "rainfall_1d",
+      "rainfall_3d",
+      "rainfall_7d",
+      "rainfall_14d",
+      "rainfall_anomaly_3d",
+      "api_14d",
+      "temp_mean_3d",
+      "humidity_mean_3d"
+    ]
+  },
+  "exp_b_met_terrain": {
+    "accuracy": 0.9798,
+    "precision": 0.4369,
+    "recall": 0.9783,
+    "f1": 0.604,
+    "roc_auc": 0.9989,
+    "pr_auc": 0.9796,
+    "brier_score": 0.0145,
+    "confusion_matrix": [
+      [
+        5632,
+        116
+      ],
+      [
+        2,
+        90
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "n_features": 16,
+    "features": [
+      "rainfall_1d",
+      "rainfall_3d",
+      "rainfall_7d",
+      "rainfall_14d",
+      "rainfall_anomaly_3d",
+      "api_14d",
+      "temp_mean_3d",
+      "humidity_mean_3d",
+      "soil_moisture_root_zone",
+      "soil_moisture_deep",
+      "soil_saturation_ratio",
+      "elevation_m",
+      "slope_deg",
+      "dist_river_km",
+      "twi_proxy",
+      "elevation_risk_factor"
+    ]
+  },
+  "exp_c_met_terrain_rs": {
+    "accuracy": 0.9808,
+    "precision": 0.4505,
+    "recall": 0.9891,
+    "f1": 0.619,
+    "roc_auc": 0.9994,
+    "pr_auc": 0.99,
+    "brier_score": 0.0142,
+    "confusion_matrix": [
+      [
+        5637,
+        111
+      ],
+      [
+        1,
+        91
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "n_features": 21,
+    "features": [
+      "rainfall_1d",
+      "rainfall_3d",
+      "rainfall_7d",
+      "rainfall_14d",
+      "rainfall_anomaly_3d",
+      "api_14d",
+      "temp_mean_3d",
+      "humidity_mean_3d",
+      "soil_moisture_root_zone",
+      "soil_moisture_deep",
+      "soil_saturation_ratio",
+      "elevation_m",
+      "slope_deg",
+      "dist_river_km",
+      "twi_proxy",
+      "elevation_risk_factor",
+      "sar_vv",
+      "sar_vh",
+      "sar_cross_ratio",
+      "ndwi_proxy",
+      "ndvi_proxy"
+    ]
+  },
+  "exp_d_all_features": {
+    "accuracy": 0.9825,
+    "precision": 0.474,
+    "recall": 0.9891,
+    "f1": 0.6408,
+    "roc_auc": 0.9994,
+    "pr_auc": 0.9893,
+    "brier_score": 0.0133,
+    "confusion_matrix": [
+      [
+        5647,
+        101
+      ],
+      [
+        1,
+        91
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "n_features": 25,
+    "features": [
+      "rainfall_1d",
+      "rainfall_3d",
+      "rainfall_7d",
+      "rainfall_14d",
+      "rainfall_anomaly_3d",
+      "api_14d",
+      "temp_mean_3d",
+      "humidity_mean_3d",
+      "soil_moisture_root_zone",
+      "soil_moisture_deep",
+      "soil_saturation_ratio",
+      "elevation_m",
+      "slope_deg",
+      "dist_river_km",
+      "twi_proxy",
+      "elevation_risk_factor",
+      "sar_vv",
+      "sar_vh",
+      "sar_cross_ratio",
+      "ndwi_proxy",
+      "ndvi_proxy",
+      "population_density",
+      "exposure_index",
+      "drainage_vulnerability",
+      "vulnerability_index"
+    ]
+  }
+}

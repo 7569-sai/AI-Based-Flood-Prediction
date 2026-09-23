@@ -1,0 +1,53 @@
+# Configuration for AI-Based Flood Prediction & Resilience Planning System
+
+project:
+  name: "AI-Based Flood Prediction and Resilience Planning"
+  version: "2.0.0"
+  study_area: "Kerala River Basins, Southwestern India"
+  geographical_bounds:
+    min_lat: 8.52
+    max_lat: 11.80
+    min_lon: 75.78
+    max_lon: 77.06
+
+data:
+  raw_file: "data/raw/kerala_flood_raw.csv"
+  processed_dir: "data/processed/"
+  manifest_file: "data/DATA_MANIFEST.json"
+  temporal_range:
+    train_end: "2021-12-31"
+    val_end: "2022-12-31"
+    test_end: "2023-12-31"
+
+earth_engine:
+  project_id: "durable-torus-509007-n4"
+  dem_collection: "USGS/SRTMGL1_003"
+  sar_collection: "COPERNICUS/S1_GRD"
+  pop_collection: "CIESIN/GPWv411/GPW_UNWPP-Adjusted_Population_Density"
+
+models:
+  champion: "RandomForest"
+  champion_artifact: "models/trained/model_random_forest.joblib"
+  scaler_artifact: "models/scalers/feature_scaler.joblib"
+  random_state: 42
+  metrics_file: "outputs/metrics/model_comparison.json"
+  ablation_file: "outputs/metrics/ablation_metrics.json"
+
+risk_scoring:
+  hazard_weight: 0.50
+  exposure_weight: 0.25
+  vulnerability_weight: 0.25
+  thresholds:
+    very_low: [0, 20]
+    low: [21, 40]
+    moderate: [41, 60]
+    high: [61, 80]
+    very_high: [81, 100]
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: false
+
+dashboard:
+  port: 8501

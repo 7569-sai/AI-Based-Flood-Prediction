@@ -1,0 +1,117 @@
+{
+  "Logistic_Regression": {
+    "accuracy": 0.9202,
+    "precision": 0.1637,
+    "recall": 0.9891,
+    "f1": 0.2809,
+    "roc_auc": 0.9934,
+    "pr_auc": 0.6218,
+    "brier_score": 0.0566,
+    "confusion_matrix": [
+      [
+        5283,
+        465
+      ],
+      [
+        1,
+        91
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "train_time_sec": 0.186,
+    "inference_latency_ms": 0.0005
+  },
+  "Random_Forest": {
+    "accuracy": 0.9949,
+    "precision": 0.7627,
+    "recall": 0.9783,
+    "f1": 0.8571,
+    "roc_auc": 0.9997,
+    "pr_auc": 0.9888,
+    "brier_score": 0.009,
+    "confusion_matrix": [
+      [
+        5720,
+        28
+      ],
+      [
+        2,
+        90
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "train_time_sec": 0.662,
+    "inference_latency_ms": 0.0082
+  },
+  "Gradient_Boosting": {
+    "accuracy": 0.9577,
+    "precision": 0.27,
+    "recall": 0.9891,
+    "f1": 0.4242,
+    "roc_auc": 0.9992,
+    "pr_auc": 0.9849,
+    "brier_score": 0.0271,
+    "confusion_matrix": [
+      [
+        5502,
+        246
+      ],
+      [
+        1,
+        91
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "train_time_sec": 0.437,
+    "inference_latency_ms": 0.0012
+  },
+  "XGBoost": {
+    "accuracy": 0.9825,
+    "precision": 0.474,
+    "recall": 0.9891,
+    "f1": 0.6408,
+    "roc_auc": 0.9994,
+    "pr_auc": 0.9893,
+    "brier_score": 0.0133,
+    "confusion_matrix": [
+      [
+        5647,
+        101
+      ],
+      [
+        1,
+        91
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5840,
+    "train_time_sec": 2.205,
+    "inference_latency_ms": 0.0012
+  },
+  "Bi_LSTM": {
+    "accuracy": 0.933,
+    "precision": 0.1816,
+    "recall": 0.8804,
+    "f1": 0.3011,
+    "roc_auc": 0.9672,
+    "pr_auc": 0.5097,
+    "brier_score": 0.0546,
+    "confusion_matrix": [
+      [
+        5159,
+        365
+      ],
+      [
+        11,
+        81
+      ]
+    ],
+    "support_positive": 92,
+    "support_total": 5616,
+    "train_time_sec": 31.557,
+    "inference_latency_ms": 0.0503
+  }
+}
