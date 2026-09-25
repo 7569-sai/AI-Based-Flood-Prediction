@@ -38,9 +38,11 @@ htmlcov/
 
 # Temporary data / caches
 data/raw/station_*.csv
+data/raw/cache/
 *.tmp
 *.log
 
 # OS generated
 .DS_Store
 Thumbs.db
+

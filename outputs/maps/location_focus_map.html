@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0257ba7d2d05bbb4a9bf10fa519f2cc5 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_0257ba7d2d05bbb4a9bf10fa519f2cc5" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0257ba7d2d05bbb4a9bf10fa519f2cc5 = L.map(
+                "map_0257ba7d2d05bbb4a9bf10fa519f2cc5",
+                {
+                    center: [22.5726, 88.3639],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_210c8068f29acd399bf010ee5addd79c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_210c8068f29acd399bf010ee5addd79c.addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            var circle_be08a8fd915b0d87508a644c478dcc89 = L.circle(
+                [22.5726, 88.3639],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d62728", "fillOpacity": 0.18, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5000, "stroke": true, "weight": 1.5}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_be08a8fd915b0d87508a644c478dcc89.bindTooltip(
+                `<div>
+                     5 km Core Inundation Impact Buffer
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_ed8c9422a8b15b864a1f62d1006617f9 = L.circle(
+                [22.5726, 88.3639],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": "5, 5", "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15000, "stroke": true, "weight": 1.5}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_ed8c9422a8b15b864a1f62d1006617f9.bindTooltip(
+                `<div>
+                     15 km Advisory Catchment Zone
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_3a7d86648b05779b40b7d99db3b69ec9 = L.circle(
+                [22.5726, 88.3639],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": "8, 8", "dashOffset": null, "fill": false, "fillColor": "#1f77b4", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 30000, "stroke": true, "weight": 1}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_3a7d86648b05779b40b7d99db3b69ec9.bindTooltip(
+                `<div>
+                     30 km Regional Basin Domain
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bba0de2089aef4294c4e911e2bacf335 = L.circleMarker(
+                [26.1856, 91.749],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_bba0de2089aef4294c4e911e2bacf335.bindTooltip(
+                `<div>
+                     Guwahati (Brahmaputra) (Brahmaputra Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_835b910715b06fef1e62e6be341cae28 = L.circleMarker(
+                [27.4728, 94.912],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_835b910715b06fef1e62e6be341cae28.bindTooltip(
+                `<div>
+                     Dibrugarh (Upper Assam) (Brahmaputra Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6ea723819915ee3ff116b4029c8bda55 = L.circleMarker(
+                [24.8333, 92.7789],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_6ea723819915ee3ff116b4029c8bda55.bindTooltip(
+                `<div>
+                     Silchar (Barak Valley) (Barak Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0bc963898179cd665fc745fa6ed03cb0 = L.circleMarker(
+                [26.5775, 93.1711],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_0bc963898179cd665fc745fa6ed03cb0.bindTooltip(
+                `<div>
+                     Kaziranga Floodplains (Brahmaputra Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_caf8b9741bc33af7e887366c94efb709 = L.circleMarker(
+                [28.6644, 77.2389],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_caf8b9741bc33af7e887366c94efb709.bindTooltip(
+                `<div>
+                     Delhi (Old Railway Bridge / ITO) (Yamuna Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_745c082f636ab4ac18325c6786a0a17b = L.circleMarker(
+                [27.4924, 77.6737],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_745c082f636ab4ac18325c6786a0a17b.bindTooltip(
+                `<div>
+                     Mathura (Yamuna Basin) (Yamuna Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d1e01acc95cb3499e01e929433f24412 = L.circleMarker(
+                [25.5941, 85.1376],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_d1e01acc95cb3499e01e929433f24412.bindTooltip(
+                `<div>
+                     Patna (Ganga-Gandak Confluence) (Ganga Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2a005cdff9bdef10de591e582423a202 = L.circleMarker(
+                [25.8835, 86.6006],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_2a005cdff9bdef10de591e582423a202.bindTooltip(
+                `<div>
+                     Saharsa / Supaul (Kosi Basin) (Kosi Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83f09cfdac9b847106dbd7e835c9e5af = L.circleMarker(
+                [25.2425, 86.9842],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_83f09cfdac9b847106dbd7e835c9e5af.bindTooltip(
+                `<div>
+                     Bhagalpur (Lower Ganga) (Ganga Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fae7af07eb302288a9da5f7a69888f9e = L.circleMarker(
+                [25.4358, 81.8463],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_fae7af07eb302288a9da5f7a69888f9e.bindTooltip(
+                `<div>
+                     Prayagraj (Ganga-Yamuna Sangam) (Ganga Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_72231bb4f9e7b2f29c8c6f53a9db2c95 = L.circleMarker(
+                [25.3176, 82.9739],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_72231bb4f9e7b2f29c8c6f53a9db2c95.bindTooltip(
+                `<div>
+                     Varanasi (Middle Ganga) (Ganga Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_756aa1eb6a05a90a0a31b5e0c75f66d9 = L.circleMarker(
+                [29.9457, 78.1642],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_756aa1eb6a05a90a0a31b5e0c75f66d9.bindTooltip(
+                `<div>
+                     Haridwar (Upper Ganga) (Ganga Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_48c4afd447fc5e78d955272294a76c4c = L.circleMarker(
+                [20.4625, 85.8828],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_48c4afd447fc5e78d955272294a76c4c.bindTooltip(
+                `<div>
+                     Cuttack (Mahanadi Delta) (Mahanadi Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0c91901230fd449ab13c0b688e2f89aa = L.circleMarker(
+                [21.4669, 83.9812],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_0c91901230fd449ab13c0b688e2f89aa.bindTooltip(
+                `<div>
+                     Sambalpur (Hirakud Downstream) (Mahanadi Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6ace190d355f99cf4755d1f82622b60c = L.circleMarker(
+                [19.8135, 85.8312],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_6ace190d355f99cf4755d1f82622b60c.bindTooltip(
+                `<div>
+                     Puri Coastal Lowlands (Coastal Delta Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ff71a799669d9b6f239d5b379db05c6b = L.circleMarker(
+                [17.6688, 80.8936],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_ff71a799669d9b6f239d5b379db05c6b.bindTooltip(
+                `<div>
+                     Bhadrachalam (Godavari Basin) (Godavari Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c95f2b7d660c0a18b747c16244ffe153 = L.circleMarker(
+                [17.0005, 81.804],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_c95f2b7d660c0a18b747c16244ffe153.bindTooltip(
+                `<div>
+                     Rajahmundry (Godavari Delta) (Godavari Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed93deb04611f24f9d875a511ffef2c7 = L.circleMarker(
+                [16.8524, 74.5815],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_ed93deb04611f24f9d875a511ffef2c7.bindTooltip(
+                `<div>
+                     Sangli / Kolhapur (Panchaganga) (Krishna Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89b227c483c4ccdc101e707a2155be46 = L.circleMarker(
+                [16.5062, 80.648],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_89b227c483c4ccdc101e707a2155be46.bindTooltip(
+                `<div>
+                     Vijayawada (Krishna Delta) (Krishna Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f66b2ee50ffe9eb569a1eac3940da55 = L.circleMarker(
+                [21.1702, 72.8311],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_7f66b2ee50ffe9eb569a1eac3940da55.bindTooltip(
+                `<div>
+                     Surat (Tapi Delta) (Tapi Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b0f3f77c070b6a12d6cdfa42dd70073b = L.circleMarker(
+                [21.7051, 72.9959],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_b0f3f77c070b6a12d6cdfa42dd70073b.bindTooltip(
+                `<div>
+                     Bharuch (Lower Narmada) (Narmada Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2eabe07967790daf85571a88abdcf9a6 = L.circleMarker(
+                [10.7905, 78.7047],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_2eabe07967790daf85571a88abdcf9a6.bindTooltip(
+                `<div>
+                     Tiruchirappalli (Kaveri Delta) (Kaveri Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74162b547cdedc5a953cd4b944024c96 = L.circleMarker(
+                [10.787, 79.1378],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_74162b547cdedc5a953cd4b944024c96.bindTooltip(
+                `<div>
+                     Thanjavur Deltaic Network (Kaveri Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f911ace2db612a8da2e12d1816f237d = L.circleMarker(
+                [10.1076, 76.3516],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_8f911ace2db612a8da2e12d1816f237d.bindTooltip(
+                `<div>
+                     Aluva (Periyar Basin) (Periyar Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cc0d5c0d2bc4f25b43dee703ac348ced = L.circleMarker(
+                [9.45, 76.4833],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_cc0d5c0d2bc4f25b43dee703ac348ced.bindTooltip(
+                `<div>
+                     Kuttanad / Mankombu (Pamba Delta) (Pamba-Meenachil Delta Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5a81ce8e9f47ee424095fcf72727f81e = L.circleMarker(
+                [10.307, 76.333],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_5a81ce8e9f47ee424095fcf72727f81e.bindTooltip(
+                `<div>
+                     Chalakkudy (Chalakkudy Basin) (Chalakkudy Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e910af94a9a760b14ffe0d56293e994 = L.circleMarker(
+                [12.9141, 74.856],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_4e910af94a9a760b14ffe0d56293e994.bindTooltip(
+                `<div>
+                     Mangalore (Netravati Basin) (Netravati Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53cd787e1abb7a6d1650b8380c01ff03 = L.circleMarker(
+                [34.0837, 74.7973],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_53cd787e1abb7a6d1650b8380c01ff03.bindTooltip(
+                `<div>
+                     Srinagar (Jhelum Basin) (Jhelum Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a9cf35a4d234381155fb6460518f7da = L.circleMarker(
+                [30.9238, 74.6117],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_3a9cf35a4d234381155fb6460518f7da.bindTooltip(
+                `<div>
+                     Firozpur (Sutlej Basin) (Sutlej Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0c6dc0ad281efe1c4797c91a13edb03f = L.circleMarker(
+                [19.076, 72.8777],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_0c6dc0ad281efe1c4797c91a13edb03f.bindTooltip(
+                `<div>
+                     Mumbai (Mithi River & Coastal) (Mithi & Coastal Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_afb20c960852c4e8890aa08b64ade06c = L.circleMarker(
+                [22.7519, 77.7289],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_afb20c960852c4e8890aa08b64ade06c.bindTooltip(
+                `<div>
+                     Hoshangabad / Narmadapuram (Narmada Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f960551094d6d753d10929e143deec0 = L.circleMarker(
+                [23.6889, 86.9661],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_7f960551094d6d753d10929e143deec0.bindTooltip(
+                `<div>
+                     Asansol / Durgapur (Damodar) (Damodar Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_22e541bb7be3862d7c29eb16dd173519 = L.circleMarker(
+                [22.8046, 86.2029],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_22e541bb7be3862d7c29eb16dd173519.bindTooltip(
+                `<div>
+                     Jamshedpur (Subernarekha) (Subernarekha Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0144bd194c58b97319c11cf612ecfa60 = L.circleMarker(
+                [26.7922, 82.1998],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_0144bd194c58b97319c11cf612ecfa60.bindTooltip(
+                `<div>
+                     Ayodhya (Saryu / Ghaghara) (Ghaghara Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0694d7387d36dd8372b77a7b1fa1069a = L.circleMarker(
+                [31.9579, 77.1095],
+                {"bubblingMouseEvents": true, "color": "#3182bd", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3182bd", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            circle_marker_0694d7387d36dd8372b77a7b1fa1069a.bindTooltip(
+                `<div>
+                     Kullu / Mandi (Beas Basin) (Beas Basin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_681e326ac8eb54ad2d2c4bc47420a77d = L.marker(
+                [22.5726, 88.3639],
+                {
+}
+            ).addTo(map_0257ba7d2d05bbb4a9bf10fa519f2cc5);
+        
+    
+            var icon_d568f1bd3aada23922477fa2ed8f18f8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ab67fb67a0ec251f112e642d5afd0db1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1aff31fd4b82fa2ed941586f36d169f5 = $(`<div id="html_1aff31fd4b82fa2ed941586f36d169f5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 230px;">             <h4 style="margin: 0 0 5px 0; color: #1a365d;">Kolkata (Hooghly Estuary)</h4>             <b>Basin:</b> Ganga-Hooghly (West Bengal)<br>             <b>Coordinates:</b> 22.573°N, 88.364°E<br>             <b>Elevation:</b> 9.0 m | <b>Slope:</b> 0.3°<br>             <b>3-Day Rainfall:</b> 135.0 mm<br>             <b>Hazard Probability:</b> 12.0%<br>             <div style="margin-top: 8px; padding: 6px; background: #ffbb78; color: white; border-radius: 4px; text-align: center; font-weight: bold;">                 Risk Score: 53.29 / 100 (Moderate)             </div>         </div>         </div>`)[0];
+                popup_ab67fb67a0ec251f112e642d5afd0db1.setContent(html_1aff31fd4b82fa2ed941586f36d169f5);
+            
+        
+
+        marker_681e326ac8eb54ad2d2c4bc47420a77d.bindPopup(popup_ab67fb67a0ec251f112e642d5afd0db1)
+        ;
+
+        
+    
+    
+            marker_681e326ac8eb54ad2d2c4bc47420a77d.bindTooltip(
+                `<div>
+                     Kolkata (Hooghly Estuary) | Risk 53.29/100
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_681e326ac8eb54ad2d2c4bc47420a77d.setIcon(icon_d568f1bd3aada23922477fa2ed8f18f8);
+            
+</script>
+</html>
