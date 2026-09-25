@@ -3,9 +3,9 @@
 "AI for a Safer, Resilient India"
 Predict • Map • Plan • Protect
 
-Location-First Flood Intelligence Workflow:
-Clean India Map → Click Any Location → Capture Coordinates → Retrieve Parameters
-→ Validate Inputs → AI Flood Prediction → 1 km Local Risk Map → Resilience Response Plan
+Top Horizontal Tab Navigation:
+[ 📍 Location Analysis ] [ 🔬 Advanced Analysis ] [ ℹ️ About Project ]
+No vertical radio sidebar — full-width, clean, location-first flood intelligence.
 """
 
 import os
@@ -32,15 +32,16 @@ from src.planning.resilience_service import ResilienceService
 from src.explainability.shap_explainer import FloodShapExplainer
 from src.data.historical_analyzer import HistoricalFloodAnalyzer
 
+# Configure page: collapsed sidebar for maximum horizontal space
 st.set_page_config(
     page_title="FloodAI Engine — India's AI Flood Intelligence Platform",
     page_icon="🌊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ---------------------------------------------------------------------------
-# Professional Modern CSS Styling (Navy / Indigo & Clean Water Theme)
+# Professional Modern CSS Styling (Top Tabs & Full-Width Map Layout)
 # ---------------------------------------------------------------------------
 st.markdown("""
 <style>
@@ -49,43 +50,79 @@ st.markdown("""
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
+    /* Remove and hide left sidebar completely to gain full horizontal width */
+    section[data-testid="stSidebar"] {
+        display: none !important;
+    }
+    div[data-testid="collapsedControl"] {
+        display: none !important;
+    }
+    
+    /* Compact Top Header */
     .top-header {
         background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
         color: white;
-        padding: 1.2rem 1.8rem;
-        border-radius: 10px;
-        margin-bottom: 1.2rem;
+        padding: 0.95rem 1.6rem;
+        border-radius: 8px;
+        margin-bottom: 0.8rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
     }
     
     .top-header h2 {
         margin: 0;
-        font-size: 1.55rem;
+        font-size: 1.45rem;
         font-weight: 800;
         letter-spacing: -0.02em;
         color: #f8fafc;
     }
     
     .top-header p {
-        margin: 0.25rem 0 0 0;
-        font-size: 0.88rem;
+        margin: 0.15rem 0 0 0;
+        font-size: 0.84rem;
         color: #94a3b8;
     }
     
     .top-status-badge {
-        background: rgba(16, 185, 129, 0.18);
+        background: rgba(16, 185, 129, 0.16);
         border: 1px solid #10b981;
         color: #10b981;
-        padding: 0.4rem 0.85rem;
+        padding: 0.38rem 0.85rem;
         border-radius: 20px;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 600;
         display: inline-flex;
         align-items: center;
         gap: 6px;
+    }
+
+    /* Modern Horizontal Top Tabs (Section 8) */
+    div[data-baseweb="tab-list"] {
+        gap: 12px;
+        border-bottom: 2px solid #e2e8f0;
+        margin-bottom: 1.1rem;
+    }
+    button[data-baseweb="tab"] {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #475569;
+        padding: 0.7rem 1.5rem;
+        border-radius: 6px 6px 0 0;
+        background: transparent;
+        border: none;
+        transition: all 0.15s ease;
+    }
+    button[data-baseweb="tab"]:hover {
+        color: #0284c7;
+        background: #f1f5f9;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #0284c7;
+        font-weight: 700;
+        border-bottom: 3px solid #0284c7;
+        background: #f8fafc;
     }
     
     .metric-card {
@@ -123,21 +160,11 @@ st.markdown("""
         font-size: 1.15rem;
         font-weight: 700;
         color: #1e293b;
-        margin-top: 1.2rem;
-        margin-bottom: 0.6rem;
+        margin-top: 1.1rem;
+        margin-bottom: 0.55rem;
         display: flex;
         align-items: center;
         gap: 8px;
-    }
-
-    .sidebar-footer {
-        margin-top: 2rem;
-        padding: 0.9rem;
-        background: #1e293b;
-        border-radius: 8px;
-        color: #94a3b8;
-        font-size: 0.78rem;
-        border-left: 3px solid #38bdf8;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -158,6 +185,17 @@ def load_system_engines():
     return loc_svc, feat_svc, pred_svc, local_risk_svc, resil_svc, shap_eng, hist_eng
 
 location_service, feature_extractor, prediction_service, local_risk_engine, resilience_service, shap_explainer, hist_analyzer = load_system_engines()
+
+# Dynamic Model Name Resolution (Section 10)
+INFO_PATH = os.path.join(BASE_DIR, "models", "trained", "final_model_info.json")
+dynamic_model_name = "Random Forest Balanced"
+if os.path.exists(INFO_PATH):
+    try:
+        with open(INFO_PATH, "r", encoding="utf-8") as f:
+            m_info = json.load(f)
+            dynamic_model_name = m_info.get("champion_model", "Random Forest Balanced").replace("_", " ").title()
+    except Exception:
+        pass
 
 # Load benchmark metrics
 METRICS_PATH = os.path.join(BASE_DIR, "outputs", "metrics", "pan_india_model_comparison.json")
@@ -193,60 +231,43 @@ if "resilience_plan" not in st.session_state:
 
 
 # ---------------------------------------------------------------------------
-# Simplified Navigation Sidebar (Section 50)
+# Compact Top Header (Section 7 & 10)
 # ---------------------------------------------------------------------------
-st.sidebar.markdown("""
-<div style="padding: 0.5rem 0 1rem 0;">
-    <h2 style="margin: 0; color: #38bdf8; font-size: 1.45rem; font-weight: 800;">🌊 FloodAI ENGINE</h2>
-    <p style="margin: 0.2rem 0 0 0; color: #94a3b8; font-size: 0.82rem;">AI for a Safer, Resilient India</p>
-</div>
-<hr style="margin: 0.5rem 0 1rem 0; border: none; border-top: 1px solid #334155;">
-""", unsafe_allow_html=True)
-
-nav_page = st.sidebar.radio(
-    "Navigation Menu",
-    [
-        "🏠 Location Analysis",
-        "🔬 Advanced Analysis",
-        "ℹ️ About Project"
-    ],
-    label_visibility="collapsed"
-)
-
-st.sidebar.markdown("""
-<div class="sidebar-footer">
-    <div style="color: #10b981; font-weight: bold; margin-bottom: 4px;">● System Online</div>
-    <div><b>Coverage:</b> India | Multi-Basin</div>
-    <div><b>Workflow:</b> Location-First AI</div>
-    <div><b>Model:</b> Random Forest Balanced</div>
+st.markdown(f"""
+<div class="top-header">
+    <div>
+        <h2>🌊 FLOODAI ENGINE</h2>
+        <p>AI for a Safer, Resilient India</p>
+    </div>
+    <div class="top-status-badge">
+        ● Online &nbsp;|&nbsp; India Multi-Basin &nbsp;|&nbsp; Model: {dynamic_model_name}
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
 
+# ---------------------------------------------------------------------------
+# Primary Horizontal Top Tabs (Section 2 & 3)
+# ---------------------------------------------------------------------------
+tab_location, tab_advanced, tab_about = st.tabs([
+    "📍 Location Analysis",
+    "🔬 Advanced Analysis",
+    "ℹ️ About Project"
+])
+
+
 # ===========================================================================
-# 1. 🏠 LOCATION ANALYSIS (PRIMARY LOCATION-FIRST WORKFLOW)
+# TAB 1: 📍 LOCATION ANALYSIS (PRIMARY LOCATION-FIRST WORKFLOW)
 # ===========================================================================
-if nav_page == "🏠 Location Analysis":
+with tab_location:
 
     # -----------------------------------------------------------------------
     # STATE 1: CLEAN INDIA MAP (NO MARKERS, MAP FIRST)
     # -----------------------------------------------------------------------
     if st.session_state["selected_lat"] is None:
-        st.markdown("""
-        <div class="top-header">
-            <div>
-                <h2>FloodAI Engine</h2>
-                <p>AI-Based Flood Prediction & Resilience Planning</p>
-            </div>
-            <div class="top-status-badge">
-                ● System Online | India
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<p style='font-size: 1.05rem; font-weight: 600; color: #1e293b; margin-top: 0.2rem; margin-bottom: 0.6rem;'>📍 Click anywhere on the map to analyze flood risk.</p>", unsafe_allow_html=True)
 
-        st.info("📍 **Click anywhere on the map of India to analyze flood risk.** (The system will automatically capture your coordinates and initiate parameter extraction.)")
-
-        # Clean Map: Centered on India with NO location markers, NO red dots, NO blue dots
+        # Clean Map: Centered on India with NO location markers, NO red dots, NO blue dots, full container width
         m_clean = folium.Map(
             location=[22.8, 82.0],
             zoom_start=5,
@@ -256,7 +277,7 @@ if nav_page == "🏠 Location Analysis":
 
         map_output = st_folium(
             m_clean,
-            height=580,
+            height=600,
             use_container_width=True,
             key="clean_india_map",
             returned_objects=["last_clicked"]
@@ -278,21 +299,11 @@ if nav_page == "🏠 Location Analysis":
     # STATE 2: LOCATION SELECTED, PENDING USER CONFIRMATION
     # -----------------------------------------------------------------------
     elif not st.session_state["analysis_complete"]:
-        st.markdown("""
-        <div class="top-header">
-            <div>
-                <h2>FloodAI Engine</h2>
-                <p>AI-Based Flood Prediction & Resilience Planning</p>
-            </div>
-            <div class="top-status-badge">
-                📍 Location Captured
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
         s_lat = st.session_state["selected_lat"]
         s_lon = st.session_state["selected_lon"]
         loc_meta = st.session_state["location_info"]
+
+        st.markdown("<p style='font-size: 1.05rem; font-weight: 600; color: #1e293b; margin-top: 0.2rem; margin-bottom: 0.6rem;'>📍 Selected Location Established. Confirm and analyze flood risk below:</p>", unsafe_allow_html=True)
 
         # Map showing EXACTLY ONE Marker at the clicked coordinate
         m_selected = folium.Map(
@@ -309,7 +320,7 @@ if nav_page == "🏠 Location Analysis":
 
         map_reclick = st_folium(
             m_selected,
-            height=420,
+            height=460,
             use_container_width=True,
             key="selected_point_map",
             returned_objects=["last_clicked"]
@@ -327,14 +338,14 @@ if nav_page == "🏠 Location Analysis":
                     st.session_state["location_info"] = location_service.identify_location(new_lat, new_lon)
                     st.rerun()
 
-        # Selected Location Confirmation Card
+        # Selected Location Confirmation Card (Section 5)
         st.markdown(f"""
-        <div class="metric-card" style="border-left: 4px solid #2563eb; margin-top: 0.8rem; margin-bottom: 0.8rem;">
+        <div class="metric-card" style="border-left: 4px solid #0284c7; margin-top: 0.8rem; margin-bottom: 0.8rem;">
             <div class="metric-card-title">SELECTED LOCATION</div>
             <div style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-top: 2px;">
                 {loc_meta['district']}, {loc_meta['state']}
             </div>
-            <div style="font-size: 0.9rem; color: #475569; margin-top: 6px; line-height: 1.6;">
+            <div style="font-size: 0.92rem; color: #475569; margin-top: 6px; line-height: 1.6;">
                 <b>Latitude:</b> {s_lat:.4f}°N &nbsp;&nbsp;|&nbsp;&nbsp; <b>Longitude:</b> {s_lon:.4f}°E<br>
                 <b>River Basin:</b> {loc_meta['basin']} Basin &nbsp;&nbsp;|&nbsp;&nbsp; <b>Sub-Basin:</b> {loc_meta['sub_basin']}
             </div>
@@ -345,23 +356,19 @@ if nav_page == "🏠 Location Analysis":
         with col_act1:
             if st.button("🌊 ANALYZE FLOOD RISK", type="primary", use_container_width=True):
                 with st.spinner("Retrieving location data & running AI model..."):
-                    # 1. Automatic parameter extraction
                     feat_res = feature_extractor.retrieve_location_data(s_lat, s_lon)
                     st.session_state["retrieved_features"] = feat_res["features"]
                     st.session_state["feature_status"] = feat_res["status_panel"]
                     st.session_state["sources_panel"] = feat_res["sources_panel"]
 
-                    # 2. Model inference
                     pred_res = prediction_service.predict(feat_res["features"])
                     st.session_state["prediction_result"] = pred_res
 
-                    # 3. Local 1 km geodesic risk analysis
                     local_risk = local_risk_engine.compute_local_1km_risk(
                         s_lat, s_lon, feat_res["features"], pred_res, loc_meta
                     )
                     st.session_state["local_risk_result"] = local_risk
 
-                    # 4. Resilience response planning
                     plan = resilience_service.generate_plan(
                         local_risk, pred_res, loc_meta, feat_res["features"]
                     )
@@ -392,15 +399,15 @@ if nav_page == "🏠 Location Analysis":
         sources_panel = st.session_state["sources_panel"]
         features = st.session_state["retrieved_features"]
 
-        # 1. Header with Selected Location
+        # 1. Location Bar
         st.markdown(f"""
-        <div class="top-header">
-            <div>
-                <h2>FloodAI Engine — Local Flood Intelligence</h2>
-                <p>Location: <b>{loc_meta['district']}, {loc_meta['state']}</b> ({s_lat:.4f}°N, {s_lon:.4f}°E) | Basin: <b>{loc_meta['basin']}</b></p>
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.8rem 1.2rem; margin-bottom: 1rem;">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase;">ANALYZED LOCATION</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-top: 2px;">
+                {loc_meta['district']}, {loc_meta['state']}
             </div>
-            <div class="top-status-badge">
-                ● Analysis Complete
+            <div style="font-size: 0.88rem; color: #334155; margin-top: 4px;">
+                <b>Coordinates:</b> {s_lat:.4f}°N, {s_lon:.4f}°E &nbsp;|&nbsp; <b>Basin:</b> {loc_meta['basin']} ({loc_meta['sub_basin']})
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -485,7 +492,7 @@ if nav_page == "🏠 Location Analysis":
         st.caption(f"Map centered on **{s_lat:.4f}°N, {s_lon:.4f}°E** ({loc_meta['district']}) with geodesic 1000m circular boundary. Shows point flood prediction + 1 km local exposure/risk analysis.")
 
         local_map_html = local_risk_engine.generate_local_1km_map(s_lat, s_lon, local_risk, loc_meta)
-        components.html(local_map_html, height=500, scrolling=False)
+        components.html(local_map_html, height=520, scrolling=False)
 
         # 5. LOCAL RISK ANALYSIS & EXPOSURE (Sections 30–33)
         st.markdown('<div class="section-title">📊 Local Risk Analysis (1 km Domain)</div>', unsafe_allow_html=True)
@@ -526,7 +533,6 @@ if nav_page == "🏠 Location Analysis":
         # 6. RESCUE & RESILIENCE PLANNING (Sections 34–37)
         st.markdown('<div class="section-title">🛡️ Rescue & Resilience Plan</div>', unsafe_allow_html=True)
         
-        # Response Priority
         st.markdown(f"""
         <div style="background: white; border-left: 5px solid {plan['priority_color']}; border-radius: 8px; padding: 0.9rem 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 1rem;">
             <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Response Priority</div>
@@ -539,14 +545,12 @@ if nav_page == "🏠 Location Analysis":
         </div>
         """, unsafe_allow_html=True)
 
-        # 7 Operational Pillars
-        tabs = st.tabs(list(plan["pillars"].keys()))
+        tabs_p = st.tabs(list(plan["pillars"].keys()))
         for idx, (pillar_name, directives) in enumerate(plan["pillars"].items()):
-            with tabs[idx]:
+            with tabs_p[idx]:
                 for item in directives:
                     st.markdown(f"• {item}")
 
-        # Mandatory Disclaimer (Section 35 & 36)
         st.markdown(f"""
         <div style="background: #fffbeb; border: 1px solid #f59e0b; border-radius: 6px; padding: 0.65rem 0.9rem; margin-top: 1rem; font-size: 0.8rem; color: #92400e;">
             ⚠️ <b>Mandatory Academic Disclaimer:</b> {plan['disclaimer']}
@@ -571,11 +575,11 @@ if nav_page == "🏠 Location Analysis":
 
 
 # ===========================================================================
-# 2. 🔬 ADVANCED ANALYSIS (SECONDARY / RESEARCH ONLY)
+# TAB 2: 🔬 ADVANCED ANALYSIS (SECONDARY / RESEARCH ONLY)
 # ===========================================================================
-elif nav_page == "🔬 Advanced Analysis":
-    st.title("🔬 Advanced Flood Intelligence & Research Tools")
-    st.write("In-depth evaluation, ablation experiments, explainable AI, uncertainty quantification, and manual parametric simulations.")
+with tab_advanced:
+    st.subheader("🔬 Advanced Flood Intelligence & Research Tools")
+    st.caption("In-depth model evaluation, ablation experiments, explainable AI, uncertainty quantification, and manual parametric simulations.")
 
     tab_eval, tab_shap, tab_uncert, tab_abl, tab_sim, tab_doc = st.tabs([
         "📊 Model Benchmarks",
@@ -709,24 +713,42 @@ elif nav_page == "🔬 Advanced Analysis":
 
 
 # ===========================================================================
-# 3. ℹ️ ABOUT PROJECT
+# TAB 3: ℹ️ ABOUT PROJECT
 # ===========================================================================
-elif nav_page == "ℹ️ About Project":
-    st.title("ℹ️ About FloodAI Engine")
-    st.subheader("AI for a Safer, Resilient India | B.Tech Major Project")
+with tab_about:
+    st.subheader("ℹ️ About FloodAI Engine")
+    st.markdown("### AI for a Safer, Resilient India | B.Tech Major Project")
     
     st.markdown("""
     **Project Title:** AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning  
     **Tagline:** AI for a Safer, Resilient India  
     **Core Purpose:** Predict • Map • Plan • Protect  
 
-    ### 🏛️ System Architecture
-    The platform integrates three interconnected modules:
-    1. **Module A (Pan-India Flood Prediction):** Multi-source machine learning and deep learning models evaluating 78,876 daily observations across 12 major river basins in India (2018–2023). Champion architecture: **Random Forest (Balanced)** and proposed **ST-FloodNet** with Monte Carlo Dropout uncertainty estimation.
-    2. **Module B (Dynamic Risk Mapping):** Implements UNDRR risk decomposition:
-       $$\\text{Risk} = [0.50 \\times \\text{Hazard} + 0.25 \\times \\text{Exposure} + 0.25 \\times \\text{Vulnerability}] \\times 100$$
-       Coupled with geodesic 1 km circular buffer demographic and infrastructure exposure analysis.
-    3. **Module C (Resilience Planning & Decision Support):** Automated synthesis of 7 operational disaster response pillars (Early Warning, Evacuation Preparedness, Safe Areas, Resource Prioritization, Infrastructure Protection, Drainage Management, and Agricultural Safeguards).
+    ---
+
+    ### 🎯 Project Purpose
+    Develop an integrated, location-first artificial intelligence framework designed to provide operational flood forecasting, dynamic geospatial risk analysis, and automated decision support across India's major river basins.
+
+    ### 🔄 Main Workflow
+    1. **Interactive Location Selection**: The user selects any point across India via the clean interactive Folium map.
+    2. **Automated Feature Retrieval**: The system queries legitimate multi-source APIs (Open-Meteo ERA5-Land, USGS SRTM DEM, National River Hydrology Network, Copernicus Sentinel-1, and CIESIN GPWv4) without requiring manual parameter configuration.
+    3. **Feature Validation & Causality**: Enforces physical boundaries, completeness, and backward-looking temporal causality ($T-1$ lag) to prevent data leakage.
+    4. **Model Inference**: Evaluates the 27-feature vector through the trained champion model, generating flood probability, severity classification, and epistemic uncertainty quantification.
+    5. **1 km Local Risk Analysis**: Calculates local geodesic circular buffer exposure (population, buildings, roads, critical facilities) and decomposes risk into Hazard, Exposure, and Vulnerability.
+    6. **Prescriptive Resilience Directives**: Synthesizes 7 operational disaster management pillars with response priority escalation.
+
+    ### 📊 Risk Decomposition Framework (UNDRR Standard)
+    $$\\text{Risk} = [0.50 \\times \\text{Hazard} + 0.25 \\times \\text{Exposure} + 0.25 \\times \\text{Vulnerability}] \\times 100$$
+    - **Hazard ($H$)**: Model-predicted flood probability $P(\\text{Flood} \\mid \\mathbf{X})$.
+    - **Exposure ($E$)**: Logarithmic population density index $\\text{clip}\\left(\\frac{\\ln(1 + \\rho)}{\\ln(1 + 5000)}, 0, 1\\right)$.
+    - **Vulnerability ($V$)**: Project-defined composite drainage and elevation bottleneck index.
+
+    ### 💻 Technology Stack
+    - **Machine Learning**: Scikit-Learn (Random Forest Balanced), LightGBM, XGBoost, PyTorch (ST-FloodNet, Bi-LSTM).
+    - **Explainable AI**: SHAP (TreeExplainer).
+    - **Geospatial Processing**: Folium, Streamlit-Folium, Geopy, Leaflet.
+    - **Frontend**: Streamlit (Full-width responsive top-tab layout).
+    - **Data Ingestion**: Open-Meteo API, Open-Elevation API, OpenStreetMap Nominatim.
 
     ### 🛡️ Mandatory Academic Disclaimer
     All resilience planning directives, hazard probabilities, and risk classifications produced by this software are experimental academic project recommendations and do NOT constitute official government warnings, emergency orders, or statutory disaster advice. Always refer to official bulletins issued by the National Disaster Management Authority (NDMA), Central Water Commission (CWC), and India Meteorological Department (IMD).
