@@ -24,15 +24,15 @@ os.makedirs(MAPS_DIR, exist_ok=True)
 def get_risk_category(risk_score):
     """Categorize project-defined 0-100 risk score."""
     if risk_score <= 20:
-        return "Very Low", "#2ca02c"   # Green
+        return "Very Low", "#20A464"   # Resilience Green
     elif risk_score <= 40:
-        return "Low", "#98df8a"        # Light Green
+        return "Low", "#22B8CF"        # Water Cyan
     elif risk_score <= 60:
-        return "Moderate", "#ffbb78"   # Orange-Yellow
+        return "Moderate", "#F4A261"   # Warning Amber
     elif risk_score <= 80:
-        return "High", "#ff7f0e"       # Orange
+        return "High", "#F97316"       # High Risk Orange
     else:
-        return "Very High", "#d62728"  # Red
+        return "Very High", "#EF4444"  # Critical Risk Red
 
 
 class SpatialRiskEngine:
