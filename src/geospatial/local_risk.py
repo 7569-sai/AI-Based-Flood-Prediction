@@ -127,27 +127,46 @@ class LocalRiskAnalyzer:
             tooltip=f"1 KM ANALYSIS RADIUS — Local Risk: {r_score}/100 ({r_cat})"
         ).add_to(m)
 
-        # Center Marker (Point Flood Prediction)
+        # Center Marker (Point Flood Prediction) with modern glass/card popup
         popup_html = f"""
-        <div style="font-family: Arial, sans-serif; width: 220px; font-size: 13px;">
-            <h4 style="margin: 0 0 6px 0; color: #0f172a;">📍 Selected Location</h4>
-            <b>Coordinates:</b> {lat:.4f}°N, {lon:.4f}°E<br>
-            <b>Area:</b> {location_meta.get('district', 'Area')}, {location_meta.get('state', 'India')}<br>
-            <b>Basin:</b> {location_meta.get('basin', 'Basin')}<br>
-            <hr style="margin: 6px 0;">
-            <b>Point P(Flood):</b> {local_risk_res['hazard_probability']*100:.1f}%<br>
-            <b>1km Pop Exposed:</b> {exp['population_exposed']:,}<br>
-            <b>Est. Structures:</b> {exp['buildings_exposed']:,}<br>
-            <div style="margin-top: 8px; padding: 4px 8px; background: {r_color}; color: white; border-radius: 4px; text-align: center; font-weight: bold;">
-                Risk Score: {r_score} / 100 ({r_cat})
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 230px; font-size: 12px; color: #172033; padding: 4px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px; margin-bottom: 8px;">
+                <span style="font-weight: 800; font-size: 13px; color: #0B1F3A;">📍 Analyzed Point</span>
+                <span style="background: {r_color}20; color: {r_color}; font-weight: 700; font-size: 10px; padding: 2px 6px; border-radius: 12px; border: 1px solid {r_color};">
+                    {r_cat}
+                </span>
+            </div>
+            <div style="line-height: 1.5; color: #475569; margin-bottom: 8px;">
+                <b>District:</b> {location_meta.get('district', 'Area')}<br>
+                <b>State:</b> {location_meta.get('state', 'India')}<br>
+                <b>Basin:</b> {location_meta.get('basin', 'Basin')}<br>
+                <b>Coordinates:</b> {lat:.4f}°N, {lon:.4f}°E
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 2px;">
+                    <span style="color: #64748B;">P(Flood):</span>
+                    <b style="color: #087EA4;">{local_risk_res['hazard_probability']*100:.1f}%</b>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 2px;">
+                    <span style="color: #64748B;">1km Pop:</span>
+                    <b style="color: #172033;">{exp['population_exposed']:,}</b>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <span style="color: #64748B;">Structures:</span>
+                    <b style="color: #172033;">{exp['buildings_exposed']:,}</b>
+                </div>
+            </div>
+            <div style="padding: 6px; background: {r_color}; color: #FFFFFF; border-radius: 6px; text-align: center; font-weight: 800; font-size: 12px; letter-spacing: 0.02em;">
+                UNDRR Risk Score: {r_score} / 100
             </div>
         </div>
         """
         folium.Marker(
             location=[lat, lon],
-            tooltip="📍 Analyzed Location (Point Prediction Center)",
-            popup=folium.Popup(popup_html, max_width=260),
+            tooltip=f"📍 {location_meta.get('district', 'Selected Point')} (Risk: {r_score}/100)",
+            popup=folium.Popup(popup_html, max_width=270),
             icon=folium.Icon(color="red" if r_score >= 50 else "blue", icon="info-sign")
         ).add_to(m)
 
         return m._repr_html_()
+
