@@ -1,0 +1,57 @@
+{
+  "model_name": "HF-STFloodNet",
+  "technical_name": "STF-LGBM",
+  "version": "1.0.0",
+  "trained_date": "2026-09-27",
+  "architecture": {
+    "branch_1": "ST-FloodNet (1D Conv + Bi-GRU + Spatial Encoder + SAR Encoder)",
+    "branch_2": "LightGBM (Histogram GBDT on 27 features)",
+    "fusion_layer": "LightGBM Meta-Learner",
+    "latent_embedding_dim": 64,
+    "pca_components": 8,
+    "leakage_prevention": "5-Fold GroupKFold (station-aware) OOF cross-fitting"
+  },
+  "is_active_champion": false,
+  "metrics_2023_test": {
+    "model_name": "Model D: HF-STFloodNet (Proposed)",
+    "accuracy": 0.9781,
+    "precision": 0.3937,
+    "recall": 1.0,
+    "f1": 0.565,
+    "roc_auc": 0.9951,
+    "pr_auc": 0.7488,
+    "mcc": 0.6204,
+    "balanced_accuracy": 0.9889,
+    "brier_score": 0.0175
+  },
+  "spatial_generalization_held_out": {
+    "model_name": "HF-STFloodNet (Cross-Basin)",
+    "accuracy": 0.9782,
+    "precision": 0.6419,
+    "recall": 0.959,
+    "f1": 0.7691,
+    "roc_auc": 0.9936,
+    "pr_auc": 0.8611,
+    "mcc": 0.775,
+    "balanced_accuracy": 0.969,
+    "brier_score": 0.0126
+  },
+  "dataset": {
+    "temporal_range": [
+      "2018-01-01",
+      "2023-12-31"
+    ],
+    "total_records": 78876,
+    "stations": 36,
+    "basins": 24,
+    "held_out_basins": [
+      "Brahmaputra",
+      "Mahanadi"
+    ]
+  },
+  "limitations": [
+    "Within-sample meteorological variables are multi-scale antecedent lag encodings (1d, 3d, 7d, 14d) rather than full 3D sequence tensors.",
+    "Synthetic physical-consistency generator was calibrated to documented flood years and IMD reanalysis stations.",
+    "Prediction outputs are analytical decision-support tools and do not constitute statutory evacuation orders."
+  ]
+}

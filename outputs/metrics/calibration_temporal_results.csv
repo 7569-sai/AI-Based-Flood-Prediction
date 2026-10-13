@@ -1,0 +1,4 @@
+method,val_brier_score,val_ece,val_roc_auc,val_pr_auc
+Raw Probabilities,0.0074,0.0036,0.9954,0.8028
+Platt Scaling (Logistic),0.0088,0.0019,0.9954,0.8028
+Isotonic Regression,0.0066,0.0,0.9958,0.7958

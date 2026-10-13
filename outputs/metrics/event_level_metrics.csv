@@ -1,0 +1,5 @@
+model_name,total_true_events,detected_true_events,event_recall,total_predicted_alerts,false_alarm_events,event_false_alarm_rate,mean_detection_delay_days,mean_peak_lead_time_days
+Random Forest,107,100,0.9346,210,112,0.5333,0.03,0.31
+LightGBM,107,90,0.8411,181,93,0.5138,0.02,0.36
+ST-FloodNet,107,105,0.9813,308,206,0.6688,0.0,0.46
+HF-STFloodNet,107,70,0.6542,147,78,0.5306,0.07,0.33

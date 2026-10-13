@@ -31,7 +31,7 @@
         "drainage_vulnerability": 0.8224,
         "risk_score": 45.49,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -59,7 +59,7 @@
         "drainage_vulnerability": 0.7746,
         "risk_score": 41.77,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -87,7 +87,7 @@
         "drainage_vulnerability": 0.6752,
         "risk_score": 43.22,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -115,7 +115,7 @@
         "drainage_vulnerability": 0.7306,
         "risk_score": 40.99,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -143,7 +143,7 @@
         "drainage_vulnerability": 0.5779,
         "risk_score": 41.53,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -171,7 +171,7 @@
         "drainage_vulnerability": 0.7937,
         "risk_score": 44.63,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -199,7 +199,7 @@
         "drainage_vulnerability": 0.8918,
         "risk_score": 45.06,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -227,7 +227,7 @@
         "drainage_vulnerability": 0.9662,
         "risk_score": 44.34,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -255,7 +255,7 @@
         "drainage_vulnerability": 0.7309,
         "risk_score": 48.41,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -283,7 +283,7 @@
         "drainage_vulnerability": 0.6579,
         "risk_score": 43.21,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -311,7 +311,7 @@
         "drainage_vulnerability": 0.2507,
         "risk_score": 31.61,
         "risk_category": "Low",
-        "risk_color": "#98df8a",
+        "risk_color": "#22B8CF",
         "prediction": 0
       }
     },
@@ -339,7 +339,7 @@
         "drainage_vulnerability": 0.4207,
         "risk_score": 28.56,
         "risk_category": "Low",
-        "risk_color": "#98df8a",
+        "risk_color": "#22B8CF",
         "prediction": 0
       }
     },
@@ -367,7 +367,7 @@
         "drainage_vulnerability": 0.4183,
         "risk_score": 36.61,
         "risk_category": "Low",
-        "risk_color": "#98df8a",
+        "risk_color": "#22B8CF",
         "prediction": 0
       }
     },
@@ -395,7 +395,7 @@
         "drainage_vulnerability": 0.7774,
         "risk_score": 45.55,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     },
@@ -423,7 +423,7 @@
         "drainage_vulnerability": 0.3873,
         "risk_score": 32.51,
         "risk_category": "Low",
-        "risk_color": "#98df8a",
+        "risk_color": "#22B8CF",
         "prediction": 0
       }
     },
@@ -451,7 +451,7 @@
         "drainage_vulnerability": 0.6413,
         "risk_score": 47.01,
         "risk_category": "Moderate",
-        "risk_color": "#ffbb78",
+        "risk_color": "#F4A261",
         "prediction": 0
       }
     }

@@ -54,7 +54,13 @@ class FloodPredictionResponse(BaseModel):
     risk_score: float = Field(..., description="Project-defined 0-100 composite risk score")
     risk_category: str = Field(..., description="Very Low, Low, Moderate, High, Very High")
     risk_color: str = Field(..., description="Hex color code for map visualization")
+    model_name: Optional[str] = Field("HF-STFloodNet", description="Active prediction model name")
     model_version: str = Field(..., description="Model identifier")
+    severity: Optional[int] = Field(0, description="Severity class index (0-3)")
+    severity_label: Optional[str] = Field("None (Baseline)", description="Severity descriptive label")
+    uncertainty_pct: Optional[float] = Field(2.5, description="Epistemic predictive uncertainty percentage")
+    key_risk_drivers: Optional[List[str]] = Field(default_factory=list, description="Key environmental and geomorphic risk drivers")
+    resilience_recommendations: Optional[List[str]] = Field(default_factory=list, description="Priority resilience operational directives")
     inference_id: int = Field(..., description="Database transaction ID")
 
 

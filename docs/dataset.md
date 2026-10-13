@@ -7,7 +7,7 @@
 
 ## 1. Dataset Overview
 
-The FloodAI Engine utilizes a multimodal, spatiotemporally aligned dataset spanning 6 full years (January 1, 2018 to December 31, 2023) across 36 strategic national flood-monitoring stations in 12 major Indian river basins, comprising **78,876 daily continuous observations**.
+The FloodAI Engine utilizes a multimodal, spatiotemporally aligned dataset spanning 6 full years (January 1, 2018 to December 31, 2023) across 36 strategic national flood-monitoring stations in 24 Indian river basins, comprising **78,876 daily continuous observations**.
 
 ### Key Dataset Statistics
 - **Primary Data Format**: Apache Parquet (`data/processed/india/pan_india_features.parquet`) with snappy compression (2.19 MB).
@@ -29,7 +29,7 @@ The FloodAI Engine utilizes a multimodal, spatiotemporally aligned dataset spann
 
 ---
 
-## 3. Geographic Coverage: 12 Major Indian River Basins
+## 3. Geographic Coverage: 24 Indian River Basins
 
 The 36 national stations span all primary geographic regions of India:
 1. **Brahmaputra & Barak Basins (Assam)**: Guwahati, Dibrugarh, Silchar, Kaziranga (extreme rainfall, braided low-gradient channels).

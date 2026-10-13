@@ -1,0 +1,67 @@
+{
+  "Random Forest": {
+    "model_name": "Random Forest",
+    "accuracy": 0.9868,
+    "precision": 0.5206,
+    "recall": 0.9465,
+    "f1": 0.6717,
+    "roc_auc": 0.996,
+    "pr_auc": 0.7866,
+    "mcc": 0.6968,
+    "balanced_accuracy": 0.967,
+    "brier_score": 0.0092,
+    "ece": 0.01
+  },
+  "XGBoost": {
+    "model_name": "XGBoost",
+    "accuracy": 0.9873,
+    "precision": 0.5291,
+    "recall": 0.9733,
+    "f1": 0.6855,
+    "roc_auc": 0.9961,
+    "pr_auc": 0.7878,
+    "mcc": 0.7127,
+    "balanced_accuracy": 0.9804,
+    "brier_score": 0.011,
+    "ece": 0.0114
+  },
+  "LightGBM": {
+    "model_name": "LightGBM",
+    "accuracy": 0.9881,
+    "precision": 0.549,
+    "recall": 0.8984,
+    "f1": 0.6815,
+    "roc_auc": 0.9962,
+    "pr_auc": 0.7937,
+    "mcc": 0.6972,
+    "balanced_accuracy": 0.9439,
+    "brier_score": 0.0093,
+    "ece": 0.0088
+  },
+  "ST-FloodNet": {
+    "model_name": "ST-FloodNet",
+    "accuracy": 0.9772,
+    "precision": 0.383,
+    "recall": 0.9893,
+    "f1": 0.5522,
+    "roc_auc": 0.9952,
+    "pr_auc": 0.7697,
+    "mcc": 0.6082,
+    "balanced_accuracy": 0.9831,
+    "brier_score": 0.0184,
+    "ece": 0.0218
+  },
+  "HF-STFloodNet": {
+    "model_name": "HF-STFloodNet (Proposed)",
+    "accuracy": 0.9878,
+    "precision": 0.5513,
+    "recall": 0.7754,
+    "f1": 0.6444,
+    "roc_auc": 0.9952,
+    "pr_auc": 0.7613,
+    "mcc": 0.6481,
+    "balanced_accuracy": 0.8831,
+    "brier_score": 0.0074,
+    "ece": 0.0071
+  }
+}

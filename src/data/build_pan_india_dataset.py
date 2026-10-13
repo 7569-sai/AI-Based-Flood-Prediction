@@ -2,7 +2,7 @@
 Pan-India Multi-Basin Dataset Builder.
 Generates comprehensive, leakage-safe multi-year (2018-2023) hydrometeorological,
 geomorphic, satellite SAR, and demographic exposure records across 36 national stations
-in 12 major Indian river basins (78,876 daily observations).
+in 24 Indian river basins (78,876 daily observations).
 
 Saves scalable Parquet files, partitions by basin, creates chronological train/val/test splits,
 and constructs cross-basin spatial holdout sets for generalization benchmarking.

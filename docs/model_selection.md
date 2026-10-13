@@ -7,7 +7,7 @@
 
 ## 1. Comprehensive Model Evaluation Matrix (Pan-India 2023 Chronological Test Set)
 
-Evaluated on 13,140 out-of-time daily observations across 36 national stations in 12 major Indian river basins (187 ground-truth flood occurrences):
+Evaluated on 13,140 out-of-time daily observations across 36 national stations in 24 Indian river basins (187 ground-truth flood occurrences):
 
 | Category | Model Architecture | Accuracy | Precision | Recall | F1-Score | PR-AUC | ROC-AUC | Brier Score | Latency (ms) |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

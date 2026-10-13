@@ -4,7 +4,14 @@ Verifies clean map state contract, actual coordinate capture, 1 km local geodesi
 real data retrieval, feature validation, model prediction, and resilience planning.
 """
 
+import os
+import sys
 import pytest
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
 from src.location.location_service import LocationService
 from src.data.feature_extractor import FeatureExtractor
 from src.models.prediction_service import PredictionService
@@ -87,7 +94,7 @@ def test_prediction_service_contract(feature_svc, pred_svc):
         "Severe / Catastrophic (Major Inundation)"
     ]
     assert pred_res["epistemic_uncertainty_pct"] >= 0.0
-    assert "Random Forest" in pred_res["model_name"]
+    assert any(m in pred_res["model_name"] for m in ["HF-STFloodNet", "Random Forest"])
 
 
 def test_local_1km_risk_analysis(feature_svc, pred_svc, location_svc, local_risk_svc):

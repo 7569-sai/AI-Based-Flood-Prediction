@@ -68,19 +68,27 @@ os.makedirs(FIGURES_DIR, exist_ok=True)
 class STFloodNet(nn.Module):
     """
     SpatioTemporal Multimodal Uncertainty-Aware Flood Network (ST-FloodNet).
-    Investigates multi-scale temporal representation, spatial geomorphic embedding,
-    gated multimodal fusion, multi-task learning (hazard + severity),
-    and Monte Carlo Dropout epistemic uncertainty quantification.
+    Incorporates:
+    - Dynamic hydrometeorological sequence modeling (Multi-Scale 1D Conv + Bi-GRU + Temporal Attention)
+    - Topographic geomorphic terrain encoder (6 features)
+    - Satellite radar & optical earth observation encoder (5 features)
+    - Socioeconomic exposure & vulnerability encoder (3 features)
+    - Gated cross-modal fusion unit (128 -> 64 bottleneck)
+    - Multi-task output heads (Hazard probability + 4-tier severity)
+    - Monte Carlo Dropout epistemic uncertainty quantification
     """
-    def __init__(self, num_features=27, hidden_dim=64, num_classes=4, mc_dropout_p=0.35):
+    def __init__(self, num_features=27, hidden_dim=64, num_classes=4, mc_dropout_p=0.35, dyn_dim=13, terrain_dim=6, sar_dim=5, exp_dim=3):
         super(STFloodNet, self).__init__()
         self.mc_dropout_p = mc_dropout_p
+        self.hidden_dim = hidden_dim
+        self.dyn_dim = dyn_dim
+        self.terrain_dim = terrain_dim
+        self.sar_dim = sar_dim
+        self.exp_dim = exp_dim
 
-        # 1. Multi-scale Temporal Convolution Branch (Antecedents: 1d, 3d, 7d, 14d, API)
-        # Represents temporal dynamics across distinct meteorological scales
-        self.temp_conv1 = nn.Conv1d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
-        self.temp_conv2 = nn.Conv1d(in_channels=1, out_channels=16, kernel_size=5, padding=2)
-        self.temp_pool = nn.AdaptiveAvgPool1d(1)
+        # 1. Multi-scale Temporal Convolutions (kernel sizes 3 and 5)
+        self.temp_conv1 = nn.Conv1d(in_channels=dyn_dim, out_channels=16, kernel_size=3, padding=1)
+        self.temp_conv2 = nn.Conv1d(in_channels=dyn_dim, out_channels=16, kernel_size=5, padding=2)
 
         # 2. Recurrent Spatiotemporal Memory (Bi-GRU)
         self.bigru = nn.GRU(
@@ -92,25 +100,37 @@ class STFloodNet(nn.Module):
             dropout=0.2
         )
 
-        # 3. Spatial & Geomorphic Terrain Encoder (Elevation, Slope, River Dist, TWI)
+        # Temporal Attention Layer
+        self.att_linear = nn.Linear(hidden_dim, 32)
+        self.att_v = nn.Linear(32, 1, bias=False)
+
+        # 3. Spatial & Geomorphic Terrain Encoder (6 features)
         self.spatial_encoder = nn.Sequential(
-            nn.Linear(8, 32),
+            nn.Linear(terrain_dim, 32),
             nn.BatchNorm1d(32),
             nn.ReLU(),
             nn.Dropout(p=mc_dropout_p)
         )
 
-        # 4. Satellite Radar & Remote Sensing Encoder (SAR VV/VH, Cross-ratio, NDWI, NDVI)
+        # 4. Satellite Radar & Remote Sensing Encoder (5 features)
         self.sar_encoder = nn.Sequential(
-            nn.Linear(5, 16),
+            nn.Linear(sar_dim, 16),
             nn.BatchNorm1d(16),
             nn.ReLU(),
             nn.Dropout(p=mc_dropout_p)
         )
 
-        # 5. Gated Cross-Modal Fusion
-        # Dynamically weights evidence from hydrometeorology, terrain, and satellite sensors
-        fusion_dim = hidden_dim + 32 + 16
+        # 5. Socioeconomic Exposure & Vulnerability Encoder (3 features)
+        self.exposure_encoder = nn.Sequential(
+            nn.Linear(exp_dim, 16),
+            nn.BatchNorm1d(16),
+            nn.ReLU(),
+            nn.Dropout(p=mc_dropout_p)
+        )
+
+        # 6. Gated Cross-Modal Fusion
+        # Dimensions: 64 (temporal) + 32 (terrain) + 16 (satellite) + 16 (exposure) = 128
+        fusion_dim = hidden_dim + 32 + 16 + 16
         self.fusion_gate = nn.Sequential(
             nn.Linear(fusion_dim, fusion_dim),
             nn.Sigmoid()
@@ -121,51 +141,88 @@ class STFloodNet(nn.Module):
             nn.Dropout(p=mc_dropout_p)
         )
 
-        # 6. Multi-Task Output Heads
-        # Head A: Binary Flood Hazard Probability
+        # 7. Multi-Task Output Heads
         self.hazard_head = nn.Linear(64, 1)
-        # Head B: Flood Severity Classification (0=None, 1=Minor, 2=Moderate, 3=Severe)
         self.severity_head = nn.Linear(64, num_classes)
 
-    def forward(self, x_all):
-        batch_size = x_all.size(0)
-
-        # Split features into modalities
-        # Temporal meteo features (first 8 features)
-        x_meteo = x_all[:, :8].unsqueeze(1)  # [B, 1, 8]
-        # Spatial terrain features (indices 8 to 16)
-        x_terrain = x_all[:, 8:16]  # [B, 8]
-        # Satellite SAR & Optical (indices 16 to 21)
-        x_sar = x_all[:, 16:21]  # [B, 5]
+    def forward(self, x_all, x_seq=None, return_embedding=False, mc_dropout=True):
+        """
+        Forward pass supporting both flat 27-feature vectors [B, 27] and 3D sequence tensors.
+        If x_seq is provided, x_seq has shape [B, T, 13] and x_all contains the 14 static/snapshot features [B, 14]
+        or the full 27 features [B, 27].
+        """
+        # Feature slicing
+        if x_seq is not None:
+            x_dyn_seq = x_seq.transpose(1, 2)  # [B, 13, T]
+            if x_all.size(1) == 27:
+                x_terrain = x_all[:, 13:19]
+                x_sar = x_all[:, 19:24]
+                x_exp = x_all[:, 24:27]
+            else:
+                x_terrain = x_all[:, :6]
+                x_sar = x_all[:, 6:11]
+                x_exp = x_all[:, 11:14]
+        elif x_all.dim() == 3:
+            # If x_all itself is 3D [B, T, 27]
+            x_dyn_seq = x_all[:, :, :13].transpose(1, 2)
+            last_step = x_all[:, -1, :]
+            x_terrain = last_step[:, 13:19]
+            x_sar = last_step[:, 19:24]
+            x_exp = last_step[:, 24:27]
+        else:
+            # Standard 2D tensor [B, 27]
+            # Construct multi-timestep pseudo-sequence via temporal receptive expansion
+            x_dyn = x_all[:, :13]
+            x_dyn_seq = x_dyn.unsqueeze(-1).repeat(1, 1, 3)  # [B, 13, 3]
+            x_terrain = x_all[:, 13:19]
+            x_sar = x_all[:, 19:24]
+            x_exp = x_all[:, 24:27]
 
         # Multi-scale temporal representation
-        c1 = torch.relu(self.temp_conv1(x_meteo))
-        c2 = torch.relu(self.temp_conv2(x_meteo))
-        c_cat = torch.cat([c1, c2], dim=1).transpose(1, 2)  # [B, 8, 32]
-        gru_out, _ = self.bigru(c_cat)
-        gru_pool = gru_out[:, -1, :]  # [B, hidden_dim]
+        c1 = torch.relu(self.temp_conv1(x_dyn_seq))
+        c2 = torch.relu(self.temp_conv2(x_dyn_seq))
+        c_cat = torch.cat([c1, c2], dim=1).transpose(1, 2)  # [B, T, 32]
+        gru_out, _ = self.bigru(c_cat)  # [B, T, 64]
+
+        # Temporal Attention Pooling
+        att_scores = self.att_v(torch.tanh(self.att_linear(gru_out)))  # [B, T, 1]
+        att_weights = torch.softmax(att_scores, dim=1)
+        temp_rep = torch.sum(att_weights * gru_out, dim=1)  # [B, 64]
 
         # Spatial terrain embedding
         spatial_emb = self.spatial_encoder(x_terrain)  # [B, 32]
 
-        # Satellite SAR embedding
+        # Satellite SAR & Optical embedding
         sar_emb = self.sar_encoder(x_sar)  # [B, 16]
 
+        # Socioeconomic exposure embedding
+        exp_emb = self.exposure_encoder(x_exp)  # [B, 16]
+
         # Cross-modal fusion
-        fused = torch.cat([gru_pool, spatial_emb, sar_emb], dim=1)
+        fused = torch.cat([temp_rep, spatial_emb, sar_emb, exp_emb], dim=1)  # [B, 128]
         gate = self.fusion_gate(fused)
         fused_gated = fused * gate
-        rep = self.fusion_fc(fused_gated)
+        rep = self.fusion_fc(fused_gated)  # [B, 64]
 
-        # Monte Carlo Dropout active even during inference for uncertainty estimation
-        rep = nn.functional.dropout(rep, p=self.mc_dropout_p, training=True)
+        # Monte Carlo Dropout: active during training, or when mc_dropout=True
+        do_dropout = self.training or mc_dropout
+        rep_dropped = nn.functional.dropout(rep, p=self.mc_dropout_p, training=do_dropout)
 
-        hazard_logit = self.hazard_head(rep)
-        severity_logits = self.severity_head(rep)
+        hazard_logit = self.hazard_head(rep_dropped)
+        severity_logits = self.severity_head(rep_dropped)
 
+        if return_embedding:
+            return hazard_logit, severity_logits, rep
         return hazard_logit, severity_logits
 
-    def predict_with_uncertainty(self, x_tensor, n_forward_passes=30):
+    def get_embeddings(self, x_tensor, x_seq=None):
+        """Extract deterministic 64-dim latent cross-modal embedding without dropout."""
+        self.eval()
+        with torch.no_grad():
+            _, _, rep = self.forward(x_tensor, x_seq=x_seq, return_embedding=True, mc_dropout=False)
+        return rep.cpu().numpy()
+
+    def predict_with_uncertainty(self, x_tensor, x_seq=None, n_forward_passes=30):
         """
         Monte Carlo Dropout inference: Performs T forward passes under dropout
         to quantify epistemic predictive uncertainty (variance) and aleatoric predictive entropy.
@@ -174,7 +231,7 @@ class STFloodNet(nn.Module):
         probs = []
         with torch.no_grad():
             for _ in range(n_forward_passes):
-                h_logit, _ = self.forward(x_tensor)
+                h_logit, _ = self.forward(x_tensor, x_seq=x_seq, mc_dropout=True)
                 p = torch.sigmoid(h_logit).cpu().numpy().flatten()
                 probs.append(p)
         probs = np.array(probs)  # [T, N]

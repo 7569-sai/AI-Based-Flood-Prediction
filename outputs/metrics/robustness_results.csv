@@ -1,0 +1,13 @@
+experiment_type,condition,model,precision,recall,f1,roc_auc,pr_auc
+Random Missingness,5% Features Missing,HF-STFloodNet,0.5678,0.7166,0.6336,0.9935,0.735
+Random Missingness,5% Features Missing,LightGBM,0.5641,0.8235,0.6696,0.9947,0.7593
+Random Missingness,10% Features Missing,HF-STFloodNet,0.5581,0.6417,0.597,0.991,0.6909
+Random Missingness,10% Features Missing,LightGBM,0.5582,0.7433,0.6376,0.983,0.7279
+Random Missingness,20% Features Missing,HF-STFloodNet,0.6115,0.4545,0.5215,0.9797,0.6152
+Random Missingness,20% Features Missing,LightGBM,0.6188,0.5294,0.5706,0.9683,0.6799
+Sensor Outage,SAR Radar Blackout,HF-STFloodNet,0.5573,0.7807,0.6503,0.9953,0.762
+Sensor Outage,SAR Radar Blackout,LightGBM,0.5311,0.8663,0.6585,0.996,0.7866
+Sensor Outage,Rain Gauge Telemetry Failure,HF-STFloodNet,0.0,0.0,0.0,0.8472,0.1135
+Sensor Outage,Rain Gauge Telemetry Failure,LightGBM,0.0,0.0,0.0,0.5136,0.0221
+Sensor Outage,Soil Moisture Sensor Failure,HF-STFloodNet,0.5782,0.6524,0.6131,0.9949,0.7538
+Sensor Outage,Soil Moisture Sensor Failure,LightGBM,0.5455,0.8984,0.6788,0.9961,0.7929

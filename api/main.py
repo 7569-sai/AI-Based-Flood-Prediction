@@ -29,6 +29,7 @@ from src.explainability.shap_explainer import FloodShapExplainer
 from src.resilience.recommendation_engine import ResilienceEngine
 from src.geospatial.location_service import get_location_profile, get_simulated_current_weather, INDIA_STATIONS
 from src.data.historical_analyzer import HistoricalFloodAnalyzer
+from src.models.prediction_service import PredictionService
 from src.utils.database import log_prediction, SessionLocal, LocationRecord, ModelMetricRecord, init_db
 
 app = FastAPI(
@@ -48,6 +49,7 @@ app.add_middleware(
 # Initialize engines
 init_db()
 risk_engine = SpatialRiskEngine()
+pred_service = PredictionService()
 explainer = FloodShapExplainer()
 resilience_engine = ResilienceEngine()
 historical_analyzer = HistoricalFloodAnalyzer()
@@ -104,7 +106,7 @@ def health_check():
         "status": "healthy",
         "service": "AI Flood Prediction & Resilience Engine",
         "database_connected": db_ok,
-        "champion_model": "RandomForest_v1.0 (Balanced)",
+        "champion_model": pred_service.model_name,
         "features_count": len(risk_engine.feature_cols)
     }
 
@@ -119,10 +121,13 @@ def predict_flood(payload: FloodPredictionRequest):
     """
     try:
         full_dict = _complete_feature_dict(payload)
-        risk_res = risk_engine.compute_point_risk(full_dict)
+        pred_res = pred_service.predict(full_dict)
+        prob = pred_res["hazard_probability"]
+        risk_score = pred_res["risk_score"]
+        risk_category = pred_res["risk_category"]
+        risk_color = pred_res["risk_color"]
         
         # Hazard severity categorization
-        prob = risk_res["hazard_probability"]
         if prob < 0.25:
             h_lvl = 0
             h_cat = "Low"
@@ -141,21 +146,45 @@ def predict_flood(payload: FloodPredictionRequest):
             latitude=payload.latitude,
             longitude=payload.longitude,
             probability=prob,
-            risk_score=risk_res["risk_score"],
-            risk_category=risk_res["risk_category"],
+            risk_score=risk_score,
+            risk_category=risk_category,
             hazard_level=h_lvl,
             input_dict=full_dict
         )
 
+        drivers = []
+        if full_dict.get("rainfall_3d", 0.0) >= 80.0:
+            drivers.append("Heavy 3-day antecedent precipitation surge")
+        if full_dict.get("soil_saturation_ratio", 0.0) >= 0.75:
+            drivers.append("Elevated soil saturation / infiltration exhaustion")
+        if full_dict.get("elevation_m", 100.0) <= 25.0:
+            drivers.append("Lowland elevation depression")
+        if full_dict.get("dist_river_km", 10.0) <= 1.5:
+            drivers.append("Critical proximity to active river channel")
+        if not drivers:
+            drivers = ["Normal seasonal hydrometeorological baseline"]
+
+        recs = [
+            "Monitor local river stage gauge telemetry",
+            "Ensure low-lying stormwater drainage canals remain clear of silt",
+            "Maintain emergency contact with District Disaster Management Authority (DDMA)"
+        ]
+
         return FloodPredictionResponse(
-            prediction=risk_res["prediction"],
+            prediction=pred_res["prediction"],
             probability=prob,
             hazard_level=h_lvl,
             hazard_category=h_cat,
-            risk_score=risk_res["risk_score"],
-            risk_category=risk_res["risk_category"],
-            risk_color=risk_res["risk_color"],
-            model_version="RandomForest_v1.0",
+            risk_score=risk_score,
+            risk_category=risk_category,
+            risk_color=risk_color,
+            model_name=pred_res["model_name"],
+            model_version=pred_res.get("model_version", "HF-STFloodNet_v1.0"),
+            severity=pred_res.get("severity", h_lvl),
+            severity_label=pred_res.get("severity_label", f"{h_cat} Inundation Risk"),
+            uncertainty_pct=pred_res.get("epistemic_uncertainty_pct", 2.5),
+            key_risk_drivers=drivers,
+            resilience_recommendations=recs,
             inference_id=inf_id
         )
     except Exception as e:
@@ -321,7 +350,7 @@ def get_recommendations(
 # ---------------------------------------------------------------------------
 @app.get("/stations", tags=["Geospatial"])
 def list_india_stations():
-    """Retrieve all 36 national flood-monitoring stations across 12 major Indian river basins."""
+    """Retrieve all 36 national flood-monitoring stations across 24 Indian river basins."""
     return {
         "total_stations": len(INDIA_STATIONS),
         "basins": list(set(s["basin"] for s in INDIA_STATIONS)),

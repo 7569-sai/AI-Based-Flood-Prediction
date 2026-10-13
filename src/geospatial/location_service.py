@@ -1,6 +1,6 @@
 """
 Pan-India Location Intelligence Service for Flood Prediction.
-Defines 36 strategic national flood-monitoring stations across 12 major Indian river basins.
+Defines 36 strategic national flood-monitoring stations across 24 Indian river basins.
 Provides spatial lookup, nearest-station interpolation, and parameter retrieval for any coordinate in India.
 """
 
@@ -15,7 +15,7 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-# 36 Strategic National Stations across 12 Major Indian River Basins
+# 36 Strategic National Stations across 24 Indian River Basins
 INDIA_STATIONS = [
     # 1. Brahmaputra & Barak Basins (Assam / North-East)
     {

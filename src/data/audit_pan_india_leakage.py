@@ -102,7 +102,7 @@ def run_pan_india_leakage_audit():
 
 **Date of Execution**: 2026-09-23  
 **Dataset**: Pan-India Multi-Basin Feature Stack (`data/processed/india/pan_india_features.parquet`)  
-**Total Records Audited**: {len(full_df):,} daily observations across 36 national stations in 12 major Indian river basins.  
+**Total Records Audited**: {len(full_df):,} daily observations across 36 national stations in 24 Indian river basins.  
 **Audit Outcome**: **{'ALL 7 AUDIT VECTORS PASSED (100% CLEAN)' if all_passed else 'LEAKAGE DETECTED'}**
 
 ---

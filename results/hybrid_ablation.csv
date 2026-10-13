@@ -1,0 +1,6 @@
+Ablation_Config,model_name,accuracy,precision,recall,f1,roc_auc,pr_auc,mcc,balanced_accuracy,brier_score,Spatial_Holdout_F1,Spatial_Holdout_PRAUC
+A1: LightGBM Only,Model A: LightGBM Only,0.9881,0.549,0.8984,0.6815,0.9962,0.7937,0.6972,0.9439,0.0093,0.7065,0.867
+A2: ST-FloodNet Only,Model B: ST-FloodNet Only,0.9775,0.388,1.0,0.559,0.9956,0.7754,0.6157,0.9886,0.0198,0.7397,0.8781
+A3: Simple Blend (Ablation),Model C: Simple Blend (Ablation),0.9855,0.4947,0.9947,0.6607,0.9963,0.8004,0.6962,0.99,0.0122,0.7231,0.8725
+A4: ST-FloodNet Embedding + LightGBM,Model E: Embedding + LightGBM,0.9873,0.5336,0.8503,0.6557,0.9959,0.7915,0.6679,0.9198,0.0098,0.7215,0.879
+A5: Full HF-STFloodNet Stacked Hybrid,Model D: HF-STFloodNet (Proposed),0.9781,0.3937,1.0,0.565,0.9951,0.7488,0.6204,0.9889,0.0175,0.7691,0.8611

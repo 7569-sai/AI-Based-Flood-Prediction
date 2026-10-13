@@ -82,5 +82,17 @@
     "brier_score": 0.0234,
     "train_time_sec": 65.613,
     "inference_latency_ms": 0.3137
+  },
+  "HF_STFloodNet": {
+    "model_name": "Model D: HF-STFloodNet (Proposed)",
+    "accuracy": 0.9781,
+    "precision": 0.3937,
+    "recall": 1.0,
+    "f1": 0.565,
+    "roc_auc": 0.9951,
+    "pr_auc": 0.7488,
+    "mcc": 0.6204,
+    "balanced_accuracy": 0.9889,
+    "brier_score": 0.0175
   }
 }

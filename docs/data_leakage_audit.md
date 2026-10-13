@@ -2,7 +2,7 @@
 
 **Date of Execution**: 2026-09-23  
 **Dataset**: Pan-India Multi-Basin Feature Stack (`data/processed/india/pan_india_features.parquet`)  
-**Total Records Audited**: 78,876 daily observations across 36 national stations in 12 major Indian river basins.  
+**Total Records Audited**: 78,876 daily observations across 36 national stations in 24 Indian river basins.  
 **Audit Outcome**: **ALL 7 AUDIT VECTORS PASSED (100% CLEAN)**
 
 ---

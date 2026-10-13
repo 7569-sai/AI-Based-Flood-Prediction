@@ -18,7 +18,7 @@ This report documents the empirical outcomes and scientific contributions of **F
 
 ## 2. Chronological Test Set Benchmarking (2023 Out-of-Time Test Set)
 
-Evaluated on **13,140 daily observations across 36 national stations in 12 major Indian river basins** (187 ground-truth flood occurrences):
+Evaluated on **13,140 daily observations across 36 national stations in 24 Indian river basins** (187 ground-truth flood occurrences):
 
 | Category | Model Architecture | Accuracy | Precision | Recall | F1-Score | PR-AUC | ROC-AUC | Brier Score | Latency |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |

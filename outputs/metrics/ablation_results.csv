@@ -1,0 +1,11 @@
+tier,ablation_description,f1,roc_auc,pr_auc,brier
+1,Full Proposed HF-STFloodNet (27 features + Stacking + Attention + Uncertainty),0.6444,0.9952,0.7613,0.0074
+2,w/o Meta-Learner Stacking (Unweighted 50/50 Probability Average),0.674,0.9962,0.7996,0.0117
+3,w/o Tabular Gradient Boosting Branch (ST-FloodNet Standalone),0.5522,0.9952,0.7697,0.0184
+4,w/o Latent Deep Representation (Stacking on Probabilities Only),0.6514,0.9961,0.8005,0.0064
+5,w/o Temporal Attention (Uniform Average Recurrent Pooling),0.6064,0.9604,0.7141,0.008
+6,w/o Bidirectional GRU Memory (Pure Convolutional Antecedent Branch),0.5748,0.9365,0.6738,0.0085
+7,"w/o Sentinel-1 SAR Radar Modality (Zeroed VV, VH, Cross-ratio)",0.6503,0.9953,0.762,0.0073
+8,"w/o Sentinel-2 Optical Spectral Modality (Zeroed NDWI, NDVI)",0.634,0.9952,0.7642,0.0074
+9,"w/o Topographic Geomorphology (Zeroed Elevation, Slope, River Dist, TWI)",0.5863,0.9933,0.7177,0.0094
+10,"w/o Socioeconomic Exposure Modality (Zeroed Population, Vulnerability)",0.6475,0.9953,0.761,0.0074

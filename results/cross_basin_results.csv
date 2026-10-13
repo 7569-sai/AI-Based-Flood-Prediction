@@ -1,0 +1,25 @@
+basin,hydrological_regime,n_samples,positive_rate,model,precision,recall,f1,roc_auc,pr_auc
+Brahmaputra,Assam / Eastern Himalayan,6573,0.0497,Random Forest,0.6392,0.9969,0.779,0.996,0.9309
+Brahmaputra,Assam / Eastern Himalayan,6573,0.0497,LightGBM,0.7108,0.9847,0.8256,0.9984,0.9706
+Brahmaputra,Assam / Eastern Himalayan,6573,0.0497,ST-FloodNet,0.5258,0.9969,0.6885,0.9914,0.8603
+Brahmaputra,Assam / Eastern Himalayan,6573,0.0497,HF-STFloodNet,0.6485,0.8746,0.7448,0.991,0.8564
+Mahanadi,Odisha / Eastern Coastal Delta,4382,0.0201,Random Forest,0.7522,0.9659,0.8458,0.9992,0.9664
+Mahanadi,Odisha / Eastern Coastal Delta,4382,0.0201,LightGBM,0.8627,1.0,0.9263,0.9999,0.9955
+Mahanadi,Odisha / Eastern Coastal Delta,4382,0.0201,ST-FloodNet,0.5116,1.0,0.6769,0.9986,0.9476
+Mahanadi,Odisha / Eastern Coastal Delta,4382,0.0201,HF-STFloodNet,0.8831,0.7727,0.8242,0.9987,0.943
+Ganga,Uttar Pradesh / Gangetic Plain,10955,0.019,Random Forest,0.6765,0.9952,0.8054,0.9994,0.9715
+Ganga,Uttar Pradesh / Gangetic Plain,10955,0.019,LightGBM,0.8047,0.9904,0.8879,0.9997,0.9835
+Ganga,Uttar Pradesh / Gangetic Plain,10955,0.019,ST-FloodNet,0.452,0.9952,0.6216,0.9975,0.9138
+Ganga,Uttar Pradesh / Gangetic Plain,10955,0.019,HF-STFloodNet,0.7699,0.8846,0.8233,0.9981,0.9249
+Godavari,Central Peninsular,4382,0.0224,Random Forest,0.7206,1.0,0.8376,0.9989,0.9548
+Godavari,Central Peninsular,4382,0.0224,LightGBM,0.819,0.9694,0.8879,0.9995,0.9809
+Godavari,Central Peninsular,4382,0.0224,ST-FloodNet,0.6012,1.0,0.751,0.9972,0.8962
+Godavari,Central Peninsular,4382,0.0224,HF-STFloodNet,0.7311,0.8878,0.8018,0.9977,0.9072
+Krishna,Southern Peninsular,4382,0.0221,Random Forest,0.6486,0.9897,0.7837,0.9978,0.9082
+Krishna,Southern Peninsular,4382,0.0221,LightGBM,0.7581,0.9691,0.8507,0.9993,0.9713
+Krishna,Southern Peninsular,4382,0.0221,ST-FloodNet,0.5655,0.9794,0.717,0.9961,0.8589
+Krishna,Southern Peninsular,4382,0.0221,HF-STFloodNet,0.6857,0.7423,0.7129,0.9961,0.8543
+Kaveri,Southern Coastal & Western Ghats,4382,0.0089,Random Forest,0.5286,0.9487,0.6789,0.9978,0.7531
+Kaveri,Southern Coastal & Western Ghats,4382,0.0089,LightGBM,0.6066,0.9487,0.74,0.9987,0.8886
+Kaveri,Southern Coastal & Western Ghats,4382,0.0089,ST-FloodNet,0.2437,1.0,0.392,0.9935,0.4803
+Kaveri,Southern Coastal & Western Ghats,4382,0.0089,HF-STFloodNet,0.5217,0.6154,0.5647,0.9934,0.492

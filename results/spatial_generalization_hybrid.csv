@@ -1,0 +1,4 @@
+model_name,accuracy,precision,recall,f1,roc_auc,pr_auc,mcc,balanced_accuracy,brier_score
+LightGBM (Cross-Basin),0.9803,0.81,0.6265,0.7065,0.9927,0.867,0.7026,0.8104,0.0156
+ST-FloodNet (Cross-Basin),0.974,0.5956,0.9759,0.7397,0.9944,0.8781,0.7515,0.9749,0.0192
+HF-STFloodNet (Cross-Basin),0.9782,0.6419,0.959,0.7691,0.9936,0.8611,0.775,0.969,0.0126

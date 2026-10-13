@@ -1,0 +1,85 @@
+{
+  "active_model": "HF-STFloodNet",
+  "registry_version": "2.1.0-research",
+  "last_updated": "2026-09-27T22:50:00Z",
+  "models": {
+    "HF-STFloodNet": {
+      "model_name": "HF-STFloodNet",
+      "model_type": "Hybrid Spatiotemporal Stacking Network",
+      "status": "Production Champion",
+      "architecture": "ST-FloodNet (Conv1D-BiGRU-Attention) + LightGBM + Meta-Learner",
+      "input_features": 27,
+      "feature_routing": {
+        "dynamic_temporal_hydrometeorological": 13,
+        "topographic_geomorphic": 6,
+        "satellite_earth_observation": 5,
+        "socioeconomic_exposure": 3
+      },
+      "artifact_files": [
+        "models/trained/hybrid_fusion_model.joblib",
+        "models/trained/model_pan_india_st_floodnet.pt",
+        "models/trained/model_pan_india_lightgbm.joblib"
+      ],
+      "calibration": "Platt Scaling (Logistic Sigmoidal)",
+      "threshold_optimization": "Validation-Locked (Calendar Year 2022)",
+      "uncertainty_method": "Propagated Monte Carlo Dropout (30 forward passes)",
+      "primary_use_case": "Operational pan-India flood forecasting, leave-basin-out spatial generalization, and epistemic uncertainty quantification"
+    },
+    "LightGBM": {
+      "model_name": "LightGBM",
+      "model_type": "Histogram Gradient Boosted Decision Tree",
+      "status": "Tabular Baseline",
+      "architecture": "150 Trees, max_depth=auto, num_leaves=31, scale_pos_weight",
+      "input_features": 27,
+      "artifact_files": [
+        "models/trained/model_pan_india_lightgbm.joblib"
+      ],
+      "calibration": "None / Raw Probabilities",
+      "threshold_optimization": "Standard 0.50",
+      "uncertainty_method": "None",
+      "primary_use_case": "High-throughput tabular inference and sharp physical cutoff splitting"
+    },
+    "ST-FloodNet": {
+      "model_name": "ST-FloodNet",
+      "model_type": "Deep Spatiotemporal Multimodal Neural Network",
+      "status": "Deep Learning Baseline",
+      "architecture": "Multi-scale 1D Conv (k=3, k=5) + Bi-GRU + Self-Attention + Gated Cross-Modal Fusion (128->64) + Multi-Task Heads",
+      "input_features": 27,
+      "artifact_files": [
+        "models/trained/model_pan_india_st_floodnet.pt"
+      ],
+      "calibration": "None",
+      "threshold_optimization": "Standard 0.50",
+      "uncertainty_method": "Monte Carlo Dropout (30 stochastic forward passes)",
+      "primary_use_case": "End-to-end representation learning, hydrograph sequence modeling, and latent feature extraction"
+    },
+    "Random_Forest": {
+      "model_name": "Random_Forest",
+      "model_type": "Balanced Bagged Decision Forest",
+      "status": "Benchmark Baseline",
+      "architecture": "100 Trees, class_weight='balanced'",
+      "input_features": 27,
+      "artifact_files": [
+        "models/trained/model_pan_india_random_forest.joblib"
+      ],
+      "calibration": "None",
+      "threshold_optimization": "Standard 0.50",
+      "uncertainty_method": "Tree Voting Variance",
+      "primary_use_case": "High-recall early warning benchmark"
+    },
+    "XGBoost": {
+      "model_name": "XGBoost",
+      "model_type": "Extreme Gradient Boosting",
+      "status": "Benchmark Baseline",
+      "architecture": "120 Trees, max_depth=6, scale_pos_weight",
+      "input_features": 27,
+      "artifact_files": [
+        "models/trained/model_pan_india_xgboost.joblib"
+      ],
+      "calibration": "None",
+      "threshold_optimization": "Standard 0.50",
+      "uncertainty_method": "None",
+      "primary_use_case": "Gradient boosted tabular comparison"
+    }
+  }
+}

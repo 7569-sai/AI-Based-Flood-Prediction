@@ -348,7 +348,7 @@ class SpatialRiskEngine:
 
     def generate_pan_india_risk_map(self, intensity="monsoon_surge"):
         """
-        Generate interactive Folium flood risk map for all 36 Pan-India stations across 12 basins.
+        Generate interactive Folium flood risk map for all 36 Pan-India stations across 24 basins.
         """
         from src.geospatial.location_service import INDIA_STATIONS, get_simulated_current_weather
 

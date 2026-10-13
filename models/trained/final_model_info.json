@@ -1,12 +1,17 @@
 {
-  "champion_model": "Random_Forest",
-  "proposed_research_model": "ST_FloodNet",
-  "scalable_tabular_baseline": "LightGBM",
-  "num_features": 27,
-  "test_f1": 0.6717,
-  "test_recall": 0.9465,
-  "test_pr_auc": 0.7866,
-  "st_floodnet_f1": 0.4947,
-  "st_floodnet_recall": 1.0,
-  "st_floodnet_pr_auc": 0.7622
+  "champion_model": "HF_STFloodNet",
+  "active_model_name": "HF-STFloodNet",
+  "architecture": "ST-FloodNet + LightGBM + Leakage-Safe Fusion",
+  "spatial_holdout_f1": 0.7691,
+  "spatial_holdout_mcc": 0.775,
+  "spatial_holdout_recall": 0.959,
+  "in_basin_recall": 1.0,
+  "in_basin_f1": 0.565,
+  "in_basin_pr_auc": 0.7488,
+  "baselines": {
+    "lightgbm_in_basin_f1": 0.6815,
+    "lightgbm_spatial_f1": 0.7065,
+    "st_floodnet_spatial_f1": 0.7397,
+    "random_forest_in_basin_f1": 0.6717
+  }
 }

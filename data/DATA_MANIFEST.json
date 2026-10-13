@@ -1,66 +1,289 @@
 {
-  "pan_india_dataset": {
-    "dataset_name": "Pan-India Multi-Basin Hydrometeorological and Remote-Sensing Dataset (2018-2023)",
-    "source": "ECMWF ERA5-Land Reanalysis, USGS SRTM 30m Digital Elevation Model (GEE), CIESIN GPWv4 Global Population (GEE), Copernicus Sentinel-1 Dual-Pol SAR, Central Water Commission (CWC) Gauge Reports",
-    "url": "https://open-meteo.com/en/docs/historical-weather-api, https://developers.google.com/earth-engine/datasets, https://ffs.india-water.gov.in/",
-    "license": "Copernicus Open Access / Open-Meteo CC BY 4.0 / NASA Open Data Policy",
-    "download_date": "2026-09-23T15:20:00.000000+00:00",
-    "file_name": "pan_india_features.parquet",
-    "file_path": "data/processed/india/pan_india_features.parquet",
-    "file_hash_sha256": "137af604b4c035c19a927373cb1311f22df976b7f80ce9213410df202fb14692",
-    "format": "Apache Parquet (Snappy Compressed)",
-    "number_of_records": 78876,
-    "number_of_stations": 36,
-    "number_of_river_basins": 12,
-    "geographical_coverage": "Pan-India Multi-Basin (6.0N - 38.0N, 68.0E - 98.0E)",
-    "temporal_coverage": "2018-01-01 to 2023-12-31 (Daily Continuous, 2,191 days/station)",
-    "splits": {
-      "train_years": "2018-2021 (52,596 records, 929 flood events)",
-      "val_year": "2022 (13,140 records, 237 flood events)",
-      "test_year": "2023 (13,140 records, 187 flood events)",
-      "spatial_holdout_basins": "Brahmaputra and Mahanadi (10,955 records, 415 flood events)"
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "dataset_manifest_version": "2.1.0-research",
+  "project_title": "AI-Based Flood Prediction, Dynamic Risk Mapping and Resilience Planning",
+  "application": "FloodAI Engine — AI for a Safer, Resilient India",
+  "creation_timestamp": "2026-09-27T22:50:00Z",
+  "dataset_summary": {
+    "total_records": 78876,
+    "total_stations": 36,
+    "total_basins": 24,
+    "states_covered": 19,
+    "temporal_span": {
+      "start_date": "2018-01-01",
+      "end_date": "2023-12-31",
+      "granularity": "daily",
+      "consecutive_station_days": true
     },
-    "features_count": 27,
-    "features": [
-      "rainfall_1d",
-      "rainfall_3d",
-      "rainfall_7d",
-      "rainfall_14d",
-      "rainfall_anomaly_30d",
-      "api_14d",
-      "temp_mean_3d",
-      "humidity_mean_3d",
-      "soil_moisture_root_zone",
-      "soil_moisture_deep",
-      "soil_saturation_ratio",
-      "river_discharge_proxy",
-      "river_stage_anomaly",
-      "elevation_m",
-      "slope_deg",
-      "dist_river_km",
-      "twi_proxy",
-      "elevation_risk_factor",
-      "drainage_vulnerability",
-      "sar_vv",
-      "sar_vh",
-      "sar_cross_ratio",
-      "ndwi_proxy",
-      "ndvi_proxy",
-      "population_density",
-      "exposure_index",
-      "vulnerability_index"
-    ],
-    "target": "flood_occurred (binary: 0/1) & flood_severity (ordinal: 0=None, 1=Minor, 2=Moderate, 3=Severe)",
-    "known_limitations": "Atmospheric variables represent gridded ERA5-Land reanalysis at ~9km resolution; SAR backscatter incorporates realistic orbital revisit and specular water reflectance models; river stage anomaly reflects upstream basin precipitation and stage warning levels."
+    "partitions": {
+      "train": {
+        "start_date": "2018-01-01",
+        "end_date": "2021-12-31",
+        "records": 52596,
+        "stations": 36,
+        "file": "data/processed/india/train.parquet",
+        "purpose": "Model training and station-aware 5-fold cross-fitting"
+      },
+      "validation": {
+        "start_date": "2022-01-01",
+        "end_date": "2022-12-31",
+        "records": 13140,
+        "stations": 36,
+        "file": "data/processed/india/val.parquet",
+        "purpose": "Decision threshold tuning and probability calibration (Platt/Isotonic)"
+      },
+      "test": {
+        "start_date": "2023-01-01",
+        "end_date": "2023-12-31",
+        "records": 13140,
+        "stations": 36,
+        "file": "data/processed/india/test.parquet",
+        "purpose": "Untouched frozen out-of-time evaluation"
+      }
+    }
   },
-  "previous_kerala_baseline": {
-    "dataset_name": "Kerala River Basins Hydrometeorological and Remote-Sensing Dataset (2018-2023)",
-    "source": "ECMWF ERA5-Land, USGS SRTM 30m, CIESIN GPWv4, Sentinel-1 SAR",
-    "file_name": "kerala_flood_raw.csv",
-    "file_hash_sha256": "a7e9fc5d40372261051c98e9f2a0d17c3ebbbdfa9d1889a8786a5ee37766f60f",
-    "number_of_records": 35056,
-    "number_of_stations": 16,
-    "geographical_coverage": "Kerala, India (8.52N - 11.80N, 75.78E - 77.06E)",
-    "temporal_coverage": "2018-01-01 to 2023-12-31 (Daily)"
-  }
+  "provenance_breakdown": {
+    "observational_and_geospatial_count": 7,
+    "derived_deterministic_count": 9,
+    "calibrated_physical_proxies_count": 11,
+    "total_input_features": 27
+  },
+  "feature_catalog": [
+    {
+      "index": 0,
+      "name": "rainfall_1d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "observational",
+      "source": "IMD 0.25 Gridded / ERA5-Land Reanalysis"
+    },
+    {
+      "index": 1,
+      "name": "rainfall_3d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "derived_deterministic",
+      "source": "Trailing 3-day sum"
+    },
+    {
+      "index": 2,
+      "name": "rainfall_7d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "derived_deterministic",
+      "source": "Trailing 7-day sum"
+    },
+    {
+      "index": 3,
+      "name": "rainfall_14d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "derived_deterministic",
+      "source": "Trailing 14-day sum"
+    },
+    {
+      "index": 4,
+      "name": "rainfall_anomaly_30d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "derived_statistical",
+      "source": "Deviation of R3d from R30d/10.0"
+    },
+    {
+      "index": 5,
+      "name": "api_14d",
+      "domain": "meteorological",
+      "unit": "mm",
+      "provenance": "physically_derived",
+      "source": "Antecedent Precipitation Index model"
+    },
+    {
+      "index": 6,
+      "name": "temp_mean_3d",
+      "domain": "meteorological",
+      "unit": "deg_C",
+      "provenance": "observational",
+      "source": "IMD / ERA5-Land 2m Temperature"
+    },
+    {
+      "index": 7,
+      "name": "humidity_mean_3d",
+      "domain": "meteorological",
+      "unit": "percent",
+      "provenance": "observational",
+      "source": "ERA5-Land 2m Relative Humidity"
+    },
+    {
+      "index": 8,
+      "name": "soil_moisture_root_zone",
+      "domain": "hydrological",
+      "unit": "m3/m3",
+      "provenance": "calibrated_physical_proxy",
+      "source": "ERA5-Land Layer 1 (0-7cm) soil water"
+    },
+    {
+      "index": 9,
+      "name": "soil_moisture_deep",
+      "domain": "hydrological",
+      "unit": "m3/m3",
+      "provenance": "calibrated_physical_proxy",
+      "source": "ERA5-Land Layer 2 (7-28cm) soil water"
+    },
+    {
+      "index": 10,
+      "name": "soil_saturation_ratio",
+      "domain": "hydrological",
+      "unit": "ratio",
+      "provenance": "derived_physical_ratio",
+      "source": "Min(SM_root / 0.48, 1.0)"
+    },
+    {
+      "index": 11,
+      "name": "river_discharge_proxy",
+      "domain": "hydrological",
+      "unit": "m3/s",
+      "provenance": "calibrated_physical_proxy",
+      "source": "Rational runoff discharge proxy"
+    },
+    {
+      "index": 12,
+      "name": "river_stage_anomaly",
+      "domain": "hydrological",
+      "unit": "meters",
+      "provenance": "calibrated_physical_proxy",
+      "source": "Stage departure from danger level"
+    },
+    {
+      "index": 13,
+      "name": "elevation_m",
+      "domain": "topographic",
+      "unit": "meters",
+      "provenance": "observational_geospatial",
+      "source": "USGS SRTM 30m Digital Elevation Model"
+    },
+    {
+      "index": 14,
+      "name": "slope_deg",
+      "domain": "topographic",
+      "unit": "degrees",
+      "provenance": "observational_geospatial",
+      "source": "SRTM Terrain Slope Angle"
+    },
+    {
+      "index": 15,
+      "name": "dist_river_km",
+      "domain": "topographic",
+      "unit": "km",
+      "provenance": "observational_geospatial",
+      "source": "Euclidean distance to HydroSHEDS river network"
+    },
+    {
+      "index": 16,
+      "name": "twi_proxy",
+      "domain": "topographic",
+      "unit": "index",
+      "provenance": "derived_geomorphic",
+      "source": "Topographic Wetness Index proxy"
+    },
+    {
+      "index": 17,
+      "name": "elevation_risk_factor",
+      "domain": "topographic",
+      "unit": "index",
+      "provenance": "derived_geomorphic",
+      "source": "Exp(-elevation / 50.0)"
+    },
+    {
+      "index": 18,
+      "name": "drainage_vulnerability",
+      "domain": "topographic",
+      "unit": "index",
+      "provenance": "derived_composite",
+      "source": "0.45*Elev + 0.35*River + 0.20*Slope"
+    },
+    {
+      "index": 19,
+      "name": "sar_vv",
+      "domain": "remote_sensing",
+      "unit": "dB",
+      "provenance": "calibrated_radar_proxy",
+      "source": "Sentinel-1 C-band SAR VV backscatter proxy"
+    },
+    {
+      "index": 20,
+      "name": "sar_vh",
+      "domain": "remote_sensing",
+      "unit": "dB",
+      "provenance": "calibrated_radar_proxy",
+      "source": "Sentinel-1 C-band SAR VH cross-pol backscatter proxy"
+    },
+    {
+      "index": 21,
+      "name": "sar_cross_ratio",
+      "domain": "remote_sensing",
+      "unit": "ratio",
+      "provenance": "derived_polarimetric",
+      "source": "|VH / (VV - 0.01)|"
+    },
+    {
+      "index": 22,
+      "name": "ndwi_proxy",
+      "domain": "remote_sensing",
+      "unit": "index",
+      "provenance": "calibrated_optical_proxy",
+      "source": "Sentinel-2 NDWI surface water proxy"
+    },
+    {
+      "index": 23,
+      "name": "ndvi_proxy",
+      "domain": "remote_sensing",
+      "unit": "index",
+      "provenance": "calibrated_optical_proxy",
+      "source": "Sentinel-2 NDVI vegetation vigor proxy"
+    },
+    {
+      "index": 24,
+      "name": "population_density",
+      "domain": "socioeconomic_exposure",
+      "unit": "persons/km2",
+      "provenance": "observational_demographic",
+      "source": "CIESIN Gridded Population of the World v4"
+    },
+    {
+      "index": 25,
+      "name": "exposure_index",
+      "domain": "socioeconomic_exposure",
+      "unit": "index",
+      "provenance": "derived_demographic",
+      "source": "Log-scaled population exposure"
+    },
+    {
+      "index": 26,
+      "name": "vulnerability_index",
+      "domain": "socioeconomic_vulnerability",
+      "unit": "index",
+      "provenance": "derived_composite",
+      "source": "UNDRR composite vulnerability index"
+    }
+  ],
+  "target_variables": {
+    "binary_hazard": {
+      "column": "flood_occurred",
+      "type": "binary",
+      "classes": [0, 1],
+      "provenance": "physically_calibrated_multi_criteria_trigger"
+    },
+    "severity_classification": {
+      "column": "flood_severity",
+      "type": "ordinal_categorical",
+      "classes": {
+        "0": "None",
+        "1": "Minor",
+        "2": "Moderate",
+        "3": "Severe/Catastrophic"
+      },
+      "provenance": "hierarchical_hydraulic_inundation_model"
+    }
+  },
+  "scientific_disclosure": "Observational climate and geospatial variables are grounded in IMD, ERA5-Land, SRTM, and CIESIN datasets. Hydrological discharge/stage series, radar backscatter, and flood event labels represent physically calibrated proxies and simulated ground truth aligned with documented historical Indian floods."
 }

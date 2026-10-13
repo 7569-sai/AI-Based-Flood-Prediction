@@ -472,12 +472,12 @@ location_service, feature_extractor, prediction_service, local_risk_engine, resi
 
 # Dynamic Model Name Resolution
 INFO_PATH = os.path.join(BASE_DIR, "models", "trained", "final_model_info.json")
-dynamic_model_name = "Random Forest Balanced"
+dynamic_model_name = "HF-STFloodNet"
 if os.path.exists(INFO_PATH):
     try:
         with open(INFO_PATH, "r", encoding="utf-8") as f:
             m_info = json.load(f)
-            dynamic_model_name = m_info.get("champion_model", "Random Forest Balanced").replace("_", " ").title()
+            dynamic_model_name = m_info.get("active_model_name", m_info.get("champion_model", "HF-STFloodNet")).replace("_", "-")
     except Exception:
         pass
 
@@ -821,7 +821,7 @@ with tab_location:
                 </div>
             </div>
             <div style="font-size: 0.75rem; color: #94A3B8; text-align: center; margin-top: 8px;">
-                AI Model: <b>{dynamic_model_name}</b> &bull; *Project-defined composite risk score (UNDRR standard framework)
+                AI Model: <b>{pred_res.get('model_name', dynamic_model_name)}</b> &bull; Architecture: <b>{pred_res.get('model_architecture', 'ST-FloodNet + LightGBM + Leakage-Safe Fusion')}</b> &bull; *UNDRR standard framework
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1023,7 +1023,7 @@ with tab_advanced:
     ])
 
     with sub_eval:
-        st.markdown("##### Out-of-Time Evaluation • 2023 Held-Out Test Set • 5,840 Records")
+        st.markdown("##### Out-of-Time Evaluation • 2023 Held-Out Test Set • 13,140 Records")
         rows = []
         for m, vals in model_metrics.items():
             rows.append({
@@ -1035,9 +1035,14 @@ with tab_advanced:
                 "PR-AUC": vals["pr_auc"],
                 "ROC-AUC": vals["roc_auc"],
                 "Brier Score": vals["brier_score"],
-                "Latency (ms)": vals["inference_latency_ms"]
+                "Latency (ms)": vals.get("inference_latency_ms", "N/A")
             })
         st.dataframe(pd.DataFrame(rows).sort_values("F1-Score", ascending=False), use_container_width=True)
+
+        hybrid_comp_csv = os.path.join(BASE_DIR, "results", "final_hybrid_comparison.csv")
+        if os.path.exists(hybrid_comp_csv):
+            st.markdown("###### 🔬 HF-STFloodNet 5-Way Architectural Comparison (2023 Out-of-Time Test Set)")
+            st.dataframe(pd.read_csv(hybrid_comp_csv), use_container_width=True)
 
         c1, c2 = st.columns(2)
         with c1:
@@ -1061,6 +1066,10 @@ with tab_advanced:
             sum_img = os.path.join(BASE_DIR, "outputs", "figures", "shap_summary_plot.png")
             if os.path.exists(sum_img):
                 st.image(sum_img, caption="SHAP Summary (Feature Impact Direction)", use_container_width=True)
+
+        hyb_shap = os.path.join(BASE_DIR, "results", "figures", "shap_hybrid.png")
+        if os.path.exists(hyb_shap):
+            st.image(hyb_shap, caption="HF-STFloodNet: Meta-Learner Cross-Modal SHAP Feature Attribution", use_container_width=True)
 
         with st.expander("Technical SHAP Methodology"):
             st.markdown("""
@@ -1088,6 +1097,16 @@ with tab_advanced:
             sp_img = os.path.join(BASE_DIR, "outputs", "figures", "pan_india_spatial_generalization.png")
             if os.path.exists(sp_img):
                 st.image(sp_img, caption="Spatial Transfer Performance on Unseen River Basins", use_container_width=True)
+
+        h_sp_fig = os.path.join(BASE_DIR, "results", "figures", "hybrid_spatial_generalization.png")
+        h_abl_fig = os.path.join(BASE_DIR, "results", "figures", "hybrid_ablation.png")
+        if os.path.exists(h_sp_fig) and os.path.exists(h_abl_fig):
+            st.markdown("###### 🌊 HF-STFloodNet: Cross-Basin Spatial Generalization & Progressive Ablation")
+            h_c1, h_c2 = st.columns(2)
+            with h_c1:
+                st.image(h_sp_fig, caption="Cross-Basin Transfer: HF-STFloodNet vs Baselines", use_container_width=True)
+            with h_c2:
+                st.image(h_abl_fig, caption="5-Tier Progressive Architectural Ablation", use_container_width=True)
 
     with sub_sim:
         st.markdown("##### Manual Parametric Scenario Simulation (Research What-If Mode)")
